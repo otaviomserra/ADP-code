@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+
+
+option java_multiple_files = true;
+option java_package = "com.neoception.ils.external";
+option java_outer_classname = "IlsEventTypes";
+option csharp_namespace = "Neo.Ils.External";
+option go_package = "gitlab.com/neoception/products/interfaces/core/ils/external";
+
+package neoception.ils.external;
+
+// ============================================================================
+// TYPES
+// ============================================================================
+
+enum CarrierActionType {
+  CARRIER_ACTION_UNKNOWN = 0;
+  CARRIER_ACTION_PUT = 1;
+  CARRIER_ACTION_PICK = 2;
+}
+
+enum LocationType {
+  LOCATION_UNKNOWN = 0;
+  LOCATION_PRIMARY = 1;
+  LOCATION_SECONDARY = 2;
+}

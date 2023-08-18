@@ -1,0 +1,167 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+
+import "core/ils/external/types.proto";
+
+option java_multiple_files = true;
+option java_package = "com.neoception.ils.external";
+option java_outer_classname = "IlsEventMessages";
+option csharp_namespace = "Neo.Ils.External";
+option go_package = "gitlab.com/neoception/products/interfaces/core/ils/external";
+
+package neoception.ils.external;
+
+
+// Questions about the documentation?
+// https://cloud.google.com/apis/design/documentation#field_and_parameter_descriptions
+//
+
+// ============================================================================
+// OrganisationEvent
+// ============================================================================
+
+message OrganisationEvent {
+  // Output. All events produced by Neoception services provide a header. In it you can find information about your
+  // organizations as well as traceability information.
+  Header header = 1; // Event Metadata
+
+  // Output. Depending on the bodyType different events are provided for those who wish to implement
+  // functionalities for.
+  Body body = 2; // Event Payload
+
+  message Header {
+    // traceId is an internal property we use to trace events from its beginning journey to the end.
+    // We highly encourage you to log it on your listener(s) so that in case something goes wrong we might all work
+    // together more effectively to find the culprit of some error
+    string trace_id = 1;
+
+    // id is the identifier of the event you are processing. It is an alternative to the trace_id. Feel free to log it
+    // or even store it an a table on a database somewhere.
+    string id = 2;
+
+    // An event belongs to an organisation. If you have multiple organizations on you company, and wish to known which
+    // event belongs to each organisation you will need to filter events based on this property
+    string organisation_id = 3;
+
+    // This is the timestamp of when this event was generated
+    google.protobuf.Timestamp timestamp = 4;
+  }
+
+  message Body {
+    oneof body {
+      // An event warning all interested parties that an identification was made
+      Identification identification = 1;
+
+      // An event warning all interested parties that a trigger was executed
+      Trigger trigger = 2;
+
+      // An event warning all interested parties that a given action took place
+      Action action = 3;
+    }
+  }
+
+  // An identification allows you to known when a given code was read or scanned by some kind of reader
+  message Identification {
+    // Seen identifications are 'instant' reads of a given identifier. Giving an example, if you have an RFID reader in constant read mode
+    // and you put a tag in front of the reader you will get the same tag read multiple times in a mater of few
+    // seconds. This means that you will have to deal with several Identifications of type seen for the same Tag every
+    // time you receive an Identification event.
+    Seen seen = 1;
+
+    // Lost identifications are 'instant' stopped to read given identifier. This works in the same way Seen events.
+    Lost lost = 2;
+
+    // Present events are stabilized Seen events. Giving an example, if you have an RFID reader and you put a tag in front
+    // of it like for example for 2 seconds you might get 50 Seen events but you will only get 1 Present event.
+    Present present = 3;
+
+    IdentifierChanged identifier_changed = 4;
+
+    message Seen {
+      repeated Identifier identifier = 1;
+    }
+
+    message Lost {
+      repeated Identifier identifier = 1;
+    }
+
+    message Present {
+      repeated Identifier identifier = 1;
+    }
+
+    message IdentifierChanged {
+      Identifier identifier = 1;
+    }
+
+    message Identifier {
+      // The id of the identifier
+      string id = 1;
+
+      // This is the original code of the identifier, for example the value of a barcode, the value of a QR Code,
+      // the value of an RFID tag and so on...
+      string code = 2;
+
+      // Metadata of an identifier is additional complementary information about the identifier in question
+      // Please refer to the metadata message for more details
+      Metadata metadata = 3;
+
+      // Enrichment(s) are business like data you can configure to append to an identifier when it is read.
+      // In them you can configure keys and values for those given keys. Once the identifier is read, that additional
+      // business data will be appended to the identification that then you can use to do some action somewhere.
+      map<string, string> enrichments = 4;
+
+      message Metadata {
+        // RSSI value of when the identifier was read
+        optional int32 rssi = 1;
+      }
+    }
+  }
+
+  message Action {
+    oneof body {
+      // An event related to a material
+      Material material = 1;
+
+      // An event related to a carrier
+      Carrier carrier = 2;
+    }
+
+    message Material {
+      //TODO
+    }
+
+    message Carrier {
+      string lane_address = 1;
+      CarrierActionType carrier_action_type = 2;
+      LocationType location_type = 3;
+      string carrier_id = 4;
+      int32 current_count = 5;
+    }
+
+  }
+
+  message Trigger {
+    oneof body {
+      TriggerStock trigger_stock = 1;
+    }
+
+    message TriggerStock {
+      string lane_id = 1;
+      string trigger_name = 2;
+      TriggerState state = 4;
+      int32 stock = 5;
+      string threshold = 6;
+      string address = 7;
+
+      enum TriggerState {
+        UNKNOWN_STATE = 0;
+        BELOW = 1;
+        EQUAL = 2;
+        ABOVE = 3;
+      }
+    }
+  }
+
+}

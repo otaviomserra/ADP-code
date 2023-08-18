@@ -1,0 +1,233 @@
+Fräsplatz Supermarkt
+
+        FS2 x
+                    "id": "3da56222-47c8-4382-b1c9-4347dd589a49",
+                    "address": "S001.M001.01.01"
+                    "CC": "aff183a4-42d8-4d8c-b21f-da6a796c6fda"
+
+        LK1 x
+                    "id": "649ad7f8-0fc8-4bb3-8564-0b9fc489143e",
+                    "address": "S001.M001.01.02"
+                    "CC": "2023d6a8-0fab-468e-b40e-8a26cae5f7f5"
+
+
+After Washing supermarket
+        Airwolf Seite Links
+                    "id": "2a706317-2ffb-4f8e-8b2d-6bf297f9db78",
+                    "address": "S001.M002.01.01"
+                    "CC":
+        Airwolf Seite rechts
+                    "id": "0eb1db60-77c9-4a2f-afbe-bdab623a55fd",
+                    "address": "S001.M002.01.02"
+                    "CC":
+
+
+After Testing supermarket
+        FB1 (Empties)
+                    "id": "286b6d21-cd7f-4c5a-9600-17bbeeb877b1",
+                    "address": "S001.M003.01.01"
+                    "CC":
+        FB2 (Empties)
+                    "id": "8a239df2-7c10-456c-8d54-ac36e4ab2894",
+                    "address": "S001.M003.01.02"
+                    "CC":
+        FK (Empties)
+                    "id": "7c03edaf-6256-4ed2-9376-64bb352c9953",
+                    "address": "S001.M003.01.03"
+                    "CC":
+        FB1 x x
+                    "id": "aed94e2e-d66e-468a-bcf0-d122fdbc0b10",
+                    "address": "S001.M003.02.01"
+                    "CC": "2ff41199-9f50-4077-be38-a466269e404b"
+        FB2 x x
+                    "id": "d8034fa3-664d-4e32-ab2d-6e0abf6e23d4",
+                    "address": "S001.M003.02.02"
+                    "CC": "afecc4cc-6d91-4647-a7e3-7962a5be64bb"
+        FK x
+                    "id": "6e87ad99-cef3-405f-ad75-a2720abda95a",
+                    "address": "S001.M003.02.03"
+                    "CC": "86f1a1ba-4c99-4ce7-924e-3bb6607b0ad2"
+
+
+
+Supplier supermarket
+        LD2 x x
+                    "id": "7a5dc1a2-d105-40ec-bcda-5f7c7cb2261b",
+                    "address": "S001.M004.01.01"
+                    "CC": "50cb3ac3-e7b4-4db1-9690-9c89ff62ef97"
+        LD1 x x
+                    "id": "8d20ae37-d762-4d4a-935a-2d07fec2af7e",
+                    "address": "S001.M004.01.02"
+                    "CC": "538a71e2-99b9-4e5d-8fab-bdcde4868f0d"
+        LK2 x x
+                    "id": "2f391f1c-0488-4b21-a215-fe77978d3886",
+                    "address": "S001.M004.02.01"
+                    "CC": "5624ba3f-327e-4bd7-b021-81a9ac08f6cc"
+        LK1 x x
+                    "id": "5a899a44-ea75-4358-a20b-0b338212c1fa",
+                    "address": "S001.M004.02.02"
+                    "CC": "e1dc3046-93f5-48ed-b2cf-bd605e3eaff7"
+        LG3 x x
+                    "id": "12b892e8-63b8-4927-8607-a7169e78a9f5",
+                    "address": "S001.M004.03.01"
+                    "CC": "a3ff8527-2582-474f-90b3-0abb7ae0c021"
+        LG1 x x
+                    "id": "cb043b49-96b7-4f6e-8374-3bb8bbb15a32",
+                    "address": "S001.M004.03.02"
+                    "CC": "f1749739-f4ac-4206-af28-5bc7b3322484"
+        LG4 x x
+                    "id": "3fb5394e-4828-44bd-9732-eeb572cc1c10",
+                    "address": "S001.M004.04.01"
+                    "CC": "082c2b14-e019-4fb0-9c88-200fa424aaa3"
+        LG2 x x
+                    "id": "1a6acfef-0beb-4115-80c2-9c9cf02c6208",
+                    "address": "S001.M004.04.02"
+                    "CC": "9adf1dbf-58ad-4ba1-bd29-22d25e22c53c"
+        Empties
+                    "id": "1415beca-5bd5-4dee-a42d-9d7c4ec30f52",
+                    "address": "S001.M004.05.01"
+                    "CC":
+
+Production supermarket
+        FK5 x
+                    "id": "0294160a-5a5e-4f1c-8680-ff53b8e1eb00",
+                    "address": "S001.M005.01.01"
+                    "CC": "e9baf96e-803b-42ab-8601-eff2390773e3"
+        FK1 x
+                    "id": "07be9239-2b21-4fac-bddb-fa2ee0498802",
+                    "address": "S001.M005.01.02"
+                    "CC": "659acad2-a059-45c1-8f5f-e04906ccff86"
+        FB1 x x
+                    "id": "aadf95aa-c11e-41a5-adf3-377b540000ab",
+                    "address": "S001.M005.01.03"
+                    "CC": "51c97b7a-e490-4430-87e7-4d9a78046b44"
+        FK6 x
+                    "id": "a200f2fc-3f18-404c-86ae-745e60a3e11f",
+                    "address": "S001.M005.02.01"
+                    "CC": "96352d99-4239-492c-b8b4-5a99035a0190"
+        FK2 x
+                    "id": "724144a8-e3b8-4f7e-bb70-4279c849584f",
+                    "address": "S001.M005.02.02"
+                    "CC": "1db0d16e-eb02-4016-b461-85521857bad9"
+        FK7 x
+                    "id": "04551494-1e8c-4a3f-b78a-952c2e38b4e5",
+                    "address": "S001.M005.03.01"
+                    "CC": "b0adf6fd-a9be-4942-9f9e-3a068ca77d8d"
+        FK3 x
+                    "id": "c83d2166-8c54-4a2d-a530-23b20fc4fda2",
+                    "address": "S001.M005.03.02"
+                    "CC": "4a2088e7-e5c7-400f-8430-3c124c113da1"
+        FB2 x
+                    "id": "396e2360-6fec-4e18-9072-8b4e2c6c90fe",
+                    "address": "S001.M005.03.03"
+                    "CC": "15c5e6f6-a406-4f02-bac3-0521d51f86fc"
+        FK8 x
+                    "id": "1e58f6cf-9d6b-4183-bb8f-68acef1a4e79",
+                    "address": "S001.M005.04.01"
+                    "CC": "abad9367-9b54-4fa5-a972-dfbd22eb24ad"
+        FK4 x
+                    "id": "9e97d708-abf2-4a8e-8bc4-8f8ea0053e9e",
+                    "address": "S001.M005.04.02"
+                    "CC": "781bd4d7-6a58-46fc-8431-3418413d001e"
+        Empties
+                    "id": "023bf504-98a9-4b23-892e-07d6e1e56e6d",
+                    "address": "S001.M005.05.01"
+                    "CC":
+
+
+Assembly supermarket
+        LK2 x
+                    "id": "ba064e01-172e-4bda-8e5d-753a95c262da",
+                    "address": "S001.M006.01.01"
+                    "CC": "01ec2ee7-38db-4a9f-8e1c-5db90301b09e"
+        LG4 x
+                    "id": "600c3d5b-0b24-466b-8d89-63701e275666",
+                    "address": "S001.M006.01.02"
+                    "CC": "89e106ac-ce69-4d66-9e41-f81e2a014320"
+        LG3 x
+                    "id": "c442a7c8-258e-46ff-a66f-6d9e7967a51e",
+                    "address": "S001.M006.01.03"
+                    "CC": "1c83b022-c500-4b81-bef5-9b33b36127bb"
+        FB2 x
+                    "id": "724887e0-aa55-4388-b835-f2af7b6b1099",
+                    "address": "S001.M006.01.04"
+                    "CC": "41ffe350-3606-46e6-bc64-0655e6ae959a"
+        LD2 x
+                    "id": "29a9f29c-174f-4ab8-abc6-a30ac1063fee",
+                    "address": "S001.M006.01.05"
+                    "CC": "f7362cb4-d4eb-4f83-a140-456141e96b10"
+        LK1 x
+                    "id": "7b6f8946-deaf-4047-a2bd-5be58425c6f4",
+                    "address": "S001.M006.02.01"
+                    "CC": "eee9e685-28b1-4f25-8cb9-67af433f7cc5"
+        LG2 x
+                    "id": "065f9695-de09-4dad-afaf-0502194ee2e9",
+                    "address": "S001.M006.02.02"
+                    "CC": "420d411a-509a-490d-bc26-9cfd51330ea3"
+        LG1 x
+                    "id": "fdc30cc4-0459-40d1-9a69-11a927124549",
+                    "address": "S001.M006.02.03"
+                    "CC": "352f5c2e-2a62-43b6-b8a4-5344c9d30c32"
+        FB1 x
+                    "id": "e45269a4-f5a3-477c-aa89-f5197103074c",
+                    "address": "S001.M006.02.04"
+                    "CC": "54c4b38d-174a-409f-9d86-5a98bcb464ee"
+        LD1 x
+                    "id": "9771d74f-e38f-4da5-8c0e-2eccdb593089",
+                    "address": "S001.M006.02.05"
+                    "CC": "05925966-7932-4e7f-91ee-034b21e2ef5b"
+        Empties
+                    "id": "b01bbb45-f148-4a3a-b245-c41be7b22564",
+                    "address": "S001.M006.03.01"
+                    "CC":
+        Empties
+                    "id": "74f4bb5e-061e-4b64-860b-2b6be305db35",
+                    "address": "S001.M006.03.05"
+                    "CC":
+        Empties
+                    "id": "721d55ea-f3cb-4a14-8dd4-4a47264865aa",
+                    "address": "S001.M006.03.03"
+                    "CC":
+
+
+Central Warehouse
+        LD1 x x
+                    "id": "c63c5b2c-b368-4f15-92ff-812733582ba8",
+                    "address": "S001.M007.01.01"
+                    "CC": "bcd321e7-e6c3-432d-ae7d-764efd3248a9"
+        LK1 x x
+                    "id": "e16d6f63-ffd6-4a1c-83b6-e1ce18dc17a8",
+                    "address": "S001.M007.01.02"
+                    "CC": "5efdfa66-9405-4f9e-a8d8-1fde8eb86c47"
+        LD2 x x
+                    "id": "ffc280cd-13a8-49e9-a06a-1281e826645d",
+                    "address": "S001.M007.01.03"
+                    "CC": "4d87a50e-90f5-4f3c-ba3c-c0fe5cb8ad68"
+        LK2 x x
+                    "id": "417aec52-81db-459b-9259-21699851a9d1",
+                    "address": "S001.M007.01.04"
+                    "CC": "307b1ca5-983e-4314-b095-f1077a92fe78"
+        LG1 x x
+                    "id": "72638c2d-39fe-426f-aa6c-ba155236f1d0",
+                    "address": "S001.M007.02.01"
+                    "CC": "ab86b027-710e-4931-8185-1107bad3a0ee"
+        LG2 x x
+                    "id": "266b32ef-d2e6-4b6a-979d-ab161cd5b83a",
+                    "address": "S001.M007.02.02"
+                    "CC": "808134d8-e9ab-4b46-a6f6-f4f44d106825"
+        LG3 x x
+                    "id": "04e45f88-44aa-41b1-b5d9-8183bf3fa935",
+                    "address": "S001.M007.02.03"
+                    "CC": "f4224801-cb79-4602-80b5-b778fd602d76"
+        LG4 x x
+                    "id": "bd4e17b4-44a3-40f5-945a-ccf568820eae",
+                    "address": "S001.M007.02.04"
+                    "CC": "73c353a9-3588-48da-bf3e-a1053278da1f"
+        Empties left
+                    "id": "e5c26adb-d8eb-4aa1-b255-afc09881f31c",
+                    "address": "S001.M007.03.02"
+                    "CC":
+        Empties right
+                    "id": "062dd9a7-7468-44cb-ac42-f8387cab3e0f",
+                    "address": "S001.M007.03.03"
+                    "CC":
