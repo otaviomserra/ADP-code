@@ -4,6 +4,7 @@ from logging import config
 from multiprocessing import Queue
 from multiprocessing.context import Process
 from typing import List
+import csv
 
 import environ
 
@@ -99,3 +100,16 @@ def start_application():
 
 if __name__ == '__main__':
     start_application()
+
+input_file_path =pfparadedarerrado
+
+output_file_path = f"logs/{formatted_time}.csv"
+
+with open(input_file_path, 'r') as text_file:
+    lines = text_file.readlines()
+
+data = [line.strip().split() for line in lines]
+data = [[item.strip('"') for item in row] for row in data]
+with open(output_file_path, 'w', newline='') as csv_file:
+    csv_writer = csv.writer(csv_file)
+    csv_writer.writerows(data)

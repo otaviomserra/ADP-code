@@ -5,7 +5,7 @@ import re
 
 # Need to change the log path and name according to the new log to be worked
 # Need automation
-path='/logs/teste.log'
+path='teste.log'
 log_data=open(path,'r')
 
 # Working with the log structure itself
@@ -37,9 +37,9 @@ for line in corrected_lines:
 df = pd.DataFrame(data, columns=['Date','Hour','Type','Module','Message'])
 
 # Creating path for csv files
-if not os.path.exists('ADP-code/csv-logs'):
-   os.makedirs('ADP-code/csv-logs')
+if not os.path.exists('csv-logs'):
+   os.makedirs('csv-logs')
 
 # Saving the csv files
-df.to_csv('/csv-logs/df_teste.csv',index=False)
-df.to_excel('/csv-logs/df_teste.xlsx')
+df.to_csv('csv-logs/df_teste.csv',index=False)
+df.to_excel('csv-logs/df_teste.xlsx')
