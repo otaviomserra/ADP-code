@@ -62,6 +62,16 @@ class DataFrameProcessor:
         self.df.to_csv(csv_file_path, index=False)
 
 
+class ExcelFileHandler(FileSystemEventHandler):
+    def __init__(self, excel_filename, processor):
+        self.excel_filename = excel_filename
+        self.processor = processor
+
+    def on_modified(self, event):
+        if event.is_directory:
+            return
+        if event.src_path == self.excel_filename:
+            self.process_modified_excel()
 
     def process_modified_excel(self):
         print(f"'{self.excel_filename}' modified. Starting data processing.")
@@ -69,7 +79,7 @@ class DataFrameProcessor:
             self.processor.load_dataframe()
             self.processor.filter_and_clean_dataframe()
             self.processor.process_dataframe()
-            self.processor.save_processed_dataframe("processed_data.csv")
+            self.processor.save_processed_dataframe(csv_file_path)
         print("Data processing completed.")
 
 def monitor_excel_file(logger_path):
@@ -84,7 +94,6 @@ def monitor_excel_file(logger_path):
         while True:
             time.sleep(1)
     except KeyboardInterrupt:
-
         excel_observer.stop()
 
     excel_observer.join()
@@ -93,6 +102,6 @@ if __name__ == "__main__":
     program_lock = Lock()
 
     logger_path = "csv-logs\log_transformado.csv"
-    csv_file_path = 'kafka-logs\live_kafka'
+    csv_file_path = 'kafka-logs\live_kafka.csv'
     monitor_excel_file(logger_path)
     print('rodou')

@@ -101,3 +101,4 @@ HTTP response body: b'{"timestamp":"2023-08-14T13:08:54.947+00:00","status":404,
 [14/Aug/2023 04:15:19] "DEBUG" "main" "Ending process: 'OrganisationEventProcessor-1'"
 [14/Aug/2023 04:15:19] "INFO" "main" "Process OrganisationEventProcessor-1 as fully stopped!"
 [14/Aug/2023 04:15:19] "INFO" "main" "Process OrganisationEventProcessor-1 as fully stopped!"
+[14/Aug/2023 04:15:19] "INFO" "main" "Process OrganisationEventProcessor-1 as fully stopped!"
