@@ -2,6 +2,10 @@ import os
 import pandas as pd
 import numpy as np
 import re
+import time
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
+
 
 class LogToCSVConverter:
     def __init__(self, log_filename, csv_filename):
@@ -58,11 +62,36 @@ class LogToCSVConverter:
         print(f"Transformação concluída. Arquivo '{self.csv_filename}' gerado.")
 
 
-## ADD NA MAIN E MUDAR ESSA PORRA AQUI
-# Nome dos arquivos de entrada (log) e saída (CSV)
-log_filename = 'teste.log'
-csv_filename = 'log_transformado.csv'
+def convert_log_on_update(log_filename, csv_filename):
+    converter = LogToCSVConverter(log_filename, csv_filename)
+    converter.convert()
 
-# Criar uma instância da classe e realizar a conversão
-converter = LogToCSVConverter(log_filename, csv_filename)
-converter.convert()
+class LogFileHandler(FileSystemEventHandler):
+    def __init__(self, log_filename, csv_filename):
+        self.log_filename = log_filename
+        self.csv_filename = csv_filename
+
+    def on_modified(self, event):
+        if event.is_directory:
+            return
+        if event.src_path == self.log_filename:
+            print(f"'{self.log_filename}' updated. Starting log conversion.")
+            convert_log_on_update(self.log_filename, self.csv_filename)
+            print("Log conversion completed.")
+
+if __name__ == "__main__":
+    log_filename = r"D:\Francisco - Dados\Documentos\GitHub\ADP-code\datenverarbeitung\teste.log"
+    csv_filename = 'log_transformado.csv'
+
+    event_handler = LogFileHandler(log_filename, csv_filename)
+    observer = Observer()
+    observer.schedule(event_handler, path=os.path.dirname(log_filename))
+    observer.start()
+
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        observer.stop()
+
+    observer.join()

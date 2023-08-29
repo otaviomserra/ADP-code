@@ -1,14 +1,21 @@
+import os
 import pandas as pd
 import json
+import time
+from threading import Lock  # Import Lock from threading module
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
+
 
 
 class DataFrameProcessor:
     def __init__(self, logger_path):
         self.logger_path = logger_path
+        self.csv_file_path = csv_file_path
         self.df = None
 
     def load_dataframe(self):
-        self.df = pd.read_excel(self.logger_path)
+        self.df = pd.read_csv(self.logger_path)
 
     def filter_and_clean_dataframe(self):
         if self.df is None:
@@ -55,13 +62,37 @@ class DataFrameProcessor:
         self.df.to_csv(csv_file_path, index=False)
 
 
-# Usage - Main
-logger_path = "D:\Francisco - Dados\Documentos\GitHub\ADP-code\datenverarbeitung\csv-logs\df_teste.xlsx"
-csv_file_path = "TESTElogs.csv"
 
+    def process_modified_excel(self):
+        print(f"'{self.excel_filename}' modified. Starting data processing.")
+        with program_lock:
+            self.processor.load_dataframe()
+            self.processor.filter_and_clean_dataframe()
+            self.processor.process_dataframe()
+            self.processor.save_processed_dataframe("processed_data.csv")
+        print("Data processing completed.")
 
-processor = DataFrameProcessor(logger_path)
-processor.load_dataframe()
-processor.filter_and_clean_dataframe()
-processor.process_dataframe()
-processor.save_processed_dataframe(csv_file_path)
+def monitor_excel_file(logger_path):
+    processor = DataFrameProcessor(logger_path)
+    excel_event_handler = ExcelFileHandler(logger_path, processor)
+    excel_observer = Observer()
+
+    excel_observer.schedule(excel_event_handler, path=os.path.dirname(logger_path))
+    excel_observer.start()
+
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+
+        excel_observer.stop()
+
+    excel_observer.join()
+
+if __name__ == "__main__":
+    program_lock = Lock()
+
+    logger_path = "csv-logs\log_transformado.csv"
+    csv_file_path = 'kafka-logs\live_kafka'
+    monitor_excel_file(logger_path)
+    print('rodou')
