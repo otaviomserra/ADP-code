@@ -79,19 +79,19 @@ class LogFileHandler(FileSystemEventHandler):
             convert_log_on_update(self.log_filename, self.csv_filename)
             print("Log conversion completed.")
 
-if __name__ == "__main__":
-    log_filename = r"D:\Francisco - Dados\Documentos\GitHub\ADP-code\datenverarbeitung\teste.log"
-    csv_filename = 'log_transformado.csv'
+# if __name__ == "__main__":
+#     log_filename = r"D:\Francisco - Dados\Documentos\GitHub\ADP-code\datenverarbeitung\teste.log"
+#     csv_filename = 'log_transformado.csv'
 
-    event_handler = LogFileHandler(log_filename, csv_filename)
-    observer = Observer()
-    observer.schedule(event_handler, path=os.path.dirname(log_filename))
-    observer.start()
+#     event_handler = LogFileHandler(log_filename, csv_filename)
+#     observer = Observer()
+#     observer.schedule(event_handler, path=os.path.dirname(log_filename))
+#     observer.start()
 
-    try:
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        observer.stop()
+#     try:
+#         while True:
+#             time.sleep(1)
+#     except KeyboardInterrupt:
+#         observer.stop()
 
-    observer.join()
+#     observer.join()

@@ -12,6 +12,7 @@ from event.organisation_event_processor import OrganisationEventProcessor
 from event.utils.config import KafkaConfig
 from event.utils.ils_event_consumer import IlsEventConsumer
 from utils.token import IlsApiTokenRefresher
+from datenverarbeitung.LogToCsv import *
 
 # get time
 import datetime
@@ -101,15 +102,31 @@ def start_application():
 if __name__ == '__main__':
     start_application()
 
-input_file_path =pfparadedarerrado
+    log_filename = pfparadedarerrado
+    csv_filename = f"logs/{formatted_time}.csv"
 
-output_file_path = f"logs/{formatted_time}.csv"
+    event_handler = LogFileHandler(log_filename, csv_filename)
+    observer = Observer()
+    observer.schedule(event_handler, path=os.path.dirname(log_filename))
+    observer.start()
 
-with open(input_file_path, 'r') as text_file:
-    lines = text_file.readlines()
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        observer.stop()
 
-data = [line.strip().split() for line in lines]
-data = [[item.strip('"') for item in row] for row in data]
-with open(output_file_path, 'w', newline='') as csv_file:
-    csv_writer = csv.writer(csv_file)
-    csv_writer.writerows(data)
+    observer.join()
+
+# input_file_path =pfparadedarerrado
+
+# output_file_path = f"logs/{formatted_time}.csv"
+
+# with open(input_file_path, 'r') as text_file:
+#     lines = text_file.readlines()
+
+# data = [line.strip().split() for line in lines]
+# data = [[item.strip('"') for item in row] for row in data]
+# with open(output_file_path, 'w', newline='') as csv_file:
+#     csv_writer = csv.writer(csv_file)
+#     csv_writer.writerows(data)
