@@ -70,6 +70,22 @@ logger = logging.getLogger(__name__)
 
 
 def start_application():
+    log_filename = pfparadedarerrado
+    csv_filename = f"logs/{formatted_time}.csv"
+
+    event_handler = LogFileHandler(log_filename, csv_filename)
+    observer = Observer()
+    observer.schedule(event_handler, path=os.path.dirname(log_filename))
+    observer.start()
+
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        observer.stop()
+
+    observer.join()
+    ############ modifications for saving the log into csv
     logger.info("Starting application...")
 
     processes: List[Process] = []
@@ -101,22 +117,6 @@ def start_application():
 
 if __name__ == '__main__':
     start_application()
-
-    # log_filename = pfparadedarerrado
-    # csv_filename = f"logs/{formatted_time}.csv"
-
-    # event_handler = LogFileHandler(log_filename, csv_filename)
-    # observer = Observer()
-    # observer.schedule(event_handler, path=os.path.dirname(log_filename))
-    # observer.start()
-
-    # try:
-    #     while True:
-    #         time.sleep(1)
-    # except KeyboardInterrupt:
-    #     observer.stop()
-
-    # observer.join()
 
 input_file_path =pfparadedarerrado
 
