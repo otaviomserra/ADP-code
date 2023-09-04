@@ -83,7 +83,7 @@ class LogFileHandler(FileSystemEventHandler):
 
 
 class DataFrameProcessor:
-    def __init__(self, logger_path):
+    def __init__(self, logger_path,csv_file_path):
         self.logger_path = logger_path
         self.csv_file_path = csv_file_path
         self.df = None
@@ -156,8 +156,8 @@ class ExcelFileHandler(FileSystemEventHandler):
             self.processor.save_processed_dataframe(csv_file_path)
         print("Data processing completed.")
 
-def monitor_excel_file(logger_path):
-    processor = DataFrameProcessor(logger_path)
+def monitor_excel_file(logger_path, csv_file_path):
+    processor = DataFrameProcessor(logger_path, csv_file_path)
     excel_event_handler = ExcelFileHandler(logger_path, processor)
     excel_observer = Observer()
 
@@ -174,24 +174,3 @@ def monitor_excel_file(logger_path):
 
 
 
-if __name__ == "__main__":
-    log_filename = r"D:\Francisco - Dados\Documentos\GitHub\ADP-code\datenverarbeitung\teste.log"
-    csv_filename = 'log_transformado.csv'
-
-    event_handler = LogFileHandler(log_filename, csv_filename)
-    observer = Observer()
-    observer.schedule(event_handler, path=os.path.dirname(log_filename))
-    observer.start()
-    program_lock = Lock()
-    logger_path = "csv-logs\log_transformado.csv"
-    csv_file_path = 'kafka-logs\live_kafka.csv'
-    monitor_excel_file(logger_path)
-
-
-    try:
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        observer.stop()
-
-    observer.join()
