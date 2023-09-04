@@ -12,6 +12,7 @@ from event.organisation_event_processor import OrganisationEventProcessor
 from event.utils.config import KafkaConfig
 from event.utils.ils_event_consumer import IlsEventConsumer
 from utils.token import IlsApiTokenRefresher
+from datenverarbeitung.LogToCsv import *
 
 # get time
 import datetime
@@ -69,6 +70,22 @@ logger = logging.getLogger(__name__)
 
 
 def start_application():
+    log_filename = pfparadedarerrado
+    csv_filename = f"logs/{formatted_time}.csv"
+
+    event_handler = LogFileHandler(log_filename, csv_filename)
+    observer = Observer()
+    observer.schedule(event_handler, path=os.path.dirname(log_filename))
+    observer.start()
+
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        observer.stop()
+
+    observer.join()
+    ############ modifications for saving the log into csv
     logger.info("Starting application...")
 
     processes: List[Process] = []
