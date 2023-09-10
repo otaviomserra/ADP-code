@@ -100,8 +100,7 @@ def monitor_excel_file(logger_path):
 
 if __name__ == "__main__":
     program_lock = Lock()
-
-    logger_path = "csv-logs\log_transformado.csv"
-    csv_file_path = 'kafka-logs\live_kafka.csv'
+    logger_path = "csv_logs\cleaned_teste.csv"
+    csv_file_path = 'kafka_logs\live_kafka.csv'
     monitor_excel_file(logger_path)
     print('rodou')
