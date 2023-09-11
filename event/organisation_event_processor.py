@@ -16,8 +16,8 @@ env = environ.FileAwareEnv()
 
 class OrganisationEventProcessor(EventProcessor):
 
-    def _init_(self, queue: Queue, kafka_config, token_refresher: IlsApiTokenRefresher, *args, **kwargs):
-        super(OrganisationEventProcessor, self)._init_(queue, kafka_config, *args, **kwargs)
+    def __init__(self, queue: Queue, kafka_config, token_refresher: IlsApiTokenRefresher, *args, **kwargs):
+        super(OrganisationEventProcessor, self).__init__(queue, kafka_config, *args, **kwargs)
         self._token_refresher = token_refresher
 
     def _handle_message(self, message):
