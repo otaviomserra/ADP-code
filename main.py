@@ -31,6 +31,7 @@ fileHandler = (pfparadedarerrado + '.')[:-1]
 #fileHandler = "logs/teste.log"
 
 env = environ.FileAwareEnv()
+env.read_env(env.str('D:\Francisco - Dados\Documentos\GitHub\ADP-code', 'local.env'))
 
 log_level = env('LOG_LEVEL', default="DEBUG")
 

@@ -1,3 +1,4 @@
+
 import os
 import pandas as pd
 import json
@@ -22,8 +23,11 @@ class LogToCSVConverter:
         ### TESTANDO, VOLTAR PRO ANTERIOR AQUI TAMBÉM
         if not os.path.exists('csv-logs'):
             os.makedirs('csv-logs')
+        if not os.path.exists('csv_logs'):
+            os.makedirs('csv_logs')
         log_path = os.path.join(self.log_filename)
         csv_path = os.path.join('csv-logs', self.csv_filename)
+        csv_path = os.path.join('csv_logs', self.csv_filename)
 
         log_data = open(log_path, 'r')
 
@@ -84,9 +88,10 @@ class LogFileHandler(FileSystemEventHandler):
 
 class DataFrameProcessor:
     def __init__(self, logger_path,csv_file_path):
-        self.logger_path = logger_path
-        self.csv_file_path = csv_file_path
-        self.df = None
+        def __init__(self, logger_path):
+            self.logger_path = logger_path
+            self.csv_file_path = csv_file_path
+            self.df = None
 
     def load_dataframe(self):
         self.df = pd.read_csv(self.logger_path)
@@ -158,6 +163,9 @@ class ExcelFileHandler(FileSystemEventHandler):
 
 def monitor_excel_file(logger_path, csv_file_path):
     processor = DataFrameProcessor(logger_path, csv_file_path)
+
+def monitor_excel_file(logger_path):
+    processor = DataFrameProcessor(logger_path, csv_file_path)
     excel_event_handler = ExcelFileHandler(logger_path, processor)
     excel_observer = Observer()
 
@@ -173,4 +181,51 @@ def monitor_excel_file(logger_path, csv_file_path):
     excel_observer.join()
 
 
+if __name__ == "__main__":
+    current_directory = os.path.dirname(os.path.abspath('Live_log_csv'))
 
+    raw_logs_path = os.path.join(current_directory, 'raw_logs')
+    clean_logs_path = os.path.join(current_directory, 'csv_logs')
+    kafka_logs_path = os.path.join(current_directory, 'kafka_logs')
+
+    # List the files in the raw_logs folder
+    raw_files = os.listdir(raw_logs_path)
+
+    # Initialize most_recent_file and most_recent_mtime
+    most_recent_file = None
+    most_recent_mtime = 0
+
+    # Filter out directories and get the most recent file
+    for raw_file in raw_files:
+        raw_file_path = os.path.join(raw_logs_path, raw_file)
+        if os.path.isfile(raw_file_path):
+            file_mtime = os.path.getmtime(raw_file_path)
+            if file_mtime > most_recent_mtime:
+                most_recent_mtime = file_mtime
+                log_filename = raw_file_path
+
+    # Extract the base filename without the extension (.log)
+    parts = raw_file_path.split("\\")
+    log_name = parts[-1].split(".")[0]  # Get the first part before the dot (.) in the last part
+
+    csv_filename = 'cleaned_' + log_name + '.csv'
+    kafka_filename = 'kafka_' + log_name + '.csv'
+
+    event_handler = LogFileHandler(log_filename, csv_filename)
+    observer = Observer()
+    observer.schedule(event_handler, path=os.path.dirname(log_filename))
+    observer.start()
+    program_lock = Lock()
+    logger_path = ''.join(['csv_logs\\', csv_filename])
+
+    csv_file_path = ''.join(['kafka_logs\\', kafka_filename])
+
+    monitor_excel_file(logger_path)
+
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        observer.stop()
+
+    observer.join()
