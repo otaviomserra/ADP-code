@@ -1,0 +1,52 @@
+Bestandsmenge,Kapazität,Lagernutzungsgrad,Bestandsgenauigkeit,Durchschnittliche Wartezeit,Lagerumschlagsrate,Reichweite,Wiederbeschaffungszeit
+x,x,x,x,x,x,x,x
+FB1,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+Box 4,2,x,x,-,-,-,-
+FK1,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,0,x,x,-,-,-,-
+Box 2,0,x,x,-,-,-,-
+Box 3,0,x,x,-,-,-,-
+Box 4,0,x,x,-,-,-,-
+FK5,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+Box 4,2,x,x,-,-,-,-
+FK2,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+Box 4,1,x,x,-,-,-,-
+FK6,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+Box 4,1,x,x,-,-,-,-
+FB2,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+Box 4,0,x,x,-,-,-,-
+FK3,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,2,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+Box 4,1,x,x,-,-,-,-
+FK7,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+Box 4,1,x,x,-,-,-,-
+FK4,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+Box 4,1,x,x,-,-,-,-
+FK8,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+Box 4,1,x,x,-,-,-,-

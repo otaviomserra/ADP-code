@@ -1,0 +1,7 @@
+Bestandsmenge,Kapazität,Lagernutzungsgrad,Bestandsgenauigkeit,Durchschnittliche Wartezeit,Lagerumschlagsrate,Reichweite,Wiederbeschaffungszeit
+x,x,x,x,x,x,x,x
+LG2,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+Box 4,0,x,x,-,-,-,-

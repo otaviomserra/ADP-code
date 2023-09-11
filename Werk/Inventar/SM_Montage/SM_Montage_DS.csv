@@ -1,0 +1,114 @@
+Bestandsmenge,Kapazität,Lagernutzungsgrad,Bestandsgenauigkeit,Durchschnittliche Wartezeit,Lagerumschlagsrate,Reichweite,Wiederbeschaffungszeit
+x,x,x,x,x,x,x,x
+LD2,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+FB2,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+LG3,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+LG4,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+LK2,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,0,x,x,-,-,-,-
+Box 2,0,x,x,-,-,-,-
+Box 3,0,x,x,-,-,-,-
+LD1,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+FB1,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+LG1,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,0,x,x,-,-,-,-
+Box 2,0,x,x,-,-,-,-
+Box 3,0,x,x,-,-,-,-
+LG2,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+LK1,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+FK1,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,2,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+Box 4,1,x,x,-,-,-,-
+Box 5,1,x,x,-,-,-,-
+Box 6,1,x,x,-,-,-,-
+Box 7,1,x,x,-,-,-,-
+Box 8,1,x,x,-,-,-,-
+FK2,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+Box 4,1,x,x,-,-,-,-
+Box 5,1,x,x,-,-,-,-
+Box 6,1,x,x,-,-,-,-
+Box 7,1,x,x,-,-,-,-
+Box 8,1,x,x,-,-,-,-
+FK3,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+Box 4,0,x,x,-,-,-,-
+Box 5,0,x,x,-,-,-,-
+Box 6,0,x,x,-,-,-,-
+Box 7,0,x,x,-,-,-,-
+Box 8,0,x,x,-,-,-,-
+FK4,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+Box 4,1,x,x,-,-,-,-
+Box 5,2,x,x,-,-,-,-
+Box 6,1,x,x,-,-,-,-
+Box 7,1,x,x,-,-,-,-
+Box 8,1,x,x,-,-,-,-
+FK5,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+Box 4,1,x,x,-,-,-,-
+Box 5,0,x,x,-,-,-,-
+Box 6,0,x,x,-,-,-,-
+Box 7,0,x,x,-,-,-,-
+Box 8,0,x,x,-,-,-,-
+FK6,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+Box 4,1,x,x,-,-,-,-
+Box 5,2,x,x,-,-,-,-
+Box 6,1,x,x,-,-,-,-
+Box 7,1,x,x,-,-,-,-
+Box 8,2,x,x,-,-,-,-
+FK7,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,1,x,x,-,-,-,-
+Box 3,1,x,x,-,-,-,-
+Box 4,1,x,x,-,-,-,-
+Box 5,1,x,x,-,-,-,-
+Box 6,1,x,x,-,-,-,-
+Box 7,1,x,x,-,-,-,-
+Box 8,2,x,x,-,-,-,-
+FK8,Besetzt,Time In,Waiting Time,-,-,-,-
+Box 1,1,x,x,-,-,-,-
+Box 2,0,x,x,-,-,-,-
+Box 3,0,x,x,-,-,-,-
+Box 4,0,x,x,-,-,-,-
+Box 5,0,x,x,-,-,-,-
+Box 6,0,x,x,-,-,-,-
+Box 7,0,x,x,-,-,-,-
+Box 8,0,x,x,-,-,-,-
