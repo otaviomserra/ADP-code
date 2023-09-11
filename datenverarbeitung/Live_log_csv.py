@@ -21,12 +21,9 @@ class LogToCSVConverter:
         # csv_path = os.path.join('datenverarbeitung/csv-logs', self.csv_filename)
 
         ### TESTANDO, VOLTAR PRO ANTERIOR AQUI TAMBÉM
-        if not os.path.exists('csv-logs'):
-            os.makedirs('csv-logs')
         if not os.path.exists('csv_logs'):
             os.makedirs('csv_logs')
         log_path = os.path.join(self.log_filename)
-        csv_path = os.path.join('csv-logs', self.csv_filename)
         csv_path = os.path.join('csv_logs', self.csv_filename)
 
         log_data = open(log_path, 'r')
@@ -85,13 +82,11 @@ class LogFileHandler(FileSystemEventHandler):
             print("Log conversion completed.")
 
 
-
 class DataFrameProcessor:
-    def __init__(self, logger_path,csv_file_path):
-        def __init__(self, logger_path):
-            self.logger_path = logger_path
-            self.csv_file_path = csv_file_path
-            self.df = None
+    def __init__(self, logger_path):
+        self.logger_path = logger_path
+        self.csv_file_path = csv_file_path
+        self.df = None
 
     def load_dataframe(self):
         self.df = pd.read_csv(self.logger_path)
@@ -160,12 +155,11 @@ class ExcelFileHandler(FileSystemEventHandler):
             self.processor.process_dataframe()
             self.processor.save_processed_dataframe(csv_file_path)
         print("Data processing completed.")
+        print("Kafka .csv generated. Data processing completed." )
 
-def monitor_excel_file(logger_path, csv_file_path):
-    processor = DataFrameProcessor(logger_path, csv_file_path)
 
 def monitor_excel_file(logger_path):
-    processor = DataFrameProcessor(logger_path, csv_file_path)
+    processor = DataFrameProcessor(logger_path)
     excel_event_handler = ExcelFileHandler(logger_path, processor)
     excel_observer = Observer()
 
@@ -206,8 +200,10 @@ if __name__ == "__main__":
 
     # Extract the base filename without the extension (.log)
     parts = raw_file_path.split("\\")
+    parts = log_filename.split("\\")
     log_name = parts[-1].split(".")[0]  # Get the first part before the dot (.) in the last part
 
+    print(log_filename)
     csv_filename = 'cleaned_' + log_name + '.csv'
     kafka_filename = 'kafka_' + log_name + '.csv'
 
@@ -227,5 +223,7 @@ if __name__ == "__main__":
             time.sleep(1)
     except KeyboardInterrupt:
         observer.stop()
+
+    observer.join()
 
     observer.join()
