@@ -174,6 +174,32 @@ def monitor_excel_file(logger_path):
 
     excel_observer.join()
 
+def read_kafka_lane_time_event(kafka_path):
+    try:
+        df = pd.read_csv(csv_file)
+
+        if df.empty:
+            return None  # The CSV file is empty.
+
+        last_row = df.iloc[-1]
+
+        if len(last_row) < 3:
+            return None  # The last row doesn't have enough columns.
+
+
+        ######## MODIFICAR APÓS O CHICO
+        #date = last_row.iloc[0]
+        timestamp = last_row.iloc[0]
+        event_type = last_row.iloc[5]
+        lane = last_row.iloc[-1]
+
+        return (lane,timestamp,event_type)
+    except FileNotFoundError:
+        return None  # Handle file not found exception
+    except Exception as e:
+        return None  # Handle other exceptions
+
+
 
 if __name__ == "__main__":
     current_directory = os.path.dirname(os.path.abspath('Live_log_csv'))
@@ -217,6 +243,10 @@ if __name__ == "__main__":
     csv_file_path = ''.join(['kafka_logs\\', kafka_filename])
 
     monitor_excel_file(logger_path)
+
+    lane,timestamp,event_type = read_kafka_lane_time_event(csv_file_path)
+    
+
 
     try:
         while True:
