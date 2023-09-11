@@ -153,7 +153,7 @@ class ExcelFileHandler(FileSystemEventHandler):
             self.processor.filter_and_clean_dataframe()
             self.processor.process_dataframe()
             self.processor.save_processed_dataframe(csv_file_path)
-        print("Data processing completed.")
+        print("Kafka .csv generated. Data processing completed." )
 
 
 def monitor_excel_file(logger_path):
@@ -197,9 +197,9 @@ if __name__ == "__main__":
                 log_filename = raw_file_path
 
     # Extract the base filename without the extension (.log)
-    parts = raw_file_path.split("\\")
+    parts = log_filename.split("\\")
     log_name = parts[-1].split(".")[0]  # Get the first part before the dot (.) in the last part
-
+    print(log_filename)
     csv_filename = 'cleaned_' + log_name + '.csv'
     kafka_filename = 'kafka_' + log_name + '.csv'
 
@@ -221,4 +221,3 @@ if __name__ == "__main__":
         observer.stop()
 
     observer.join()
-

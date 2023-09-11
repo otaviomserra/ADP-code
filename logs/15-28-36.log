@@ -1,3 +1,0 @@
-[14/Aug/2023 03:28:36] "INFO" "events_processor" "OrganisationEventProcessor Running!"
-[14/Aug/2023 03:33:09] "INFO" "events_processor" "OrganisationEventProcessor received order to stop!"
-[14/Aug/2023 03:33:09] "INFO" "events_processor" "All messages in OrganisationEventProcessor processing queue have been processed. Shutting down..."
