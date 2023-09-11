@@ -245,11 +245,13 @@ if __name__ == "__main__":
 
     monitor_excel_file(logger_path)
 
+    requests = []
+
     lane,timestamp,event_type = read_kafka_lane_time_event(csv_file_path)
     if event_type == 'CARRIER_ACTION_PICK':
-        ProcessRequest(lane,timestamp)
-    elif event_type == 'CARRIER_ACTION_PUT':
-        ProcessRequest.resolve(timestamp)
+        requests.append(ProcessRequest(lane,timestamp))
+    #elif event_type == 'CARRIER_ACTION_PUT':
+        #ProcessRequest.resolve(timestamp)
 
     try:
         while True:
