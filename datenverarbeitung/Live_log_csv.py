@@ -127,7 +127,7 @@ class DataFrameProcessor:
                                   'currentCount', 'laneAddress']
         self.df = pd.concat([self.df, extracted_data], axis=1)
         self.df.drop(columns=['Message', 'ExtractedData'], inplace=True)
-        self.df.drop(self.df.columns[0], axis=1, inplace=True)
+
 
     def save_processed_dataframe(self, csv_file_path):
         if self.df is None:
