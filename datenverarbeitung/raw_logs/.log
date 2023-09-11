@@ -1,0 +1,28 @@
+[18/Aug/2023 02:13:19] "INFO" "main" "Starting application..."
+[18/Aug/2023 02:13:19] "INFO" "main" "ils-api access: True"
+[18/Aug/2023 02:13:19] "DEBUG" "main" "Starting process: 'OrganisationEventProcessor-1'"
+[18/Aug/2023 02:13:20] "INFO" "ils_event_consumer" "Starting consumer..."
+[18/Aug/2023 02:13:20] "INFO" "events_processor" "OrganisationEventProcessor Running!"
+[18/Aug/2023 02:13:21] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"5abb478c-9638-4141-b9aa-81415b21c103","id":"f560b69e-fd2e-4d99-a9ea-08d6556f7e47","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-08-16T16:05:32.177098796Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M001.01.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":0}}}}]"
+[18/Aug/2023 02:13:21] "DEBUG" "organisation_event_processor" "handling a action event..."
+[18/Aug/2023 02:13:21] "INFO" "organisation_event_processor" "signal linked lane S001.M001.01.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[18/Aug/2023 02:13:22] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[18/Aug/2023 02:13:22] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 18 Aug 2023 12:13:23 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-08-18T12:13:23.552849555Z","status":500,"message":"Unknown error!"}'
+"
+[18/Aug/2023 02:13:22] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 18 Aug 2023 12:13:23 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-08-18T12:13:23.752+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/41ffe350-3606-46e6-bc64-0655e6ae959a/cards:associate-carrier/"}'
+"
+[18/Aug/2023 02:13:34] "INFO" "ils_event_consumer" "Shutting down signal 'SIGINT' received, starting to stop consumer!"
+[18/Aug/2023 02:13:34] "INFO" "ils_event_consumer" "Ordering consumer to stop!"
+[18/Aug/2023 02:13:34] "DEBUG" "ils_event_consumer" "Warning Event Processors to stop!"
+[18/Aug/2023 02:13:34] "DEBUG" "ils_event_consumer" "Closing consumer!"
+[18/Aug/2023 02:13:34] "INFO" "events_processor" "OrganisationEventProcessor received order to stop!"
+[18/Aug/2023 02:13:34] "INFO" "events_processor" "All messages in OrganisationEventProcessor processing queue have been processed. Shutting down..."
+[18/Aug/2023 02:13:34] "DEBUG" "ils_event_consumer" "Consumer has been shutdown!"
+[18/Aug/2023 02:13:34] "DEBUG" "main" "Ending process: 'OrganisationEventProcessor-1'"
+[18/Aug/2023 02:13:34] "INFO" "main" "Process OrganisationEventProcessor-1 as fully stopped!"
