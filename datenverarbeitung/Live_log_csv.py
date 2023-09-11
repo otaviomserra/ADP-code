@@ -14,10 +14,10 @@ class LogToCSVConverter:
 
     def convert(self):
         # Creating path for csv files
-        # if not os.path.exists('datenverarbeitungcsv-logs')
-        #     os.makedirs('datenverarbeitungcsv-logs')
+        # if not os.path.exists('datenverarbeitung/csv-logs'):
+        #     os.makedirs('datenverarbeitung/csv-logs')
         # log_path = os.path.join('logs', self.log_filename)
-        # csv_path = os.path.join('datenverarbeitungcsv-logs', self.csv_filename)
+        # csv_path = os.path.join('datenverarbeitung/csv-logs', self.csv_filename)
 
         ### TESTANDO, VOLTAR PRO ANTERIOR AQUI TAMBÉM
         if not os.path.exists('csv_logs'):
@@ -45,19 +45,19 @@ class LogToCSVConverter:
         data = []
         for line in corrected_lines:
             split = line.split(' ', 4)
-            split[0] = split[0][1]
-            split[1] = split[1][-1]
-            split[2] = split[2][1-1]
-            split[3] = split[3][1-1]
-            split[4] = split[4].replace('n', '')
-            split[4] = split[4][1-1]
+            split[0] = split[0][1:]
+            split[1] = split[1][:-1]
+            split[2] = split[2][1:-1]
+            split[3] = split[3][1:-1]
+            split[4] = split[4].replace('\n', '')
+            split[4] = split[4][1:-1]
             data.append(split)
 
         df = pd.DataFrame(data, columns=['Date', 'Hour', 'Type', 'Module', 'Message'])
 
         # Saving the csv files
         df.to_csv(csv_path, index=False)
-        # df.to_excel('csv-logsdf_teste.xlsx')
+        # df.to_excel('/csv-logs/df_teste.xlsx')
 
         print(f"Transformação concluída. Arquivo '{self.csv_filename}' gerado.")
 
@@ -76,7 +76,7 @@ class LogFileHandler(FileSystemEventHandler):
         if event.is_directory:
             return
         if event.src_path == self.log_filename:
-            print(f"{self.log_filename}' updated. Starting log conversion.")
+            print(f"'{self.log_filename}' updated. Starting log conversion.")
             convert_log_on_update(self.log_filename, self.csv_filename)
             print("Log conversion completed.")
 
@@ -98,7 +98,7 @@ class DataFrameProcessor:
             columns=['Type', 'Module'], errors='ignore')
 
     def extract_json_info(self, row):
-        content = row.split('[content=')[1][-1]  # Extract the content portion
+        content = row.split('[content=')[1][:-1]  # Extract the content portion
         content_json = json.loads(content)
         header = content_json['header']
         body = content_json['body']['action']['carrier']
@@ -147,13 +147,14 @@ class ExcelFileHandler(FileSystemEventHandler):
             self.process_modified_excel()
 
     def process_modified_excel(self):
-        print(f"{self.excel_filename}' modified. Starting data processing.")
+        print(f"'{self.excel_filename}' modified. Starting data processing.")
         with program_lock:
             self.processor.load_dataframe()
             self.processor.filter_and_clean_dataframe()
             self.processor.process_dataframe()
             self.processor.save_processed_dataframe(csv_file_path)
-        print("Kafka .csv generated. Data processing completed. ")
+        print("Data processing completed.")
+        print("Kafka .csv generated. Data processing completed." )
 
 
 def monitor_excel_file(logger_path):
@@ -192,13 +193,15 @@ if __name__ == "__main__":
         raw_file_path = os.path.join(raw_logs_path, raw_file)
         if os.path.isfile(raw_file_path):
             file_mtime = os.path.getmtime(raw_file_path)
-            if file_mtime == most_recent_mtime:
+            if file_mtime > most_recent_mtime:
                 most_recent_mtime = file_mtime
                 log_filename = raw_file_path
 
     # Extract the base filename without the extension (.log)
-    parts = log_filename.split()
+    parts = raw_file_path.split("\\")
+    parts = log_filename.split("\\")
     log_name = parts[-1].split(".")[0]  # Get the first part before the dot (.) in the last part
+
     print(log_filename)
     csv_filename = 'cleaned_' + log_name + '.csv'
     kafka_filename = 'kafka_' + log_name + '.csv'
@@ -208,9 +211,9 @@ if __name__ == "__main__":
     observer.schedule(event_handler, path=os.path.dirname(log_filename))
     observer.start()
     program_lock = Lock()
-    logger_path = ''.join(['csv_logs', csv_filename])
+    logger_path = ''.join(['csv_logs\\', csv_filename])
 
-    csv_file_path = ''.join(['kafka_logs', kafka_filename])
+    csv_file_path = ''.join(['kafka_logs\\', kafka_filename])
 
     monitor_excel_file(logger_path)
 
@@ -219,5 +222,7 @@ if __name__ == "__main__":
             time.sleep(1)
     except KeyboardInterrupt:
         observer.stop()
+
+    observer.join()
 
     observer.join()

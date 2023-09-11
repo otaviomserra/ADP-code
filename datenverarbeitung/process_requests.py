@@ -1,10 +1,4 @@
-import os
 import pandas as pd
-import json
-import time
-from threading import Lock  # Import Lock from threading module
-from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler
 
 FabrikVerbindung = pd.read_excel("FabrikVerbindung.xlsx", index_col=0)
 
@@ -14,8 +8,9 @@ class ProcessRequest:
         # Uses the given origin lane and takes the appropriate target lane from the Excel file
         self.origin_lane = lane
         self.target_lane = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "target_lane_address"].iloc[0]
+        self.process = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "process_name"].iloc[0]
 
-        # Events: used to create the process log, put_event is empty for now because the request is still active
+        # Events: used to create the process log, put_time is empty for now because the request is still active
         self.pick_time = timestamp
         self.put_time = 0
         self.duration = 0
@@ -37,5 +32,5 @@ class ProcessRequest:
         self.exit_code = 2
 
     def generate_process_log(self):
-        print("batata")
+        print(self.process)  # Placeholder
         # Append the process (duration, lanes, name) to whatever format Klint is using
