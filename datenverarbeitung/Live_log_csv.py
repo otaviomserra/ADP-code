@@ -6,6 +6,7 @@ import time
 from threading import Lock  # Import Lock from threading module
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+from process_requests import *
 
 
 class LogToCSVConverter:
@@ -176,7 +177,7 @@ def monitor_excel_file(logger_path):
 
 def read_kafka_lane_time_event(kafka_path):
     try:
-        df = pd.read_csv(csv_file)
+        df = pd.read_csv(kafka_path)
 
         if df.empty:
             return None  # The CSV file is empty.
@@ -245,8 +246,10 @@ if __name__ == "__main__":
     monitor_excel_file(logger_path)
 
     lane,timestamp,event_type = read_kafka_lane_time_event(csv_file_path)
-    
-
+    if event_type == 'CARRIER_ACTION_PICK':
+        ProcessRequest(lane,timestamp)
+    elif event_type == 'CARRIER_ACTION_PUT':
+        ProcessRequest.resolve(timestamp)
 
     try:
         while True:
