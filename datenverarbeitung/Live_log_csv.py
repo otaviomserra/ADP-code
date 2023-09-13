@@ -249,7 +249,16 @@ if __name__ == "__main__":
 #####################################################
     requests = []
 
-    lane,timestamp,event_type = read_kafka_lane_time_event(csv_file_path)
+#    if event_type == "CARRIER_ACTION_PUT":
+#        for request in requests:
+#            if request.target_lane == "we just got a put event from this":
+#                request.resolve("timestamp")
+#                request.generate_process_log()
+#    elif event_type == "CARRIER_ACTION_PICK":
+#        requests.append(ProcessRequest("timestamp", "LANE"))
+
+
+    lane, timestamp, event_type = read_kafka_lane_time_event(csv_file_path)
     if event_type == 'CARRIER_ACTION_PICK':
         requests.append(ProcessRequest(lane,timestamp))
     #elif event_type == 'CARRIER_ACTION_PUT':
