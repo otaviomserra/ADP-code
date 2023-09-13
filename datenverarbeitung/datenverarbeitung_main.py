@@ -189,12 +189,12 @@ def read_kafka_lane_time_event(kafka_path):
 
 
         ######## MODIFICAR APÓS O CHICO
-        #date = last_row.iloc[0]
-        timestamp = last_row.iloc[0]
-        event_type = last_row.iloc[5]
+        date = last_row.iloc[0]
+        timestamp = last_row.iloc[1]
+        event_type = last_row.iloc[6]
         lane = last_row.iloc[-1]
 
-        return (lane,timestamp,event_type)
+        return date, lane, timestamp, event_type
     except FileNotFoundError:
         return None  # Handle file not found exception
     except Exception as e:
@@ -257,12 +257,17 @@ if __name__ == "__main__":
 #    elif event_type == "CARRIER_ACTION_PICK":
 #        requests.append(ProcessRequest("timestamp", "LANE"))
 
-
-    lane, timestamp, event_type = read_kafka_lane_time_event(csv_file_path)
+    # PROZESSVERFOLGERUNG
+    date, lane, timestamp, event_type = read_kafka_lane_time_event(csv_file_path)
     if event_type == 'CARRIER_ACTION_PICK':
-        requests.append(ProcessRequest(lane,timestamp))
-    #elif event_type == 'CARRIER_ACTION_PUT':
-        #ProcessRequest.resolve(timestamp)
+        requests.append(ProcessRequest(lane, timestamp))
+    elif event_type == 'CARRIER_ACTION_PUT':
+        for request in requests:
+            if request.target_lane == lane:
+                request.resolve(timestamp)
+                request.generate_process_log()
+                requests.remove(request)
+                break
 
     try:
         while True:

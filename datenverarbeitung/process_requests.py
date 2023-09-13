@@ -9,6 +9,7 @@ class ProcessRequest:
         self.origin_lane = lane
         self.target_lane = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "target_lane_address"].iloc[0]
         self.process = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "process_name"].iloc[0]
+        self.variant = FabrikVerbindung.loc[FabrikVerbindung["variant"] == lane, "process_name"].iloc[0]
 
         # Events: used to create the process log, put_time is empty for now because the request is still active
         self.pick_time = timestamp
@@ -32,5 +33,10 @@ class ProcessRequest:
         self.exit_code = 2
 
     def generate_process_log(self):
-        print(self.process)  # Placeholder
-        # Append the process (duration, lanes, name) to whatever format Klint is using
+        log_name = "process_" + self.process + "_" + str(self.put_time) + ".csv"
+        log_path = ''.join(['process_logs\\', log_name])
+        log_df = pd.DataFrame({"process_name": self.process, "origin_lane": self.origin_lane,
+                               "target_lane": self.target_lane, "pick_time": self.pick_time,
+                               "put_time": self.put_time, "duration": self.duration,
+                               "variant": self.variant})
+        log_df.to_csv(log_path, index=False)
