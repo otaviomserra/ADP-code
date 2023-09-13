@@ -244,7 +244,9 @@ if __name__ == "__main__":
     csv_file_path = ''.join(['kafka_logs\\', kafka_filename])
 
     monitor_excel_file(logger_path)
-
+#####################################################
+# REQUESTS
+#####################################################
     requests = []
 
     lane,timestamp,event_type = read_kafka_lane_time_event(csv_file_path)
