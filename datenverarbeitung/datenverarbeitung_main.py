@@ -203,8 +203,7 @@ def read_kafka_lane_time_event(kafka_path):
 
 
 if __name__ == "__main__":
-    current_directory = os.path.dirname(os.path.abspath('Live_log_csv'))
-
+    current_directory = os.path.dirname(os.path.abspath('datenverarbeitung_main'))
     raw_logs_path = os.path.join(current_directory, 'raw_logs')
     clean_logs_path = os.path.join(current_directory, 'csv_logs')
     kafka_logs_path = os.path.join(current_directory, 'kafka_logs')
