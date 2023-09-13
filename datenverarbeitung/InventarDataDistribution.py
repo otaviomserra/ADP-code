@@ -13,6 +13,7 @@ class InventarDataDistribution:
         self.lane_path = ""
     def find_folder(self,lane):
         # Find folder and return it's path
+        
         self.inventar_folder = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "inventar"].iloc[0]
         self.lane_folder = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "lane_inventar"].iloc[0]
 
