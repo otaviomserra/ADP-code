@@ -1,3 +1,5 @@
+import os
+import csv
 import pandas as pd
 
 FabrikVerbindung = pd.read_excel("FabrikVerbindung.xlsx", index_col=0)
@@ -33,10 +35,19 @@ class ProcessRequest:
         self.exit_code = 2
 
     def generate_process_log(self):
-        log_name = "process_" + self.process + "_" + str(self.put_time) + ".csv"
-        log_path = ''.join(['process_logs\\', log_name])
-        log_df = pd.DataFrame({"process_name": self.process, "origin_lane": self.origin_lane,
-                               "target_lane": self.target_lane, "pick_time": self.pick_time,
-                               "put_time": self.put_time, "duration": self.duration,
-                               "variant": self.variant})
-        log_df.to_csv(log_path, index=False)
+        log_path = "".join(["..", "Werk", "Prozesse", self.process, self.process + ".csv"])
+
+        # Check if the CSV file exists
+        if not os.path.exists(log_path):
+            with open(log_path, 'w', newline='') as csvfile:
+                csv_writer = csv.writer(csvfile)
+                # Header row
+                header = ["pick_time", "put_time", "origin_lane", "target_lane", "duration", "variant"]
+                csv_writer.writerow(header)
+
+        with open(log_path, 'a', newline='') as csvfile:
+            csv_writer = csv.writer(csvfile)
+            # Append this instance of the process
+            process_to_append = [self.pick_time, self.put_time, self.origin_lane, self.target_lane,
+                                 self.duration, self.variant]
+            csv_writer.writerow(process_to_append)

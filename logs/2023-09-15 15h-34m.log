@@ -1,0 +1,42 @@
+[15/Sep/2023 03:34:52] "INFO" "main" "Starting application..."
+[15/Sep/2023 03:34:52] "INFO" "main" "ils-api access: True"
+[15/Sep/2023 03:34:52] "DEBUG" "main" "Starting process: 'OrganisationEventProcessor-1'"
+[15/Sep/2023 03:34:53] "INFO" "ils_event_consumer" "Starting consumer..."
+[15/Sep/2023 03:34:53] "INFO" "events_processor" "OrganisationEventProcessor Running!"
+[15/Sep/2023 03:34:54] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"46f47b18-6baa-49d9-8b3a-7c01443f5d28","id":"01cf011d-02aa-4c99-978f-67f02e07a58c","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-09-13T14:06:16.032499349Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.04","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":0}}}}]"
+[15/Sep/2023 03:34:54] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"4f8f1182-59e5-4468-bcac-4ed520ea5adf","id":"02d9f1fc-e839-4111-9b72-4a0b34414252","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-09-13T14:06:22.340863748Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.04","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":1}}}}]"
+[15/Sep/2023 03:34:54] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"6410b3af-ccea-4d0f-a8a6-fe90e80922b4","id":"8d485b17-b44b-4e1b-a6d3-3d159144bed5","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-09-13T14:22:43.432973793Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.02.04","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"3be09d6c-6067-1d49-1f6b-cc36d7a736bf","currentCount":4}}}}]"
+[15/Sep/2023 03:34:54] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"45f23b76-91e0-4fb7-9284-c5d011568a43","id":"f22c4a83-83d4-44c0-9188-cc3cc931d364","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-09-13T14:22:46.503441661Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.02.04","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":5}}}}]"
+[15/Sep/2023 03:34:54] "DEBUG" "organisation_event_processor" "handling a action event..."
+[15/Sep/2023 03:34:54] "INFO" "organisation_event_processor" "signal linked lane S001.M007.01.04 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[15/Sep/2023 03:34:54] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[15/Sep/2023 03:34:54] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 15 Sep 2023 13:34:54 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-09-15T13:34:54.622934819Z","status":500,"message":"Unknown error!"}'
+"
+[15/Sep/2023 03:34:54] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 15 Sep 2023 13:34:54 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-09-15T13:34:54.687+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/5624ba3f-327e-4bd7-b021-81a9ac08f6cc/cards:associate-carrier/"}'
+"
+[15/Sep/2023 03:34:54] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[15/Sep/2023 03:34:54] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[15/Sep/2023 03:34:54] "DEBUG" "organisation_event_processor" "handling a action event..."
+[15/Sep/2023 03:34:54] "DEBUG" "organisation_event_processor" "handling a action event..."
+[15/Sep/2023 03:34:54] "INFO" "organisation_event_processor" "signal linked lane S001.M007.02.04 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[15/Sep/2023 03:34:55] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[15/Sep/2023 03:34:55] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[15/Sep/2023 03:34:55] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': '58bfac0f-013f-424e-bbbb-ff63bda66099'}"
+[15/Sep/2023 03:34:55] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[15/Sep/2023 03:34:55] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[15/Sep/2023 03:34:55] "DEBUG" "organisation_event_processor" "handling a action event..."
+[15/Sep/2023 03:39:02] "INFO" "ils_event_consumer" "Shutting down signal 'SIGINT' received, starting to stop consumer!"
+[15/Sep/2023 03:39:02] "INFO" "ils_event_consumer" "Ordering consumer to stop!"
+[15/Sep/2023 03:39:02] "DEBUG" "ils_event_consumer" "Warning Event Processors to stop!"
+[15/Sep/2023 03:39:02] "DEBUG" "ils_event_consumer" "Closing consumer!"
+[15/Sep/2023 03:39:02] "INFO" "events_processor" "OrganisationEventProcessor received order to stop!"
+[15/Sep/2023 03:39:02] "INFO" "events_processor" "All messages in OrganisationEventProcessor processing queue have been processed. Shutting down..."
+[15/Sep/2023 03:39:02] "DEBUG" "ils_event_consumer" "Consumer has been shutdown!"
+[15/Sep/2023 03:39:02] "DEBUG" "main" "Ending process: 'OrganisationEventProcessor-1'"
+[15/Sep/2023 03:39:02] "INFO" "main" "Process OrganisationEventProcessor-1 as fully stopped!"
