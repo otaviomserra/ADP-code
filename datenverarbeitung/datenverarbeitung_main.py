@@ -7,8 +7,7 @@ from threading import Lock  # Import Lock from threading module
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from process_requests import *
-
-
+from process_data import *
 class LogToCSVConverter:
     def __init__(self, log_filename, csv_filename):
         self.log_filename = log_filename
@@ -258,14 +257,20 @@ if __name__ == "__main__":
 
     # PROZESSVERFOLGERUNG
     date, lane, timestamp, event_type = read_kafka_lane_time_event(csv_file_path)
+    process_name = request.process
+
     if event_type == 'CARRIER_ACTION_PICK':
         requests.append(ProcessRequest(lane, timestamp))
+        excel_writer = ExcelWriter(process_name)
+        excel_writer.write_to_cell("In Use")
     elif event_type == 'CARRIER_ACTION_PUT':
         for request in requests:
             if request.target_lane == lane:
                 request.resolve(timestamp)
                 request.generate_process_log()
                 requests.remove(request)
+                excel_writer = ExcelWriter(process_name)
+                excel_writer.write_to_cell("Idle")
                 break
 
     try:
