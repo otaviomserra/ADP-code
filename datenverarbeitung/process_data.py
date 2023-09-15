@@ -1,5 +1,6 @@
 import os
 from openpyxl import load_workbook
+import pandas as pd
 
 class ExcelWriter:
     def __init__(self, process_name):
@@ -40,6 +41,42 @@ class ExcelWriter:
         except Exception:
             pass  # Ignore all exceptions
 
+
+
+class ProcessesProcessor:
+    def __init__(self, process, log_df):
+        self.process = process
+        self.log_df = log_df
+
+    def process_logs(self):
+        try:
+            # Define the directory structure
+            base_directory = os.path.join(os.path.dirname(__file__), '..', 'Werk', 'Prozesse')
+            process_directory = os.path.join(base_directory, self.process)
+            csv_filename = f"{self.process}_logs.csv"
+            csv_path = os.path.join(process_directory, csv_filename)
+
+            # Check if the process directory exists, and create it if not
+            if not os.path.exists(process_directory):
+                os.makedirs(process_directory)
+
+            # Check if the CSV file exists; if not, create it with headers
+            if not os.path.exists(csv_path):
+                self.log_df.to_csv(csv_path, index=False)
+            else:
+                # Append the DataFrame to the existing CSV file
+                existing_df = pd.read_csv(csv_path)
+                combined_df = pd.concat([existing_df, self.log_df], ignore_index=True)
+                combined_df.to_csv(csv_path, index=False)
+        except Exception as e:
+            pass  # Ignore errors
+
+# Example usage:
+if __name__ == "__main__":
+    # Create a sample DataFrame (replace this with your actual DataFrame)
+    log_df = request.log_df
+    processor = ProcessesProcessor(process_name, log_df)
+    processor.process_logs()
 # Example usage:
 #if __name__ == "__main__":
 #    process_name = "YourProcessName"  # Replace with the actual process name
@@ -52,3 +89,4 @@ class ExcelWriter:
 #
  #   # Write "idle" to the same cell
   #  excel_writer.write_to_cell("idle")
+

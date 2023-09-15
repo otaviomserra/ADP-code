@@ -257,17 +257,21 @@ if __name__ == "__main__":
 
     # PROZESSVERFOLGERUNG
     date, lane, timestamp, event_type = read_kafka_lane_time_event(csv_file_path)
-    process_name = request.process
+    process_name = ''
 
     if event_type == 'CARRIER_ACTION_PICK':
-        requests.append(ProcessRequest(lane, timestamp))
+        newRequest = ProcessRequest(lane, timestamp)
+        requests.append(newRequest)
+        process_name = newRequest.process
         excel_writer = ExcelWriter(process_name)
         excel_writer.write_to_cell("In Use")
     elif event_type == 'CARRIER_ACTION_PUT':
         for request in requests:
+
             if request.target_lane == lane:
                 request.resolve(timestamp)
                 request.generate_process_log()
+                process_name = request.process
                 requests.remove(request)
                 excel_writer = ExcelWriter(process_name)
                 excel_writer.write_to_cell("Idle")
