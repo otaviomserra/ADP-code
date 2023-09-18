@@ -8,8 +8,7 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from process_requests import *
 from InventarDataDistribution import *
-
-
+from process_data import *
 class LogToCSVConverter:
     def __init__(self, log_filename, csv_filename):
         self.log_filename = log_filename
