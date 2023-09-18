@@ -24,7 +24,7 @@ def calculate_average_leading_time(process, process_df, timestamp):
 
     leading_time = 0
     for name in process_sequence:
-        leading_time += calculate_average_cycle_time(process_df, timestamp)
+        leading_time += calculate_average_cycle_time(process, process_df, timestamp)
         if name == process:
             break
 
@@ -56,7 +56,7 @@ def calculate_fehlproduktionsquote(process):  # Prozentzahl
 
 
 def calculate_qualitaetsgrad(process):  # Prozentzahl
-    return 1 - calculate_fehlproduktionsquote()
+    return 1 - calculate_fehlproduktionsquote(process)
 
 
 def calculate_yield(process, process_df, timestamp):
@@ -79,13 +79,13 @@ def calculate_work_in_process(process, process_df, timestamp):
 
 
 def calculate_oee(process, process_df, timestamp):
-    print(process)  # No fucking clue how to do this for now, check formulas later
+    print(process)  # No clue how to do this for now, check formulas later
     return 0  # temp
 
 
 def calculate_productivity(process, process_df, timestamp):
     # Percentage of uptime I think
-    return 1 - calculate_production_downtime(process) - calculate_unscheduled_downtime(process)  # Change to percentage
+    return 1 - calculate_production_downtime(process) - calculate_unscheduled_downtime(process)
 
 
 def calculate_losgroesse(process, process_df, timestamp):
