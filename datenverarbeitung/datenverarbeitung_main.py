@@ -7,6 +7,7 @@ from threading import Lock  # Import Lock from threading module
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from process_requests import *
+from InventarDataDistribution import *
 
 
 class LogToCSVConverter:
@@ -258,8 +259,10 @@ if __name__ == "__main__":
 
     # PROZESSVERFOLGERUNG
     date, lane, timestamp, event_type = read_kafka_lane_time_event(csv_file_path)
+    Inventar = Lane(lane,date,timestamp,event_type)
     if event_type == 'CARRIER_ACTION_PICK':
         requests.append(ProcessRequest(lane, timestamp))
+        Inventar.pick_event()
     elif event_type == 'CARRIER_ACTION_PUT':
         for request in requests:
             if request.target_lane == lane:
@@ -267,6 +270,7 @@ if __name__ == "__main__":
                 request.generate_process_log()
                 requests.remove(request)
                 break
+        Inventar.put_event()
 
     try:
         while True:
