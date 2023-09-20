@@ -283,7 +283,8 @@ if __name__ == "__main__":
 #                request.resolve("timestamp")
 #                request.generate_process_log()
 #    elif event_type == "CARRIER_ACTION_PICK":
-#        requests.append(ProcessRequest("timestamp", "LANE"))
+#        requests.append(ProcessRequest(
+    #        "timestamp", "LANE"))
 
     # PROZESSVERFOLGERUNG
 
