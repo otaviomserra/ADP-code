@@ -150,20 +150,21 @@ class ExcelFileHandler(FileSystemEventHandler):
         requests = []
         date, lane, timestamp, event_type = read_kafka_lane_time_event(csv_file_path)
         print(event_type)
-        # Inventar = Lane(lane, date, timestamp, event_type)
+        Inventar = Lane(lane, date, timestamp, event_type)
         if event_type == 'CARRIER_ACTION_PICK':
             print('entrou no pick')
-            requests.append(ProcessRequest(lane, timestamp))
-            # Inventar.pick_event()
+            #requests.append(ProcessRequest(lane, timestamp))
+            Inventar.pick_event()
 
         elif event_type == 'CARRIER_ACTION_PUT':
-            for request in requests:
-                if request.target_lane == lane:
-                    request.resolve(timestamp)
-                    request.generate_process_log()
-                    requests.remove(request)
-                    print('rodou put request')
-                    break
+            print('entrou no put')
+            # for request in requests:
+            #     if request.target_lane == lane:
+            #         request.resolve(timestamp)
+            #         request.generate_process_log()
+            #         requests.remove(request)
+            #         print('rodou put request')
+            #         break
             # Inventar.put_event()
 
     def process_modified_excel(self):
