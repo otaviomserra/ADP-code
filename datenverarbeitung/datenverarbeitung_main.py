@@ -7,6 +7,7 @@ from threading import Lock  # Import Lock from threading module
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from process_requests import *
+from InventarDataDistribution import *
 from process_data import *
 class LogToCSVConverter:
     def __init__(self, log_filename, csv_filename):
@@ -257,25 +258,18 @@ if __name__ == "__main__":
 
     # PROZESSVERFOLGERUNG
     date, lane, timestamp, event_type = read_kafka_lane_time_event(csv_file_path)
-    process_name = ''
-
+    Inventar = Lane(lane,date,timestamp,event_type)
     if event_type == 'CARRIER_ACTION_PICK':
-        newRequest = ProcessRequest(lane, timestamp)
-        requests.append(newRequest)
-        process_name = newRequest.process
-        excel_writer = ExcelWriter(process_name)
-        excel_writer.write_to_cell("In Use")
+        requests.append(ProcessRequest(lane, timestamp))
+        Inventar.pick_event()
     elif event_type == 'CARRIER_ACTION_PUT':
         for request in requests:
-
             if request.target_lane == lane:
                 request.resolve(timestamp)
                 request.generate_process_log()
-                process_name = request.process
                 requests.remove(request)
-                excel_writer = ExcelWriter(process_name)
-                excel_writer.write_to_cell("Idle")
                 break
+        Inventar.put_event()
 
     try:
         while True:
