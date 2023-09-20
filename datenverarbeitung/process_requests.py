@@ -11,7 +11,7 @@ class ProcessRequest:
         self.origin_lane = lane
         self.target_lane = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "target_lane_address"].iloc[0]
         self.process = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "process_name"].iloc[0]
-        self.variant = FabrikVerbindung.loc[FabrikVerbindung["variant"] == lane, "process_name"].iloc[0]
+        self.variant = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "variant"].iloc[0]
 
         # Events: used to create the process log, put_time is empty for now because the request is still active
         self.pick_time = timestamp
