@@ -147,6 +147,31 @@ class ExcelFileHandler(FileSystemEventHandler):
             return
         if event.src_path == self.excel_filename:
             self.process_modified_excel()
+        date, lane, timestamp, event_type = read_kafka_lane_time_event(csv_file_path)
+        print(event_type)
+        # Inventar = Lane(lane, date, timestamp, event_type)
+        # if event_type == 'CARRIER_ACTION_PICK':
+        #     print('entrou no pick')
+        #     requests.append(ProcessRequest(date, lane, timestamp))
+        #     # for request in requests:
+        #         # print(request.target_lane)
+        #         # print(lane)
+        #         # print(requests)
+        #     Inventar.pick_event()
+        #
+        # elif event_type == 'CARRIER_ACTION_PUT':
+        #     print('entrou no put')
+        #     # print(requests)
+        #     for request in requests:
+        #         # print(request.target_lane)
+        #         # print(lane)
+        #         if request.target_lane == lane:
+        #             request.resolve(timestamp)
+        #             request.generate_process_log()
+        #             requests.remove(request)
+        #             # print('rodou put request')
+        #             break
+        #     # Inventar.put_event()
 
     def process_modified_excel(self):
         print(f"'{self.excel_filename}' modified. Starting data processing.")
@@ -155,6 +180,7 @@ class ExcelFileHandler(FileSystemEventHandler):
             self.processor.filter_and_clean_dataframe()
             self.processor.process_dataframe()
             self.processor.save_processed_dataframe(csv_file_path)
+
         print("Data processing completed.")
         print("Kafka .csv generated. Data processing completed." )
 
@@ -203,6 +229,9 @@ def read_kafka_lane_time_event(kafka_path):
 
 
 if __name__ == "__main__":
+    global requests
+    requests = []
+
     current_directory = os.path.dirname(os.path.abspath('datenverarbeitung_main'))
     raw_logs_path = os.path.join(current_directory, 'raw_logs')
     clean_logs_path = os.path.join(current_directory, 'csv_logs')
@@ -246,7 +275,7 @@ if __name__ == "__main__":
 #####################################################
 # REQUESTS
 #####################################################
-    requests = []
+
 
 #    if event_type == "CARRIER_ACTION_PUT":
 #        for request in requests:
@@ -257,23 +286,12 @@ if __name__ == "__main__":
 #        requests.append(ProcessRequest("timestamp", "LANE"))
 
     # PROZESSVERFOLGERUNG
-    date, lane, timestamp, event_type = read_kafka_lane_time_event(csv_file_path)
-    Inventar = Lane(lane,date,timestamp,event_type)
-    if event_type == 'CARRIER_ACTION_PICK':
-        requests.append(ProcessRequest(lane, timestamp))
-        Inventar.pick_event()
-    elif event_type == 'CARRIER_ACTION_PUT':
-        for request in requests:
-            if request.target_lane == lane:
-                request.resolve(timestamp)
-                request.generate_process_log()
-                requests.remove(request)
-                break
-        Inventar.put_event()
+
 
     try:
         while True:
             time.sleep(1)
+
     except KeyboardInterrupt:
         observer.stop()
 
