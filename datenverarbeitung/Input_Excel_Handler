@@ -1,0 +1,49 @@
+import time
+import os
+import openpyxl
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
+
+
+
+
+# Dictionary to store the last row of data for each sheet
+last_row_data = {sheet_name: None for sheet_name in sheet_names_to_monitor}
+
+# Function to retrieve the last row of data from a sheet
+def get_last_row_data(sheet):
+    for row in reversed(sheet.iter_rows(values_only=True)):
+        for cell_value in row:
+            if cell_value is not None:
+                return row
+
+# Function to handle file system events (e.g., modifications)
+class InputExcelFileHandler(FileSystemEventHandler):
+   
+    
+    sheet_names_to_monitor = ['LogData(Drehen)', 'LogData(Saegen)', 'LogData(Montage)', 'LogData(Fertigung)', 'LogData(MontageEndzeit)']
+
+    def on_modified(self, event):
+        if event.src_path == excel_file_path:
+            for sheet_name in sheet_names_to_monitor:
+                workbook = openpyxl.load_workbook(excel_file_path)
+                sheet = workbook[sheet_name]
+                last_row = get_last_row_data(sheet)
+                if last_row != last_row_data[sheet_name]:
+                    #print(f"Sheet '{sheet_name}' modified. Last row of data: {last_row}")
+                    last_row_data[sheet_name] = last_row
+                workbook.close()
+
+# Main
+excel_file_path = 'your_excel_file.xlsx' #Excel dojungmu
+input_excel_observer = Observer()
+input_event_handler = InputExcelFileHandler()
+input_excel_observer.schedule(input_event_handler, path=os.path.dirname(excel_file_path), recursive=False)
+input_excel_observer.start()
+
+try:
+    while True:
+        time.sleep(1)
+except KeyboardInterrupt:
+    input_excel_observer.stop()
+input_excel_observer.join()

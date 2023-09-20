@@ -49,5 +49,5 @@ class ProcessRequest:
             csv_writer = csv.writer(csvfile)
             # Append this instance of the process
             process_to_append = [self.pick_time, self.put_time, self.origin_lane, self.target_lane,
-                                 self.duration, self.variant]
+                                 self.duration, self.variant] 
             csv_writer.writerow(process_to_append)
