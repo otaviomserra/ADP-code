@@ -153,19 +153,19 @@ class ExcelFileHandler(FileSystemEventHandler):
         Inventar = Lane(lane, date, timestamp, event_type)
         if event_type == 'CARRIER_ACTION_PICK':
             print('entrou no pick')
-            #requests.append(ProcessRequest(lane, timestamp))
+            requests.append(ProcessRequest(lane, timestamp))
             Inventar.pick_event()
 
         elif event_type == 'CARRIER_ACTION_PUT':
             print('entrou no put')
-            # for request in requests:
-            #     if request.target_lane == lane:
-            #         request.resolve(timestamp)
-            #         request.generate_process_log()
-            #         requests.remove(request)
-            #         print('rodou put request')
-            #         break
-            # Inventar.put_event()
+            for request in requests:
+                if request.target_lane == lane:
+                    request.resolve(timestamp)
+                    request.generate_process_log()
+                    requests.remove(request)
+                    print('rodou put request')
+                    break
+            Inventar.put_event()
 
     def process_modified_excel(self):
         print(f"'{self.excel_filename}' modified. Starting data processing.")
