@@ -190,7 +190,6 @@ class ExcelFileHandler(FileSystemEventHandler):
         #             # print('rodou put request')
         #             break
         #     # Inventar.put_event()
-#>>>>>>> c78cc901aea9299bc1ecbb37f1cb125dec90c110
 
     def process_modified_excel(self):
         print(f"'{self.excel_filename}' modified. Starting data processing.")
