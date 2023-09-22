@@ -149,29 +149,29 @@ class ExcelFileHandler(FileSystemEventHandler):
             self.process_modified_excel()
         date, lane, timestamp, event_type = read_kafka_lane_time_event(csv_file_path)
         print(event_type)
-        Inventar = Lane(lane, date, timestamp, event_type)
-        if event_type == 'CARRIER_ACTION_PICK':
-            print('entrou no pick')
-            requests.append(ProcessRequest(date, lane, timestamp))
-            # for request in requests:
-                # print(request.target_lane)
-                # print(lane)
-                # print(requests)
-            Inventar.pick_event()
-        
-        elif event_type == 'CARRIER_ACTION_PUT':
-            print('entrou no put')
-            # print(requests)
-            for request in requests:
-                # print(request.target_lane)
-                # print(lane)
-                if request.target_lane == lane:
-                    request.resolve(timestamp)
-                    request.generate_process_log()
-                    requests.remove(request)
-                    # print('rodou put request')
-                    break
-            Inventar.put_event()
+        # Inventar = Lane(lane, date, timestamp, event_type)
+        # if event_type == 'CARRIER_ACTION_PICK':
+        #     print('entrou no pick')
+        #     requests.append(ProcessRequest(date, lane, timestamp))
+        #     # for request in requests:
+        #         # print(request.target_lane)
+        #         # print(lane)
+        #         # print(requests)
+        #     Inventar.pick_event()
+        #
+        # elif event_type == 'CARRIER_ACTION_PUT':
+        #     print('entrou no put')
+        #     # print(requests)
+        #     for request in requests:
+        #         # print(request.target_lane)
+        #         # print(lane)
+        #         if request.target_lane == lane:
+        #             request.resolve(timestamp)
+        #             request.generate_process_log()
+        #             requests.remove(request)
+        #             # print('rodou put request')
+        #             break
+        #     # Inventar.put_event()
 
     def process_modified_excel(self):
         print(f"'{self.excel_filename}' modified. Starting data processing.")
@@ -254,8 +254,8 @@ if __name__ == "__main__":
                 log_filename = raw_file_path
 
     # Extract the base filename without the extension (.log)
-    parts = raw_file_path.split("/")
-    parts = log_filename.split("/")
+    parts = raw_file_path.split("\\")
+    parts = log_filename.split("\\")
     log_name = parts[-1].split(".")[0]  # Get the first part before the dot (.) in the last part
 
     print(log_filename)
@@ -267,10 +267,27 @@ if __name__ == "__main__":
     observer.schedule(event_handler, path=os.path.dirname(log_filename))
     observer.start()
     program_lock = Lock()
-    logger_path = ''.join(['csv_logs/', csv_filename])
+    logger_path = ''.join(['csv_logs\\', csv_filename])
 
-    csv_file_path = ''.join(['kafka_logs/', kafka_filename])
+    csv_file_path = ''.join(['kafka_logs\\', kafka_filename])
+
     monitor_excel_file(logger_path)
+#####################################################
+# REQUESTS
+#####################################################
+
+
+#    if event_type == "CARRIER_ACTION_PUT":
+#        for request in requests:
+#            if request.target_lane == "we just got a put event from this":
+#                request.resolve("timestamp")
+#                request.generate_process_log()
+#    elif event_type == "CARRIER_ACTION_PICK":
+#        requests.append(ProcessRequest(
+    #        "timestamp", "LANE"))
+
+    # PROZESSVERFOLGERUNG
+
 
     try:
         while True:
