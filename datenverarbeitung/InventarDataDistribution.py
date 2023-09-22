@@ -121,7 +121,7 @@ class Lane:
         else:
             print('entrou no caso de meio da producao')
             # Searching for the box ID in the original lane accordding to it's path (in DatenVerbindung)
-            lane_original = FabrikVerbindung.loc[FabrikVerbindung["target_lane"] == self.lane_address, "lane_address"].iloc[0]
+            lane_original = FabrikVerbindung.loc[FabrikVerbindung["target_lane_address"] == self.lane_address, "lane_address"].iloc[0]
             inventar_original_name = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane_original, "inventar"].iloc[0]
             lane_original_name = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane_original, "lane_inventar"].iloc[0]
             lane_csv_name = f'{lane_original_name}'+'_DS.csv'
