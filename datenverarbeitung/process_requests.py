@@ -6,9 +6,10 @@ FabrikVerbindung = pd.read_excel("FabrikVerbindung.xlsx", index_col=0)
 
 
 class ProcessRequest:
-    def __init__(self, lane, timestamp):
+    def __init__(self, date, lane, timestamp):
         # Uses the given origin lane and takes the appropriate target lane from the Excel file
         self.origin_lane = lane
+        self.date = date
         self.target_lane = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "target_lane_address"].iloc[0]
         self.process = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "process_name"].iloc[0]
         self.variant = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "variant"].iloc[0]
@@ -48,6 +49,6 @@ class ProcessRequest:
         with open(log_path, 'a', newline='') as csvfile:
             csv_writer = csv.writer(csvfile)
             # Append this instance of the process
-            process_to_append = [self.pick_time, self.put_time, self.origin_lane, self.target_lane,
+            process_to_append = [self.date, self.pick_time, self.put_time, self.origin_lane, self.target_lane,
                                  self.duration, self.variant]
             csv_writer.writerow(process_to_append)
