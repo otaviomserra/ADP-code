@@ -129,7 +129,6 @@ class DataFrameProcessor:
         self.df = pd.concat([self.df, extracted_data], axis=1)
         self.df.drop(columns=['Message', 'ExtractedData'], inplace=True)
 
-
     def save_processed_dataframe(self, csv_file_path):
         if self.df is None:
             raise ValueError("DataFrame not loaded or processed.")
@@ -203,7 +202,6 @@ class ExcelFileHandler(FileSystemEventHandler):
                     break
             Inventar.put_event()
 
-
     def process_modified_excel(self):
         print(f"'{self.excel_filename}' modified. Starting data processing.")
         with program_lock:
@@ -232,6 +230,7 @@ def monitor_excel_file(logger_path):
 
     excel_observer.join()
 
+
 def read_kafka_lane_time_event(kafka_path):
     try:
         df = pd.read_csv(kafka_path)
@@ -256,7 +255,6 @@ def read_kafka_lane_time_event(kafka_path):
         return None  # Handle file not found exception
     except Exception as e:
         return None  # Handle other exceptions
-
 
 
 if __name__ == "__main__":
