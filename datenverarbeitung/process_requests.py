@@ -25,25 +25,27 @@ class ProcessRequest:
     def resolve(self, timestamp):
         self.put_time = timestamp
         # Calculate here the difference in timestamps
-        self.duration = self.put_time - self.pick_time
+        # self.duration = self.put_time - self.pick_time
         # Mark the request as resolved
         self.exit_code = 0
 
     def cancel(self, timestamp):
-        self.duration = timestamp - self.put_time
+        # self.duration = timestamp - self.put_time
         # Mark the request as canceled; the system should then remove it from the list without
         # creating a new process log
         self.exit_code = 2
 
     def generate_process_log(self):
-        log_path = "".join(["..", "Werk", "Prozesse", self.process, self.process + ".csv"])
+        current_directory = os.path.dirname(os.path.abspath(__file__))
+        relative_path = os.path.join("..", "Werk", "Prozesse", self.process, self.process + ".csv")
+        log_path = os.path.join(current_directory, relative_path)
 
         # Check if the CSV file exists
         if not os.path.exists(log_path):
             with open(log_path, 'w', newline='') as csvfile:
                 csv_writer = csv.writer(csvfile)
                 # Header row
-                header = ["pick_time", "put_time", "origin_lane", "target_lane", "duration", "variant"]
+                header = ["date", "pick_time", "put_time", "origin_lane", "target_lane", "duration", "variant"]
                 csv_writer.writerow(header)
 
         with open(log_path, 'a', newline='') as csvfile:
@@ -52,3 +54,6 @@ class ProcessRequest:
             process_to_append = [self.date, self.pick_time, self.put_time, self.origin_lane, self.target_lane,
                                  self.duration, self.variant]
             csv_writer.writerow(process_to_append)
+
+        print("Process log created :D at")
+        print(log_path)
