@@ -103,7 +103,8 @@ class Lane:
             df_DB_lane = pd.concat([df_DB_lane,pd.DataFrame(new_line)], ignore_index=True)
             # Adding the ID to the Databank from the Fabrik
             if ID in df_DB_werk['ID'].values:
-                empty_column = df_DB_werk.columns[2:][df_DB_werk.loc[df_DB_werk['ID'] == ID, 2:].isnull().all(axis=0)]
+                linha_id = df_DB_werk[df_DB_werk['ID'] == ID]
+                empty_column = linha_id.columns[2:][linha_id.iloc[:, 2:].isna().all(axis=0)][:2]
                 if not empty_column.empty:
                     df_DB_werk.loc[df_DB_werk['ID'] == ID, empty_column[0]] = self.date # First slot with None as value
                     df_DB_werk.loc[df_DB_werk['ID'] == ID, empty_column[1]] = self.timestamp # Second slot with None as value
@@ -121,34 +122,44 @@ class Lane:
         else:
             print('entrou no caso de meio da producao')
             # Searching for the box ID in the original lane accordding to it's path (in DatenVerbindung)
-            lane_original = FabrikVerbindung.loc[FabrikVerbindung["target_lane_address"] == self.lane_address, "lane_address"].iloc[0]
-            inventar_original_name = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane_original, "inventar"].iloc[0]
-            lane_original_name = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane_original, "lane_inventar"].iloc[0]
-            lane_csv_name = f'{lane_original_name}'+'_DS.csv'
-            lane_original_path = os.path.join(self.current_dir, "..", "Werk", "Inventar",f'{inventar_original_name}',f'{lane_original_name}',lane_csv_name)
-            df_original = pd.read_csv(lane_original_path)
-            false_besetz_line = df_original[df_original["Besetz"] == False]
-            ID = false_besetz_line["ID"].iloc[0]
-            # Adding the ID to the Databank from the lane
-            new_line = [{'Besetz':True, 'ID':ID, 'Date':self.date, 'Timestamp_in':self.timestamp}]
-            df_DB_lane = pd.concat([df_DB_lane,pd.DataFrame(new_line)], ignore_index=True)
-            # Adding the ID to the Databank from the Fabrik
-            if ID in df_DB_werk['ID'].values:
-                empty_column = df_DB_werk.columns[2:][df_DB_werk.loc[df_DB_werk['ID'] == ID, 2:].isnull().all(axis=0)]
-                if not empty_column.empty:
-                    df_DB_werk.loc[df_DB_werk['ID'] == ID, empty_column[0]] = self.date # First slot with None as value
-                    df_DB_werk.loc[df_DB_werk['ID'] == ID, empty_column[1]] = self.timestamp # Second slot with None as value
-                df_DB_werk.loc[df_DB_werk['ID'] == ID, df_DB_werk.columns[1]] = True #Besetz
-                df_DB_werk.loc[df_DB_werk['ID'] == ID, df_DB_werk.columns[3]] = self.lane_address # latzte lane
-            else:
+            try:
+                lane_original = FabrikVerbindung.loc[FabrikVerbindung["target_lane_address"] == self.lane_address, "lane_address"].iloc[0]
+                inventar_original_name = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane_original, "inventar"].iloc[0]
+                lane_original_name = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane_original, "lane_inventar"].iloc[0]
+                lane_csv_name = f'{lane_original_name}'+'_DB.csv'
+                lane_original_path = os.path.join(self.current_dir, "..", "Werk", "Inventar",f'{inventar_original_name}',f'{lane_original_name}',lane_csv_name)
+                df_original = pd.read_csv(lane_original_path)
+                false_besetz_line = df_original[df_original["Besetz"] == False]
+                ID = false_besetz_line["ID"].iloc[0]
+                # Adding the ID to the Databank from the lane
+                new_line = [{'Besetz':True, 'ID':ID, 'Date':self.date, 'Timestamp_in':self.timestamp}]
+                df_DB_lane = pd.concat([df_DB_lane,pd.DataFrame(new_line)], ignore_index=True)
+                # Adding the ID to the Databank from the Fabrik
+                if ID in df_DB_werk['ID'].values:
+                    linha_id = df_DB_werk[df_DB_werk['ID'] == ID]
+                    empty_column = linha_id.columns[2:][linha_id.iloc[:, 2:].isna().all(axis=0)][:2]
+                    if not empty_column.empty:
+                        df_DB_werk.loc[df_DB_werk['ID'] == ID, empty_column[0]] = self.date # First slot with None as value
+                        df_DB_werk.loc[df_DB_werk['ID'] == ID, empty_column[1]] = self.timestamp # Second slot with None as value
+                    df_DB_werk.loc[df_DB_werk['ID'] == ID, df_DB_werk.columns[1]] = True #Besetz
+                    df_DB_werk.loc[df_DB_werk['ID'] == ID, df_DB_werk.columns[3]] = self.lane_address # latzte lane
+            except:
                 print('Error, the ID should alredy exist, this might break the databank')
-                pass
-                nova_linha = {'ID': ID,'Besetz':True,'erste Linie':self.lane_address,'letzte Linie':self.lane_address,'date1in':self.date,'t1in':self.timestamp}
-                df_DB_werk = df_DB_werk.append(nova_linha, ignore_index=True)
-                
-                # Fill the rest of the columns of tin and tout with None
-                colunas_restantes = df_DB_werk.columns[6:]  # Exclui 'ID', 't1in' e 't1out'
-                df_DB_werk.loc[df_DB_werk['ID'] == ID, colunas_restantes] = None
+                ID = self.create_ID(df_DB_werk)
+                # Adding the ID to the Databank from the lane
+                new_line = [{'Besetz': True, 'ID': ID, 'Date': self.date, 'Timestamp': self.timestamp}]
+                df_DB_lane = pd.concat([df_DB_lane, pd.DataFrame(new_line)], ignore_index=True)
+                # Adding the ID to the Databank from the Fabrik
+                if ID in df_DB_werk['ID'].values:
+                    linha_id = df_DB_werk[df_DB_werk['ID'] == ID]
+                    empty_column = linha_id.columns[2:][linha_id.iloc[:, 2:].isna().all(axis=0)][:2]
+                    if not empty_column.empty:
+                        df_DB_werk.loc[
+                            df_DB_werk['ID'] == ID, empty_column[0]] = self.date  # First slot with None as value
+                        df_DB_werk.loc[
+                            df_DB_werk['ID'] == ID, empty_column[1]] = self.timestamp  # Second slot with None as value
+                    df_DB_werk.loc[df_DB_werk['ID'] == ID, df_DB_werk.columns[1]] = True  # Besetz
+                    df_DB_werk.loc[df_DB_werk['ID'] == ID, df_DB_werk.columns[3]] = self.lane_address  # latzte lane
             # Removing the data where the besetz is false after copying the info to the next lane
             df_original = df_original[df_original['ID'] != ID]
             df_original.to_csv(lane_original_path, index=False)
@@ -162,11 +173,16 @@ class Lane:
     
     def pick_event(self):
         df_DB_lane, df_DB_werk = self.read_or_create()
-        df_DB_lane.at[0, 'Besetz'] = False
-        primeiro_registro = df_DB_lane[df_DB_lane['Besetz'] == False].iloc[0]
+        # df_DB_lane.at[0, 'Besetz'] = False
+        # primeiro_registro = df_DB_lane[df_DB_lane['Besetz'] == False].iloc[0]
+        # ID = primeiro_registro['ID']
+        primeiro_registro = df_DB_lane[df_DB_lane['Besetz'] == True].iloc[0]
         ID = primeiro_registro['ID']
+        index_of_primeiro_registro = primeiro_registro.name
+        df_DB_lane.at[index_of_primeiro_registro, 'Besetz'] = False
         if ID in df_DB_werk['ID'].values:
-            empty_column = df_DB_werk.columns[2:][df_DB_werk.loc[df_DB_werk['ID'] == ID, 2:].isnull().all(axis=0)]
+            linha_id = df_DB_werk[df_DB_werk['ID'] == ID]
+            empty_column = linha_id.columns[2:][linha_id.iloc[:, 2:].isna().all(axis=0)][:2]
             if not empty_column.empty: # Adding date and time out and changing the Besetz to false
                 df_DB_werk.loc[df_DB_werk['ID'] == ID, empty_column[0]] = self.date # First slot with None as value
                 df_DB_werk.loc[df_DB_werk['ID'] == ID, empty_column[1]] = self.timestamp # Second slot with None as value
@@ -176,6 +192,9 @@ class Lane:
             df_DB_lane = df_DB_lane[df_DB_lane['ID'] != ID]
         df_DB_lane.to_csv(self.lane_DB , index=False)
         df_DB_werk.to_csv(self.werk_DB , index=False)
+
+    def save_dashboard_format(self):
+        pass
 
 
         #Remove the first box from the order and rearrange the ord

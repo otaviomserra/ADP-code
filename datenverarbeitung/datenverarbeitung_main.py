@@ -148,6 +148,7 @@ class ExcelFileHandler(FileSystemEventHandler):
         if event.src_path == self.excel_filename:
             self.process_modified_excel()
 
+
         # FIXING DUPLICATES
         if event.event_type == "modified":
             date, lane, timestamp, event_type = read_kafka_lane_time_event(csv_file_path)
@@ -175,6 +176,33 @@ class ExcelFileHandler(FileSystemEventHandler):
                         # print('rodou put request')
                         break
                 # Inventar.put_event()
+
+        date, lane, timestamp, event_type = read_kafka_lane_time_event(csv_file_path)
+        print(event_type)
+        Inventar = Lane(lane, date, timestamp, event_type)
+        if event_type == 'CARRIER_ACTION_PICK':
+            print('entrou no pick')
+            #requests.append(ProcessRequest(date, lane, timestamp))
+            # for request in requests:
+                # print(request.target_lane)
+                # print(lane)
+                # print(requests)
+            Inventar.pick_event()
+
+        elif event_type == 'CARRIER_ACTION_PUT':
+            print('entrou no put')
+            # print(requests)
+            for request in requests:
+                # print(request.target_lane)
+                # print(lane)
+                #if request.target_lane == lane:
+                #    request.resolve(timestamp)
+                #    request.generate_process_log()
+                #    requests.remove(request)
+                    # print('rodou put request')
+                    break
+            Inventar.put_event()
+
 
     def process_modified_excel(self):
         print(f"'{self.excel_filename}' modified. Starting data processing.")
