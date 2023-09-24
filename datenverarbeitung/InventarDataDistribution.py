@@ -103,7 +103,8 @@ class Lane:
             df_DB_lane = pd.concat([df_DB_lane,pd.DataFrame(new_line)], ignore_index=True)
             # Adding the ID to the Databank from the Fabrik
             if ID in df_DB_werk['ID'].values:
-                empty_column = df_DB_werk.columns[2:][df_DB_werk.loc[df_DB_werk['ID'] == ID, 2:].isnull().all(axis=0)]
+                linha_id = df_DB_werk[df_DB_werk['ID'] == ID]
+                empty_column = linha_id.columns[2:][linha_id.iloc[:, 2:].isna().all(axis=0)][:2]
                 if not empty_column.empty:
                     df_DB_werk.loc[df_DB_werk['ID'] == ID, empty_column[0]] = self.date # First slot with None as value
                     df_DB_werk.loc[df_DB_werk['ID'] == ID, empty_column[1]] = self.timestamp # Second slot with None as value
@@ -124,7 +125,7 @@ class Lane:
             lane_original = FabrikVerbindung.loc[FabrikVerbindung["target_lane_address"] == self.lane_address, "lane_address"].iloc[0]
             inventar_original_name = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane_original, "inventar"].iloc[0]
             lane_original_name = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane_original, "lane_inventar"].iloc[0]
-            lane_csv_name = f'{lane_original_name}'+'_DS.csv'
+            lane_csv_name = f'{lane_original_name}'+'_DB.csv'
             lane_original_path = os.path.join(self.current_dir, "..", "Werk", "Inventar",f'{inventar_original_name}',f'{lane_original_name}',lane_csv_name)
             df_original = pd.read_csv(lane_original_path)
             false_besetz_line = df_original[df_original["Besetz"] == False]
@@ -134,7 +135,8 @@ class Lane:
             df_DB_lane = pd.concat([df_DB_lane,pd.DataFrame(new_line)], ignore_index=True)
             # Adding the ID to the Databank from the Fabrik
             if ID in df_DB_werk['ID'].values:
-                empty_column = df_DB_werk.columns[2:][df_DB_werk.loc[df_DB_werk['ID'] == ID, 2:].isnull().all(axis=0)]
+                linha_id = df_DB_werk[df_DB_werk['ID'] == ID]
+                empty_column = linha_id.columns[2:][linha_id.iloc[:, 2:].isna().all(axis=0)][:2]
                 if not empty_column.empty:
                     df_DB_werk.loc[df_DB_werk['ID'] == ID, empty_column[0]] = self.date # First slot with None as value
                     df_DB_werk.loc[df_DB_werk['ID'] == ID, empty_column[1]] = self.timestamp # Second slot with None as value
@@ -162,11 +164,16 @@ class Lane:
     
     def pick_event(self):
         df_DB_lane, df_DB_werk = self.read_or_create()
-        df_DB_lane.at[0, 'Besetz'] = False
-        primeiro_registro = df_DB_lane[df_DB_lane['Besetz'] == False].iloc[0]
+        # df_DB_lane.at[0, 'Besetz'] = False
+        # primeiro_registro = df_DB_lane[df_DB_lane['Besetz'] == False].iloc[0]
+        # ID = primeiro_registro['ID']
+        primeiro_registro = df_DB_lane[df_DB_lane['Besetz'] == True].iloc[0]
         ID = primeiro_registro['ID']
+        index_of_primeiro_registro = primeiro_registro.name
+        df_DB_lane.at[index_of_primeiro_registro, 'Besetz'] = False
         if ID in df_DB_werk['ID'].values:
-            empty_column = df_DB_werk.columns[2:][df_DB_werk.loc[df_DB_werk['ID'] == ID, 2:].isnull().all(axis=0)]
+            linha_id = df_DB_werk[df_DB_werk['ID'] == ID]
+            empty_column = linha_id.columns[2:][linha_id.iloc[:, 2:].isna().all(axis=0)][:2]
             if not empty_column.empty: # Adding date and time out and changing the Besetz to false
                 df_DB_werk.loc[df_DB_werk['ID'] == ID, empty_column[0]] = self.date # First slot with None as value
                 df_DB_werk.loc[df_DB_werk['ID'] == ID, empty_column[1]] = self.timestamp # Second slot with None as value
@@ -176,6 +183,9 @@ class Lane:
             df_DB_lane = df_DB_lane[df_DB_lane['ID'] != ID]
         df_DB_lane.to_csv(self.lane_DB , index=False)
         df_DB_werk.to_csv(self.werk_DB , index=False)
+
+    def save_dashboard_format(self):
+        pass
 
 
         #Remove the first box from the order and rearrange the ord

@@ -157,7 +157,7 @@ class ExcelFileHandler(FileSystemEventHandler):
                 # print(request.target_lane)
                 # print(lane)
                 # print(requests)
-            #Inventar.pick_event()
+            Inventar.pick_event()
 
         elif event_type == 'CARRIER_ACTION_PUT':
             print('entrou no put')
@@ -171,7 +171,7 @@ class ExcelFileHandler(FileSystemEventHandler):
                 #    requests.remove(request)
                     # print('rodou put request')
                     break
-            #Inventar.put_event()
+            Inventar.put_event()
 
     def process_modified_excel(self):
         print(f"'{self.excel_filename}' modified. Starting data processing.")
