@@ -7,8 +7,8 @@ from watchdog.events import FileSystemEventHandler
 # Define the paths to the Excel files and the directory for CSV files
 excel_file_paths = ['Start Saegen.xlsx', 'Start Drehen.xlsx']
 csv_mapping = {
-    'Start Saegen.xlsx': 'Prozesse/Saegen/Saegen_DS.csv',
-    'Start Drehen.xlsx': 'Prozesse/Drehen/Drehen_DS.csv',
+    'Start Saegen.xlsx': 'Prozesse/Saegen/Saegen.csv',
+    'Start Drehen.xlsx': 'Prozesse/Drehen/Drehen.csv',
 }
 
 # Function to generate a CSV file path based on the Excel file name

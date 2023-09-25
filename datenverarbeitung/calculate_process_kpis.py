@@ -9,7 +9,7 @@ import datetime
 # just calls all of them in order and updates the KPIs table
 
 fehler_excel_path= 'Reject_Button.xlm'
-fehler_excel= openpyxl.load_workbook(fehler_excel_path)['Dashboard']
+fehler_excel= openpyxl.load_workbook(fehler_excel_path)
 
 def calculate_average_cycle_time(process, process_df, timestamp):
     # Filter events that happened in the last 24 hours (86400 seconds)
@@ -41,9 +41,26 @@ def calculate_production_downtime(process, fehler_excel):
         return 0  # temp
 
 
-def calculate_unscheduled_downtime(process):
-    print(process)  # get from Jungmu
-    return 0  # temp
+def calculate_unscheduled_downtime(process, fehler_excel_path,):
+
+    df = pd.read_excel(fehler_excel_path, sheet_name='LogData(Ausfallzeit)')
+
+    # Ensure the 'Start', 'End', 'Date', and 'Process' columns exist in the DataFrame
+    if 'Start' in df.columns and 'End' in df.columns and 'Date' in df.columns and 'Process' in df.columns:
+        # Convert 'Date' column to datetime format (if not already)
+        if not pd.api.types.is_datetime64_ns_dtype(df['Date']):
+            df['Date'] = pd.to_datetime(df['Date'])
+
+        # Filter rows where 'Start' and 'End' are on the same date and match the desired process
+        same_date_and_process_rows = df[(df['Start'].dt.date == df['End'].dt.date) & (df['Process'] == desired_process)]
+
+        # Calculate the sum of 'End' - 'Start' for these rows
+        total_duration = same_date_and_process_rows['End'] - same_date_and_process_rows['Start']
+        total_duration = total_duration.sum()
+
+        return total_duration
+    else:
+        return None
 
 
 def calculate_nacharbeitquote(process, process_df, fehler_excel):  # Prozentzahl
