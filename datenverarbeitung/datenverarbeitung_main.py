@@ -172,7 +172,7 @@ class ExcelFileHandler(FileSystemEventHandler):
                     print('entrou no pick')
                     requests.append(ProcessRequest(date, lane, timestamp))
                     for request in requests:
-                        print(request.target_lane)
+                        print(request.target_lanes)
                         print(lane)
                         print(requests)
                     Inventar.pick_event()
@@ -181,11 +181,11 @@ class ExcelFileHandler(FileSystemEventHandler):
                     print('entrou no put')
                     print(requests)
                     for request in requests:
-                        print(request.target_lane)
+                        print(request.target_lanes)
                         print(lane)
-                        if request.target_lane == lane:
+                        if lane in request.target_lanes:
                             request.resolve(timestamp)
-                            request.generate_process_log()
+                            request.generate_process_log(lane)
                             requests.remove(request)
                             print('rodou put request')
                             break
