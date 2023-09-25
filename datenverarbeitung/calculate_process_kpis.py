@@ -9,7 +9,8 @@ import datetime
 # just calls all of them in order and updates the KPIs table
 
 fehler_excel_path= 'Reject_Button.xlm'
-fehler_excel= openpyxl.load_workbook(fehler_excel_path)
+FabrikVerbindung = pd.read_excel('FabrikVerbindung.xlsx')
+#fehler_excel= openpyxl.load_workbook(fehler_excel_path)
 
 def calculate_average_cycle_time(process, process_df, timestamp):
     # Filter events that happened in the last 24 hours (86400 seconds)
@@ -34,14 +35,27 @@ def calculate_average_leading_time(process, process_df, timestamp):
     return leading_time
 
 
-def calculate_production_downtime(process, fehler_excel):
+def calculate_production_downtime(process, fehler_excel_path):
 
-    
-        print(process)  # get from Jungmu
-        return 0  # temp
+    df = pd.read_excel(fehler_excel_path, sheet_name='LogData(Wartung)')
 
+    # Ensure the 'Start', 'End', 'Date', and 'Process' columns exist in the DataFrame
+    if 'Start' in df.columns and 'End' in df.columns and 'Date' in df.columns and 'Process' in df.columns:
+        # Convert 'Date' column to datetime format (if not already)
+        if not pd.api.types.is_datetime64_ns_dtype(df['Date']):
+            df['Date'] = pd.to_datetime(df['Date'])
 
-def calculate_unscheduled_downtime(process, fehler_excel_path,):
+        # Filter rows where 'Start' and 'End' are on the same date and match the desired process
+        same_date_and_process_rows = df[(df['Start'].dt.date == df['End'].dt.date) & (df['Process'] == process)]
+
+        # Calculate the sum of 'End' - 'Start' for these rows
+        total_duration = same_date_and_process_rows['End'] - same_date_and_process_rows['Start']
+        total_duration = total_duration.sum()
+
+        return total_duration
+    else:
+        return None
+def calculate_unscheduled_downtime(process, fehler_excel_path):
 
     df = pd.read_excel(fehler_excel_path, sheet_name='LogData(Ausfallzeit)')
 
@@ -52,7 +66,7 @@ def calculate_unscheduled_downtime(process, fehler_excel_path,):
             df['Date'] = pd.to_datetime(df['Date'])
 
         # Filter rows where 'Start' and 'End' are on the same date and match the desired process
-        same_date_and_process_rows = df[(df['Start'].dt.date == df['End'].dt.date) & (df['Process'] == desired_process)]
+        same_date_and_process_rows = df[(df['Start'].dt.date == df['End'].dt.date) & (df['Process'] == process)]
 
         # Calculate the sum of 'End' - 'Start' for these rows
         total_duration = same_date_and_process_rows['End'] - same_date_and_process_rows['Start']
@@ -65,9 +79,22 @@ def calculate_unscheduled_downtime(process, fehler_excel_path,):
 
 def calculate_nacharbeitquote(process, process_df, fehler_excel):  # Prozentzahl
 
-    total_parts = len(process_df)
+    # Filter the Excel DataFrame based on the variant and process
+    filtered_df = FabrikVerbindung[
+        (FabrikVerbindung['variant'] == variant) & (FabrikVerbindung['process_name'] == process)]
+
+    # Get the 'box_capacity' value
+    batch = filtered_df['box_capacity'].values[0]
+
     today = datetime.date.today()
-    count_today = (process_df['date'].dt.date == today).sum()
+
+    # Filter the DataFrame for the desired variant and today's date
+    filtered_df = process_df[(process_df['variant'] == variant) & (process_df['date'].dt.date == today)]
+
+    # Count the number of rows in the filtered DataFrame
+    variants_today = filtered_df.shape[0]
+
+    total_parts = variants_today * batch
 
     for row in fehler_excel.iter_rows():
         for cell in row:
@@ -79,10 +106,24 @@ def calculate_nacharbeitquote(process, process_df, fehler_excel):  # Prozentzahl
                 return na_teile*100/total_parts
 
 
-def calculate_ausschussquote(process, process_df,  fehler_excel):  # Prozentzahl
-    total_parts = len(process_df)
+def calculate_ausschussquote(process, variant, FabrikVerbindung, process_df,  fehler_excel):  # Prozentzahl
+
+    # Filter the Excel DataFrame based on the variant and process
+    filtered_df = FabrikVerbindung[(FabrikVerbindung['variant'] == variant) & (FabrikVerbindung['process_name'] == process)]
+
+
+    # Get the 'box_capacity' value
+    batch = filtered_df['box_capacity'].values[0]
+
     today = datetime.date.today()
-    count_today = (process_df['date'].dt.date == today).sum()
+
+    # Filter the DataFrame for the desired variant and today's date
+    filtered_df = process_df[(process_df['variant'] == variant) & (process_df['date'].dt.date == today)]
+
+    # Count the number of rows in the filtered DataFrame
+    variants_today = filtered_df.shape[0]
+
+    total_parts =variants_today*batch
 
     for row in fehler_excel.iter_rows():
         for cell in row:
@@ -121,7 +162,7 @@ def calculate_work_in_process(process, process_df, timestamp):
     return filtered_process_df["quantity"].sum()
 
 
-def calculate_oee(process, process_df, timestamp, cycle_df): #Make a DF with the ideal cycle time per variant in each process
+def calculate_oee(process, variant, process_df, FabrikVerbindung): #Make a DF with the ideal cycle time per variant in each process
 
     
     # Calculate Overall Equipment Effectiveness (OEE).
@@ -137,18 +178,45 @@ def calculate_oee(process, process_df, timestamp, cycle_df): #Make a DF with the
     # - OEE as a percentage (0 to 100).
     
 
-    total_parts_produced = len(process_df)
+
 
     # Calculate Availability
+
+    downtime = calculate_unscheduled_downtime(process, fehler_excel_path) +  calculate_production_downtime(process, fehler_excel_path)
+    operating_time = 28800 #8h per day
     availability = (operating_time - downtime) / operating_time if operating_time > 0 else 0
 
     # Calculate Performance
 
 
 
+    # Filter the Excel DataFrame based on the variant and process
+    filtered_df = FabrikVerbindung[(FabrikVerbindung['variant'] == variant) & (FabrikVerbindung['process_name'] == process)]
+
+
+    # Get the 'box_capacity' value
+    batch = filtered_df['box_capacity'].values[0]
+
+    today = datetime.date.today()
+
+    # Filter the DataFrame for the desired variant and today's date
+    filtered_df = process_df[(process_df['variant'] == variant) & (process_df['date'].dt.date == today)]
+
+    # Count the number of rows in the filtered DataFrame
+    variants_today = filtered_df.shape[0]
+
+    total_parts_produced =variants_today*batch
+
+    # Filter the DataFrame to get the ideal_cycle_time
+    filtered_row = FabrikVerbindung[(FabrikVerbindung['process_name'] == process) & (FabrikVerbindung['variant'] == variant)]
+
+    ideal_cycle_time = filtered_row['ideal_cycle_time'].values[0]
+
     performance = (ideal_cycle_time * total_parts_produced) / operating_time if operating_time > 0 else 0
 
     # Calculate Quality
+    good_parts_produced = total_parts_produced - calculate_fehlproduktionsquote(process, variant)*total_parts_produced/100
+
     quality = good_parts_produced / total_parts_produced if total_parts_produced > 0 else 0
 
     # Calculate OEE
@@ -156,8 +224,7 @@ def calculate_oee(process, process_df, timestamp, cycle_df): #Make a DF with the
 
     return oee
 
-    print(process)  # No clue how to do this for now, check formulas later
-    return 0  # temp
+
 
 
 def calculate_productivity(process, process_df, timestamp):
