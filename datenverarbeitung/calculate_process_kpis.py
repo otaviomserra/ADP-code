@@ -10,12 +10,12 @@ import datetime
 
 fehler_excel_path= 'Reject_Button.xlm'
 FabrikVerbindung = pd.read_excel('FabrikVerbindung.xlsx')
-#fehler_excel= openpyxl.load_workbook(fehler_excel_path)
+fehler_excel= openpyxl.load_workbook(fehler_excel_path)
 
-def calculate_average_cycle_time(process, process_df, timestamp):
+def calculate_average_cycle_time(process, variant, process_df, timestamp):
     # Filter events that happened in the last 24 hours (86400 seconds)
     filtered_process_df = process_df[(process_df["timestamp"] >= timestamp - 86400)
-                                     and (process_df["timestamp"] <= timestamp)]
+                                     and (process_df["timestamp"] <= timestamp) and process_df["variant"] == variant ]
 
     # Calculate average cycle time
     return filtered_process_df["duration"].mean()
@@ -77,7 +77,7 @@ def calculate_unscheduled_downtime(process, fehler_excel_path):
         return None
 
 
-def calculate_nacharbeitquote(process, process_df, fehler_excel):  # Prozentzahl
+def calculate_nacharbeitquote(process, variant, process_df, fehler_excel):  # Prozentzahl
 
     # Filter the Excel DataFrame based on the variant and process
     filtered_df = FabrikVerbindung[
@@ -232,7 +232,7 @@ def calculate_productivity(process, process_df, timestamp):
     return 1 - calculate_production_downtime(process) - calculate_unscheduled_downtime(process)
 
 
-def calculate_losgroesse(process, process_df, timestamp):
+def calculate_losgroesse(process, variant, process_df, timestamp):
 
     filtered_df = FabrikVerbindung[(FabrikVerbindung['variant'] == variant) & (FabrikVerbindung['process_name'] == process)]
 
@@ -250,8 +250,8 @@ def calculate_process_kpis(process, timestamp):
     # Call every function
     fehlproduktionsquote = calculate_fehlproduktionsquote(process)
     qualitaetsgrad = calculate_qualitaetsgrad(process)
-    ausschussquote = calculate_ausschussquote(process, process_df,fehler_excel)
-    nacharbeitsquote = calculate_nacharbeitquote(process, process_df,fehler_excel)
+    ausschussquote = calculate_ausschussquote(process, process_df, fehler_excel)
+    nacharbeitsquote = calculate_nacharbeitquote(process, process_df, fehler_excel)
     average_cycle_time = calculate_average_cycle_time(process, process_df, timestamp)
     average_leading_time = calculate_average_leading_time(process, process_df, timestamp)
     production_downtime = calculate_production_downtime(process)
