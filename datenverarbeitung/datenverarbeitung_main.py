@@ -9,6 +9,9 @@ from watchdog.events import FileSystemEventHandler
 from process_requests import *
 from InventarDataDistribution import *
 from process_data import *
+from datetime import datetime
+import numpy as np
+
 class LogToCSVConverter:
     def __init__(self, log_filename, csv_filename):
         self.log_filename = log_filename
@@ -138,42 +141,55 @@ class DataFrameProcessor:
 
 class ExcelFileHandler(FileSystemEventHandler):
     def __init__(self, excel_filename, processor):
+        super().__init__()
         self.excel_filename = excel_filename
         self.processor = processor
+        self.last_event_time = None
+        self.min_time_interval = 1
 
     def on_modified(self, event):
         if event.is_directory:
             return
-        if event.src_path == self.excel_filename:
-            self.process_modified_excel()
 
-        # FIXING DUPLICATES
-        if event.event_type == "modified":
-            date, lane, timestamp, event_type = read_kafka_lane_time_event(csv_file_path)
-            print(event_type)
-            Inventar = Lane(lane, date, timestamp, event_type)
-            if event_type == 'CARRIER_ACTION_PICK':
-                print('entrou no pick')
-                requests.append(ProcessRequest(date, lane, timestamp))
-                for request in requests:
-                    print(request.target_lane)
-                    print(lane)
+        # Ignore duplicate events
+        current_time = time.time()
+        if self.last_event_time is None or (current_time - self.last_event_time) >= self.min_time_interval:
+            self.last_event_time = current_time
+            if event.src_path == self.excel_filename:
+                self.process_modified_excel()
+
+            print("\n\n\n\n\n\n\n")
+            modification_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            print("OBSERVER EVENT: ", end="")
+            print(event)
+            print("THIS EVENT WAS DETECTED AT " + modification_timestamp)
+            # FIXING DUPLICATES
+            if event.event_type == "modified":
+                date, lane, timestamp, event_type = read_kafka_lane_time_event(csv_file_path)
+                print(event_type)
+                Inventar = Lane(lane, date, timestamp, event_type)
+                if event_type == 'CARRIER_ACTION_PICK':
+                    print('entrou no pick')
+                    requests.append(ProcessRequest(date, lane, timestamp))
+                    for request in requests:
+                        print(request.target_lane)
+                        print(lane)
+                        print(requests)
+                    Inventar.pick_event()
+
+                elif event_type == 'CARRIER_ACTION_PUT':
+                    print('entrou no put')
                     print(requests)
-                Inventar.pick_event()
-
-            elif event_type == 'CARRIER_ACTION_PUT':
-                print('entrou no put')
-                print(requests)
-                for request in requests:
-                    print(request.target_lane)
-                    print(lane)
-                    if request.target_lane == lane:
-                        request.resolve(timestamp)
-                        request.generate_process_log()
-                        requests.remove(request)
-                        print('rodou put request')
-                        break
-                Inventar.put_event()
+                    for request in requests:
+                        print(request.target_lane)
+                        print(lane)
+                        if request.target_lane == lane:
+                            request.resolve(timestamp)
+                            request.generate_process_log()
+                            requests.remove(request)
+                            print('rodou put request')
+                            break
+                    Inventar.put_event()
 
     def process_modified_excel(self):
         print(f"'{self.excel_filename}' modified. Starting data processing.")
@@ -264,16 +280,35 @@ if __name__ == "__main__":
     csv_filename = 'cleaned_' + log_name + '.csv'
     kafka_filename = 'kafka_' + log_name + '.csv'
 
-    event_handler = LogFileHandler(log_filename, csv_filename)
-    observer = Observer()
-    observer.schedule(event_handler, path=os.path.dirname(log_filename))
-    observer.start()
-    program_lock = Lock()
     logger_path = ''.join(['csv_logs\\', csv_filename])
 
     csv_file_path = ''.join(['kafka_logs\\', kafka_filename])
 
-    monitor_excel_file(logger_path)
+    event_handler = LogFileHandler(log_filename, csv_filename)
+
+    ################################################
+    # REPLACING THE OLD MONITOR_EXCEL_FILE FUNCTION
+    processor = DataFrameProcessor(logger_path)
+    excel_event_handler = ExcelFileHandler(logger_path, processor)
+    # excel_observer = Observer()
+
+    # excel_observer.schedule(excel_event_handler, path=os.path.dirname(logger_path))
+    # excel_observer.start()
+    ###################################
+
+    observer = Observer()
+    observer.schedule(event_handler, path=os.path.dirname(log_filename))
+    observer.schedule(excel_event_handler, path=os.path.dirname(logger_path), recursive=True)
+    observer.start()
+    program_lock = Lock()
+
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        observer.stop()
+
+    observer.join()
 #####################################################
 # REQUESTS
 #####################################################
@@ -289,12 +324,3 @@ if __name__ == "__main__":
     #        "timestamp", "LANE"))
 
     # PROZESSVERFOLGERUNG
-
-    try:
-        while True:
-            time.sleep(1)
-
-    except KeyboardInterrupt:
-        observer.stop()
-
-    observer.join()
