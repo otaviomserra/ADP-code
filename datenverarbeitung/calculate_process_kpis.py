@@ -62,13 +62,10 @@ def calculate_nacharbeitquote(process, process_df, fehler_excel):  # Prozentzahl
                 return na_teile*100/total_parts
 
 
-
 def calculate_ausschussquote(process, process_df,  fehler_excel):  # Prozentzahl
-    
-   
     total_parts = len(process_df)
     today = datetime.date.today()
-    count_today = (dprocess_df['date'].dt.date == today).sum()
+    count_today = (process_df['date'].dt.date == today).sum()
 
     for row in fehler_excel.iter_rows():
         for cell in row:
