@@ -233,9 +233,12 @@ def calculate_productivity(process, process_df, timestamp):
 
 
 def calculate_losgroesse(process, process_df, timestamp):
-    # I think it's the number of parts per operation, we have that in Excel
-    return process_df["quantity"].iloc[0]
 
+    filtered_df = FabrikVerbindung[(FabrikVerbindung['variant'] == variant) & (FabrikVerbindung['process_name'] == process)]
+
+    # Get the 'box_capacity' value
+    batch = filtered_df['box_capacity'].values[0]
+    return batch
 
 # MAIN FUNCTION
 def calculate_process_kpis(process, timestamp):
