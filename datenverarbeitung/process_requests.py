@@ -10,8 +10,9 @@ class ProcessRequest:
         # Uses the given origin lane and takes the appropriate target lane from the Excel file
         self.origin_lane = lane
         self.date = date
-        lanes_string = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "target_lane_address"].iloc[0]
-        self.target_lanes = lanes_string.split(",")
+        # List of possible target lanes (only to account for S001.M003.02.03 which has a lot of them)
+        self.target_lanes = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane,
+                                                 "target_lane_address"].iloc[0].split(",")
         self.process = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "process_name"].iloc[0]
         self.variant = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "variant"].iloc[0]
 
