@@ -10,7 +10,8 @@ class ProcessRequest:
         # Uses the given origin lane and takes the appropriate target lane from the Excel file
         self.origin_lane = lane
         self.date = date
-        self.target_lane = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "target_lane_address"].iloc[0]
+        lanes_string = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "target_lane_address"].iloc[0]
+        self.target_lanes = lanes_string.split(",")
         self.process = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "process_name"].iloc[0]
         self.variant = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "variant"].iloc[0]
 
@@ -35,7 +36,7 @@ class ProcessRequest:
         # creating a new process log
         self.exit_code = 2
 
-    def generate_process_log(self):
+    def generate_process_log(self, lane):
         current_directory = os.path.dirname(os.path.abspath(__file__))
         relative_path = os.path.join("..", "Werk", "Prozesse", self.process, self.process + ".csv")
         log_path = os.path.join(current_directory, relative_path)
@@ -51,7 +52,7 @@ class ProcessRequest:
         with open(log_path, 'a', newline='') as csvfile:
             csv_writer = csv.writer(csvfile)
             # Append this instance of the process
-            process_to_append = [self.date, self.pick_time, self.put_time, self.origin_lane, self.target_lane,
+            process_to_append = [self.date, self.pick_time, self.put_time, self.origin_lane, lane,
                                  self.duration, self.variant]
             csv_writer.writerow(process_to_append)
 
