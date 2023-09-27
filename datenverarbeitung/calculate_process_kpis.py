@@ -1,5 +1,4 @@
 import os
-import numpy as np
 import pandas as pd
 import csv
 
@@ -12,7 +11,7 @@ fehler_excel_path= 'Reject_Button.xlm'
 FabrikVerbindung = pd.read_excel('FabrikVerbindung.xlsx')
 
 
-def calculate_average_cycle_time(process, variant, process_df, timestamp):
+def calculate_average_cycle_time( variant, process_df, timestamp):
     # Filter events that happened in the last 24 hours (86400 seconds)
     filtered_process_df = process_df[(process_df["timestamp"] >= timestamp - 86400)
                                      and (process_df["timestamp"] <= timestamp) and process_df["variant"] == variant ]
@@ -102,7 +101,7 @@ def calculate_nacharbeitquote(process, batch, variant, process_df, fehler_excel_
                 return na_teile*100/total_parts
 
 
-def calculate_ausschussquote(process, batch, variant, FabrikVerbindung, process_df,  fehler_excel_path):  # Prozentzahl
+def calculate_ausschussquote(process, batch, variant, process_df,  fehler_excel_path):  # Prozentzahl
 
 
 
@@ -128,8 +127,8 @@ def calculate_ausschussquote(process, batch, variant, FabrikVerbindung, process_
                 return as_teile*100/total_parts
 
 
-def calculate_fehlproduktionsquote(process):  # Prozentzahl
-    return calculate_ausschussquote(process) + calculate_nacharbeitquote(process)
+def calculate_fehlproduktionsquote(process, batch, variant, process_df,  fehler_excel_path):  # Prozentzahl
+    return calculate_ausschussquote(process, batch, variant, process_df,  fehler_excel_path) + calculate_nacharbeitquote(process, batch, variant, process_df,  fehler_excel_path)
 
 
 def calculate_qualitaetsgrad(process):  # Prozentzahl
@@ -170,7 +169,7 @@ def calculate_work_in_process(process, variant, process_df, timestamp):
     return filtered_process_df["quantity"].sum()*batch
 
 
-def calculate_oee(process, variant, process_df, FabrikVerbindung): #Make a DF with the ideal cycle time per variant in each process
+def calculate_oee_av(process): #Make a DF with the ideal cycle time per variant in each process
 
     
     # Calculate Overall Equipment Effectiveness (OEE).
@@ -194,16 +193,11 @@ def calculate_oee(process, variant, process_df, FabrikVerbindung): #Make a DF wi
     operating_time = 28800 #8h per day
     availability = (operating_time - downtime) / operating_time if operating_time > 0 else 0
 
-    # Calculate Performance
+    return availability
 
+def calculate_oee_pe(process, variant, batch, process_df, FabrikVerbindung):  # Make a DF with the ideal cycle time per variant in each process
 
-
-    # Filter the Excel DataFrame based on the variant and process
-    filtered_df = FabrikVerbindung[(FabrikVerbindung['variant'] == variant) & (FabrikVerbindung['process_name'] == process)]
-
-
-    # Get the 'box_capacity' value
-    batch = filtered_df['box_capacity'].values[0]
+    operating_time = 28800  # 8h per day
 
     today = datetime.date.today()
 
@@ -222,15 +216,16 @@ def calculate_oee(process, variant, process_df, FabrikVerbindung): #Make a DF wi
 
     performance = (ideal_cycle_time * total_parts_produced) / operating_time if operating_time > 0 else 0
 
+    return total_parts_produced, performance
+
+def calculate_oee_qa(process, variant, batch, process_df,total_parts_produced):  # Make a DF with the ideal cycle time per variant in each process
+
     # Calculate Quality
-    good_parts_produced = total_parts_produced - calculate_fehlproduktionsquote(process, variant)*total_parts_produced/100
+    good_parts_produced = total_parts_produced - calculate_fehlproduktionsquote(process, batch, variant, process_df,  fehler_excel_path)
 
     quality = good_parts_produced / total_parts_produced if total_parts_produced > 0 else 0
 
-    # Calculate OEE
-    oee = availability * performance * quality * 100  # Multiply by 100 to get percentage
-
-    return oee
+    return quality
 
 
 
@@ -268,7 +263,10 @@ def calculate_process_kpis(process, variant, timestamp):
     unscheduled_downtime = calculate_unscheduled_downtime(process, fehler_excel_path)
     leistung = (process, variant, process_df, timestamp)
     work_in_process = calculate_work_in_process(process, variant, process_df, timestamp)
-    oee = calculate_oee(process, variant, process_df, FabrikVerbindung)
+    oee_av= calculate_oee_av(process)
+    total_parts_produced , oee_pe = calculate_oee_pe(process, variant, batch, process_df, FabrikVerbindung)
+    oee_qa = calculate_oee_qa(process, variant, batch, process_df,total_parts_produced)
+    oee =oee_av*oee_pe*oee_qa*100
     productivity = calculate_productivity(process)
 
 
