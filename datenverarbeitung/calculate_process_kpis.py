@@ -227,8 +227,11 @@ def calculate_oee_qa(process, variant, batch, process_df,total_parts_produced): 
 
     return quality
 
+def calculate_oeestern(total_parts, variant, process_df, timestamp):
 
+    working_time = 8*3600
 
+    return total_parts*calculate_average_cycle_time(variant, process_df, timestamp)/working_time
 
 def calculate_productivity(process):
     # Percentage of uptime I think
@@ -264,9 +267,10 @@ def calculate_process_kpis(process, variant, timestamp):
     leistung = (process, variant, process_df, timestamp)
     work_in_process = calculate_work_in_process(process, variant, process_df, timestamp)
     oee_av= calculate_oee_av(process)
-    total_parts_produced , oee_pe = calculate_oee_pe(process, variant, batch, process_df, FabrikVerbindung)
+    total_parts_produced, oee_pe = calculate_oee_pe(process, variant, batch, process_df, FabrikVerbindung)
     oee_qa = calculate_oee_qa(process, variant, batch, process_df,total_parts_produced)
-    oee =oee_av*oee_pe*oee_qa*100
+    oee = oee_av*oee_pe*oee_qa*100
+    oeestern = calculate_oeestern(total_parts_produced, variant, process_df, timestamp)
     productivity = calculate_productivity(process)
 
 
@@ -277,7 +281,7 @@ def calculate_process_kpis(process, variant, timestamp):
     row_to_append = [timestamp, fehlproduktionsquote, qualitaetsgrad, ausschussquote,
                      nacharbeitsquote, average_cycle_time, average_leading_time,
                      production_downtime, unscheduled_downtime, leistung, work_in_process,
-                     oee, productivity, losgroesse]
+                     oee, oeestern, oee_av, oee_pe, oee_qa,+ productivity, losgroesse]
 
 
     # Check if the CSV file exists
@@ -288,7 +292,7 @@ def calculate_process_kpis(process, variant, timestamp):
             header = ["calculated_at", "fehlprodukionsquote", "qualitaetsgrad", "ausschussquote",
                       "nacharbeitsquote", "average_cycle_time", "average_leading_time",
                       "production_downtime", "unscheduled_downtime", "leistung", "work_in_process",
-                      "oee", "productivity", "losgroesse"]
+                      "oee","oeestern", "oee_av", "oee_pe", "oee_qa", "productivity", "losgroesse"]
             csv_writer.writerow(header)
 
 
