@@ -5,12 +5,14 @@ import pandas as pd
 FabrikVerbindung = pd.read_excel("FabrikVerbindung.xlsx", index_col=0)
 
 
-# Class for box description
+# Class for box description (unused)
 class Boxes:
     def __init__(self, lane_address, ID):
         self.lane = Lane(lane_address)
-        self.box_capacity = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane_address, "box_capacity"].iloc[0]
-        self.variant = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane_address, "variant"].iloc[0]
+        self.box_capacity = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane_address,
+                                                 "box_capacity"].iloc[0]
+        self.variant = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane_address,
+                                            "variant"].iloc[0]
         self.ID = ID
 
 

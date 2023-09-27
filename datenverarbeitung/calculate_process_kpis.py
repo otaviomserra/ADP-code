@@ -28,7 +28,7 @@ def calculate_average_leading_time(variant, process, process_df, timestamp):
 
     leading_time = 0
     for name in process_sequence:
-        leading_time += calculate_average_cycle_time(process, process_df, timestamp)
+        leading_time += calculate_average_cycle_time(process, variant, process_df, timestamp)
         if name == process:
             break
 
@@ -139,8 +139,9 @@ def calculate_ausschussquote(process, variant, FabrikVerbindung, process_df,  fe
                 return as_teile*100/total_parts
 
 
-def calculate_fehlproduktionsquote(process):  # Prozentzahl
-    return calculate_ausschussquote(process) + calculate_nacharbeitquote(process)
+def calculate_fehlproduktionsquote(process, variant, FabrikVerbindung, process_df,  fehler_excel):  # Prozentzahl
+    return calculate_ausschussquote(process, variant, FabrikVerbindung, process_df,  fehler_excel) + \
+           calculate_nacharbeitquote(process)
 
 
 def calculate_qualitaetsgrad(process):  # Prozentzahl
