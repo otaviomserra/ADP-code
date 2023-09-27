@@ -275,11 +275,11 @@ def calculate_process_kpis(process, timestamp):
     losgroesse = calculate_losgroesse(process, process_df, timestamp)
 
     # Append the calculated values as a row for the process_DS.csv
-    digital_shadow_path = "".join(["..", "Werk", "Prozesse", process, process + "_DS.csv"])
-
+    hist_log_path = "".join(["..", "Werk", "Prozesse", process,"_HistLog.csv" ])
+    ds_path= "".join(["..", "Werk", "Prozesse", process, process + "_DS.csv"])
     # Check if the CSV file exists
-    if not os.path.exists(digital_shadow_path):
-        with open(digital_shadow_path, 'w', newline='') as csvfile:
+    if not os.path.exists( hist_log_path):
+        with open( hist_log_path, 'w', newline='') as csvfile:
             csv_writer = csv.writer(csvfile)
             # Header row
             header = ["calculated_at", "fehlprodukionsquote", "qualitaetsgrad", "ausschussquote",
@@ -288,7 +288,16 @@ def calculate_process_kpis(process, timestamp):
                       "oee", "productivity", "losgroesse"]
             csv_writer.writerow(header)
 
-    with open(digital_shadow_path, 'a', newline='') as csvfile:
+    with open(hist_log_path, 'a', newline='') as csvfile:
+        csv_writer = csv.writer(csvfile)
+        # Append this instance of calculated KPIs with the timestamp of when they were calculated
+        row_to_append = [timestamp, fehlproduktionsquote, qualitaetsgrad, ausschussquote,
+                         nacharbeitsquote, average_cycle_time, average_leading_time,
+                         production_downtime, unscheduled_downtime, leistung, work_in_process,
+                         oee, productivity, losgroesse]
+        csv_writer.writerow(row_to_append)
+
+    with open(ds_path, 'w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile)
         # Append this instance of calculated KPIs with the timestamp of when they were calculated
         row_to_append = [timestamp, fehlproduktionsquote, qualitaetsgrad, ausschussquote,
