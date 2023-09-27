@@ -12,6 +12,7 @@ from process_data import *
 from datetime import datetime
 import numpy as np
 
+
 class LogToCSVConverter:
     def __init__(self, log_filename, csv_filename):
         self.log_filename = log_filename
