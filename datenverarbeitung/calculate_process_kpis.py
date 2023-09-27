@@ -2,7 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 import csv
-import openpyxl
+
 import datetime
 
 # Make one function for each KPI and then a "main" function at the end that
@@ -10,7 +10,7 @@ import datetime
 
 fehler_excel_path= 'Reject_Button.xlm'
 FabrikVerbindung = pd.read_excel('FabrikVerbindung.xlsx')
-fehler_excel= openpyxl.load_workbook(fehler_excel_path)
+
 
 def calculate_average_cycle_time(process, variant, process_df, timestamp):
     # Filter events that happened in the last 24 hours (86400 seconds)
@@ -275,6 +275,13 @@ def calculate_process_kpis(process, variant, timestamp):
     # Append the calculated values as a row for the process_DS.csv
     hist_log_path = "".join(["..", "Werk", "Prozesse", process,"_HistLog.csv" ])
     ds_path= "".join(["..", "Werk", "Prozesse", process, process + "_DS.csv"])
+
+    row_to_append = [timestamp, fehlproduktionsquote, qualitaetsgrad, ausschussquote,
+                     nacharbeitsquote, average_cycle_time, average_leading_time,
+                     production_downtime, unscheduled_downtime, leistung, work_in_process,
+                     oee, productivity, losgroesse]
+
+
     # Check if the CSV file exists
     if not os.path.exists( hist_log_path):
         with open( hist_log_path, 'w', newline='') as csvfile:
@@ -286,20 +293,15 @@ def calculate_process_kpis(process, variant, timestamp):
                       "oee", "productivity", "losgroesse"]
             csv_writer.writerow(header)
 
+
     with open(hist_log_path, 'a', newline='') as csvfile:
         csv_writer = csv.writer(csvfile)
         # Append this instance of calculated KPIs with the timestamp of when they were calculated
-        row_to_append = [timestamp, fehlproduktionsquote, qualitaetsgrad, ausschussquote,
-                         nacharbeitsquote, average_cycle_time, average_leading_time,
-                         production_downtime, unscheduled_downtime, leistung, work_in_process,
-                         oee, productivity, losgroesse]
+
         csv_writer.writerow(row_to_append)
 
     with open(ds_path, 'w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile)
-        # Append this instance of calculated KPIs with the timestamp of when they were calculated
-        row_to_append = [timestamp, fehlproduktionsquote, qualitaetsgrad, ausschussquote,
-                         nacharbeitsquote, average_cycle_time, average_leading_time,
-                         production_downtime, unscheduled_downtime, leistung, work_in_process,
-                         oee, productivity, losgroesse]
+        #Updates the digital shadow file
+
         csv_writer.writerow(row_to_append)
