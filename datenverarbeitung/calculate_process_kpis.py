@@ -11,7 +11,7 @@ fehler_excel_path= 'Reject_Button.xlm'
 FabrikVerbindung = pd.read_excel('FabrikVerbindung.xlsx')
 
 
-def calculate_average_cycle_time( variant, process_df, timestamp):
+def calculate_average_cycle_time(process, variant, process_df, timestamp):
     # Filter events that happened in the last 24 hours (86400 seconds)
     filtered_process_df = process_df[(process_df["timestamp"] >= timestamp - 86400)
                                      and (process_df["timestamp"] <= timestamp) and process_df["variant"] == variant ]
@@ -54,6 +54,8 @@ def calculate_production_downtime(process, fehler_excel_path):
         return total_duration
     else:
         return None
+
+
 def calculate_unscheduled_downtime(process, fehler_excel_path):
 
     df = pd.read_excel(fehler_excel_path, sheet_name='LogData(Ausfallzeit)')
