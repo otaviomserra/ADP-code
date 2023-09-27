@@ -21,7 +21,7 @@ def calculate_average_cycle_time(process, variant, process_df, timestamp):
     return filtered_process_df["duration"].mean()
 
 
-def calculate_average_leading_time(process, process_df, timestamp):
+def calculate_average_leading_time(variant, process, process_df, timestamp):
     process_sequence = ["Saegen/Drehen", "Fraesen", "Waschen", "Messen",
                         "Transport/Lieferung", "Transport/Montage", "Montage"]
     # We will probably have to change this to a conditional, some pieces go through Saegen, others through Drehen
@@ -32,7 +32,7 @@ def calculate_average_leading_time(process, process_df, timestamp):
         if name == process:
             break
 
-    return leading_time
+    return variant, leading_time
 
 
 def calculate_production_downtime(process, fehler_excel_path):
@@ -77,7 +77,7 @@ def calculate_unscheduled_downtime(process, fehler_excel_path):
         return None
 
 
-def calculate_nacharbeitquote(process, variant, process_df, fehler_excel):  # Prozentzahl
+def calculate_nacharbeitquote(process, variant, process_df, fehler_excel_path):  # Prozentzahl
 
     # Filter the Excel DataFrame based on the variant and process
     filtered_df = FabrikVerbindung[
@@ -95,6 +95,8 @@ def calculate_nacharbeitquote(process, variant, process_df, fehler_excel):  # Pr
     variants_today = filtered_df.shape[0]
 
     total_parts = variants_today * batch
+
+    fehler_excel = pd.read_excel(fehler_excel_path, sheet_name='LogData(Dashboard)')
 
     for row in fehler_excel.iter_rows():
         for cell in row:
@@ -125,6 +127,8 @@ def calculate_ausschussquote(process, variant, FabrikVerbindung, process_df,  fe
 
     total_parts =variants_today*batch
 
+    fehler_excel = pd.read_excel(fehler_excel_path, sheet_name='LogData(Dashboard)')
+
     for row in fehler_excel.iter_rows():
         for cell in row:
             if cell.value ==process:
@@ -143,13 +147,21 @@ def calculate_qualitaetsgrad(process):  # Prozentzahl
     return 1 - calculate_fehlproduktionsquote(process)
 
 
-def calculate_yield(process, process_df, timestamp):
+def calculate_yield(process,variant, process_df, timestamp):
     # Filter events that happened in the last 24 hours (86400 seconds)
     filtered_process_df = process_df[(process_df["timestamp"] >= timestamp - 86400)
                                      and (process_df["timestamp"] <= timestamp)]
 
+    # Filter the Excel DataFrame based on the variant and process
+    filtered_df = FabrikVerbindung[(FabrikVerbindung['variant'] == variant) & (FabrikVerbindung['process_name'] == process)]
+
+
+    # Get the 'box_capacity' value
+    batch = filtered_df['box_capacity'].values[0]
     # Add up the total number of produced items (per day)
-    return filtered_process_df["quantity"].sum()
+
+    yeld = filtered_process_df["quantity"].sum()*batch
+    return yeld
 
 
 def calculate_work_in_process(process, process_df, timestamp):
@@ -232,7 +244,7 @@ def calculate_productivity(process, process_df, timestamp):
     return 1 - calculate_production_downtime(process) - calculate_unscheduled_downtime(process)
 
 
-def calculate_losgroesse(process, variant, process_df, timestamp):
+def calculate_losgroesse(process, variant):
 
     filtered_df = FabrikVerbindung[(FabrikVerbindung['variant'] == variant) & (FabrikVerbindung['process_name'] == process)]
 
