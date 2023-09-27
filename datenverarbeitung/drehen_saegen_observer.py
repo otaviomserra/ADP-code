@@ -37,7 +37,7 @@ def append_last_row_to_csv(excel_file_path, csv_file_path):
 class MyHandler(FileSystemEventHandler):
     def on_modified(self, event):
         if event.src_path in excel_file_paths:
-            print(f"{event.src_path} has been modified.")
+            #print(f"{event.src_path} has been modified.")
             csv_file_path = get_csv_file_path(event.src_path)
             append_last_row_to_csv(event.src_path, csv_file_path)
 
