@@ -420,7 +420,7 @@ def calculate_process_kpis(process, variant, timestamp):
     row_to_append = [timestamp, fehlproduktionsquote, qualitaetsgrad, ausschussquote,
                      nacharbeitsquote, average_cycle_time, average_leading_time,
                      production_downtime, unscheduled_downtime, leistung, work_in_process,
-                     oee, oeestern, oee_av, oee_pe, oee_qa,+ productivity, losgroesse]
+                     oee, oeestern, oee_av, oee_pe, oee_qa, productivity, losgroesse]
 
     # Check if the CSV file exists
     if not os.path.exists(hist_log_path):
