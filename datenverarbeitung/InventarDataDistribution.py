@@ -69,12 +69,12 @@ class Lane:
             df_DB_lane = pd.read_csv(self.lane_DB)
         except:
             # Structure for the Lane Databank
-            df_DB_lane = pd.DataFrame(columns=['Besetz', 'ID', 'Date', 'Timestamp'])
+            df_DB_lane = pd.DataFrame(columns=["Besetzt", 'ID', 'Date', 'Timestamp'])
         try:
             df_DB_werk = pd.read_csv(self.werk_DB)
         except:
             # Structure for the Fabrik Databank
-            df_DB_werk = pd.DataFrame(columns=['ID', 'Besetz', 'erste Linie', 'letzte Linie',
+            df_DB_werk = pd.DataFrame(columns=['ID', "Besetzt", 'erste Linie', 'letzte Linie',
                                                'date1in', 't1in', 'date1out', 't1out',
                                                'date2in', 't2in', 'date2out', 't2out',
                                                'date3in', 't3in', 'date3out', 't3out'])
@@ -93,7 +93,7 @@ class Lane:
 
     def get_ID_array(self, df):
         self.df = df
-        filtered_df = df[df['Besetz'] == True]
+        filtered_df = df[df["Besetzt"] == True]
         self.boxes_array = filtered_df['ID'].tolist()
         return self.boxes_array
 
@@ -108,7 +108,7 @@ class Lane:
             print('entrou no start fabrik')
             ID = self.create_ID(df_DB_werk)
             # Adding the ID to the Databank from the lane
-            new_line = [{'Besetz': True, 'ID': ID, 'Date': self.date, 'Timestamp': self.timestamp}]
+            new_line = [{"Besetzt": True, 'ID': ID, 'Date': self.date, 'Timestamp': self.timestamp}]
             df_DB_lane = pd.concat([df_DB_lane, pd.DataFrame(new_line)], ignore_index=True)
             # Adding the ID to the Databank from the Fabrik
             if ID in df_DB_werk['ID'].values:
@@ -120,7 +120,7 @@ class Lane:
                 df_DB_werk.loc[df_DB_werk['ID'] == ID, df_DB_werk.columns[1]] = True  # Besetz
                 df_DB_werk.loc[df_DB_werk['ID'] == ID, df_DB_werk.columns[3]] = self.lane_address  # letzte lane
             else:  # In case itś the very first ID on Fabrik Databank
-                nova_linha = {'ID': ID, 'Besetz': True, 'erste Linie': self.lane_address,
+                nova_linha = {'ID': ID, "Besetzt": True, 'erste Linie': self.lane_address,
                               'letzte Linie': self.lane_address, 'date1in': self.date, 't1in': self.timestamp}
                 new_row = pd.DataFrame([nova_linha])  # Create a DataFrame from nova_linha
                 df_DB_werk = pd.concat([df_DB_werk, new_row], ignore_index=True)
@@ -144,10 +144,10 @@ class Lane:
                                                   f'{inventar_original_name}', f'{lane_original_name}',
                                                   lane_csv_name)
                 df_original = pd.read_csv(lane_original_path)
-                false_besetz_line = df_original[df_original["Besetz"] == False]
+                false_besetz_line = df_original[df_original["Besetzt"] == False]
                 ID = false_besetz_line["ID"].iloc[0]
                 # Adding the ID to the Databank from the lane
-                new_line = [{'Besetz': True, 'ID': ID, 'Date': self.date, 'Timestamp_in': self.timestamp}]
+                new_line = [{"Besetzt": True, 'ID': ID, 'Date': self.date, 'Timestamp_in': self.timestamp}]
                 df_DB_lane = pd.concat([df_DB_lane, pd.DataFrame(new_line)], ignore_index=True)
                 # Adding the ID to the Databank from the Fabrik
                 if ID in df_DB_werk['ID'].values:
@@ -162,7 +162,7 @@ class Lane:
                 print('Error, the ID should already exist, this might break the databank')
                 ID = self.create_ID(df_DB_werk)
                 # Adding the ID to the Databank from the lane
-                new_line = [{'Besetz': True, 'ID': ID, 'Date': self.date, 'Timestamp': self.timestamp}]
+                new_line = [{"Besetzt": True, 'ID': ID, 'Date': self.date, 'Timestamp': self.timestamp}]
                 df_DB_lane = pd.concat([df_DB_lane, pd.DataFrame(new_line)], ignore_index=True)
                 # Adding the ID to the Databank from the Fabrik
                 if ID in df_DB_werk['ID'].values:
@@ -187,13 +187,13 @@ class Lane:
 
     def pick_event(self):
         df_DB_lane, df_DB_werk = self.read_or_create()
-        # df_DB_lane.at[0, 'Besetz'] = False
-        # primeiro_registro = df_DB_lane[df_DB_lane['Besetz'] == False].iloc[0]
+        # df_DB_lane.at[0, "Besetzt"] = False
+        # primeiro_registro = df_DB_lane[df_DB_lane["Besetzt"] == False].iloc[0]
         # ID = primeiro_registro['ID']
-        primeiro_registro = df_DB_lane[df_DB_lane['Besetz'] == True].iloc[0]
+        primeiro_registro = df_DB_lane[df_DB_lane["Besetzt"] == True].iloc[0]
         ID = primeiro_registro['ID']
         index_of_primeiro_registro = primeiro_registro.name
-        df_DB_lane.at[index_of_primeiro_registro, 'Besetz'] = False
+        df_DB_lane.at[index_of_primeiro_registro, "Besetzt"] = False
         if ID in df_DB_werk['ID'].values:
             linha_id = df_DB_werk[df_DB_werk['ID'] == ID]
             empty_column = linha_id.columns[2:][linha_id.iloc[:, 2:].isna().all(axis=0)][:2]
