@@ -15,6 +15,7 @@ class ProcessRequest:
                                                  "target_lane_address"].iloc[0].split(",")
         self.process = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "process_name"].iloc[0]
         self.variant = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "variant"].iloc[0]
+        self.menge = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "box_capacity"].iloc[0]
 
         # Events: used to create the process log, put_time is empty for now because the request is still active
         self.pick_time = timestamp
@@ -47,14 +48,15 @@ class ProcessRequest:
             with open(log_path, 'w', newline='') as csvfile:
                 csv_writer = csv.writer(csvfile)
                 # Header row
-                header = ["date", "pick_time", "put_time", "origin_lane", "target_lane", "duration", "variant"]
+                header = ["date", "pick_time", "put_time", "origin_lane", "target_lane",
+                          "duration", "variant", "menge"]
                 csv_writer.writerow(header)
 
         with open(log_path, 'a', newline='') as csvfile:
             csv_writer = csv.writer(csvfile)
             # Append this instance of the process
             process_to_append = [self.date, self.pick_time, self.put_time, self.origin_lane, lane,
-                                 self.duration, self.variant]
+                                 self.duration, self.variant, self.menge]
             csv_writer.writerow(process_to_append)
 
         print("Process log created :D at")
