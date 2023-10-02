@@ -7,7 +7,7 @@ import datetime
 # Make one function for each KPI and then a "main" function at the end that
 # just calls all of them in order and updates the KPIs table
 
-fehler_excel_path = 'Reject_Button.xlm'
+fehler_excel_path = 'Digital_Button.xlm'
 FabrikVerbindung = pd.read_excel('FabrikVerbindung.xlsx')
 
 
@@ -37,7 +37,7 @@ def calculate_average_cycle_time(variant, process, process_df, timestamp, period
     return cycle_time
 
 
-def calculate_average_leading_time(process, variant,  process_df, timestamp):
+def calculate_average_leading_time(process, variant, process_df, timestamp):
     process_sequence = ["Saegen/Drehen", "Fraesen", "Waschen", "Messen",
                         "Transport/Lieferung", "Transport/Montage", "Montage"]
     # We will probably have to change this to a conditional, some pieces go through Saegen, others through Drehen
