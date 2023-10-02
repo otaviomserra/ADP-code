@@ -7,37 +7,37 @@ import datetime
 # Make one function for each KPI and then a "main" function at the end that
 # just calls all of them in order and updates the KPIs table
 
-fehler_excel_path= 'Reject_Button.xlm'
+fehler_excel_path = 'Reject_Button.xlm'
 FabrikVerbindung = pd.read_excel('FabrikVerbindung.xlsx')
 
 
+def calculate_average_cycle_time(variant, process, process_df, timestamp, period="day"):
+    # Period to search for in the logs
+    search_interval = 86400
+    if period == "week":
+        search_interval = 86400*7
+    elif period == "month":
+        search_interval = 86400*30
+    elif period == "year":
+        search_interval = 86400*365
 
-def calculate_average_cycle_time(process, variant, process_df, timestamp):
-    return 0
-
-def calculate_average_cycle_time(variant,process,process_df, timestamp):
-
-    # Filter events that happened in the last 24 hours (86400 seconds)
-    filtered_process_df = process_df[(process_df["timestamp"] >= timestamp - 86400)
-                                     and (process_df["timestamp"] <= timestamp) and process_df["variant"] == variant ]
+    # Filter events that happened within the desired period
+    filtered_process_df = process_df[(process_df["timestamp"] >= timestamp - search_interval)
+                                     and (process_df["timestamp"] <= timestamp)
+                                     and process_df["variant"] == variant]
 
     # Calculate average cycle time
-    cycle_time= filtered_process_df["duration"].mean()
+    cycle_time = filtered_process_df["duration"].mean()/filtered_process_df["menge"].mean()
     current_directory = os.path.dirname(os.path.abspath(__file__))
     process_folder = os.path.join(current_directory, '..', 'Werk', 'Prozesse', process)
     file_path = os.path.join(process_folder, f'{process}_DS.csv')
     variant = 'Cycle time' + f'{variant}'
     write_kpi(file_path, variant, cycle_time)
 
+    return cycle_time
 
 
-def calculate_average_leading_time(process, variant, process_df, timestamp):
-
-
-    return 0
-
-
-def calculate_average_leading_time(process,variant,  process_df, timestamp):
+def calculate_average_leading_time(process, variant,  process_df, timestamp):
     process_sequence = ["Saegen/Drehen", "Fraesen", "Waschen", "Messen",
                         "Transport/Lieferung", "Transport/Montage", "Montage"]
     # We will probably have to change this to a conditional, some pieces go through Saegen, others through Drehen
@@ -58,7 +58,6 @@ def calculate_average_leading_time(process,variant,  process_df, timestamp):
 
 
 def calculate_production_downtime(process, fehler_excel_path):
-
     df = pd.read_excel(fehler_excel_path, sheet_name='LogData(Wartung)')
 
     # Ensure the 'Start', 'End', 'Date', and 'Process' columns exist in the DataFrame
@@ -80,7 +79,6 @@ def calculate_production_downtime(process, fehler_excel_path):
 
 
 def calculate_unscheduled_downtime(process, fehler_excel_path):
-
     df = pd.read_excel(fehler_excel_path, sheet_name='LogData(Ausfallzeit)')
 
     # Ensure the 'Start', 'End', 'Date', and 'Process' columns exist in the DataFrame
@@ -102,8 +100,6 @@ def calculate_unscheduled_downtime(process, fehler_excel_path):
 
 
 def calculate_nacharbeitquote(process, batch, variant, process_df, fehler_excel_path):  # Prozentzahl
-
-
     today = datetime.date.today()
 
     # Filter the DataFrame for the desired variant and today's date
@@ -118,10 +114,10 @@ def calculate_nacharbeitquote(process, batch, variant, process_df, fehler_excel_
 
     for row in fehler_excel.iter_rows():
         for cell in row:
-            if cell.value ==process:
-                process_cell= cell
+            if cell.value == process:
+                process_cell = cell
                 nacharbeitsteil_cell = fehler_excel.cell(row=process_cell.row + 2, column=process_cell.column+1)
-                na_teile= nacharbeitsteil_cell.value
+                na_teile = nacharbeitsteil_cell.value
 
                 nacharbeitsquote = na_teile*100/total_parts
 
@@ -129,15 +125,12 @@ def calculate_nacharbeitquote(process, batch, variant, process_df, fehler_excel_
                 process_folder = os.path.join(current_directory, '..', 'Werk', 'Prozesse', process)
                 file_path = os.path.join(process_folder, f'{process}_DS.csv')
                 variant = 'Fehlersproduktionsquote'
-                write_kpi(file_path, variant,nacharbeitsquote)
+                write_kpi(file_path, variant, nacharbeitsquote)
 
                 return nacharbeitsquote
 
 
 def calculate_ausschussquote(process, batch, variant, process_df,  fehler_excel_path):  # Prozentzahl
-
-
-
     today = datetime.date.today()
 
     # Filter the DataFrame for the desired variant and today's date
@@ -146,18 +139,16 @@ def calculate_ausschussquote(process, batch, variant, process_df,  fehler_excel_
     # Count the number of rows in the filtered DataFrame
     variants_today = filtered_df.shape[0]
 
-    total_parts =variants_today*batch
+    total_parts = variants_today*batch
 
     fehler_excel = pd.read_excel(fehler_excel_path, sheet_name='LogData(Dashboard)')
 
-
-
     for row in fehler_excel.iter_rows():
         for cell in row:
-            if cell.value ==process:
-                process_cell= cell
+            if cell.value == process:
+                process_cell = cell
                 ausschissteil_cell = fehler_excel.cell(row=process_cell.row + 2, column=process_cell.column)
-                as_teile=  ausschissteil_cell.value
+                as_teile = ausschissteil_cell.value
                 ausschusssquote = as_teile*100/total_parts
 
                 current_directory = os.path.dirname(os.path.abspath(__file__))
@@ -169,12 +160,12 @@ def calculate_ausschussquote(process, batch, variant, process_df,  fehler_excel_
                 return ausschusssquote
 
 
-def calculate_fehlproduktionsquote(process, variant, FabrikVerbindung, process_df,  fehler_excel):  # Prozentzahl
-    return calculate_ausschussquote(process, variant, FabrikVerbindung, process_df,  fehler_excel) + \
-           calculate_nacharbeitquote(process)
+def calculate_fehlproduktionsquote(process, batch, variant, FabrikVerbindung, process_df, fehler_excel):  # Prozentzahl
+    return calculate_ausschussquote(process, variant, FabrikVerbindung, process_df, fehler_excel) + \
+           calculate_nacharbeitquote(process, batch, variant, process_df, fehler_excel_path)
 
-def calculate_fehlproduktionsquote(process, batch, variant, process_df,  fehler_excel_path):  # Prozentzahl
 
+def calculate_fehlproduktionsquote(process, batch, variant, process_df, fehler_excel_path):  # Prozentzahl
     fehlerproduktionsquote = calculate_ausschussquote(process, batch, variant, process_df,  fehler_excel_path) + calculate_nacharbeitquote(process, batch, variant, process_df,  fehler_excel_path)
 
     current_directory = os.path.dirname(os.path.abspath(__file__))
@@ -187,8 +178,7 @@ def calculate_fehlproduktionsquote(process, batch, variant, process_df,  fehler_
 
 
 def calculate_qualitaetsgrad(process):  # Prozentzahl
-
-    qualitaetsgrad = 1 - calculate_fehlproduktionsquote(process)
+    qualitaetsgrad = 1 - calculate_fehlproduktionsquote(process)  # WHICH ONE?
     current_directory = os.path.dirname(os.path.abspath(__file__))
     process_folder = os.path.join(current_directory, '..', 'Werk', 'Prozesse', process)
     file_path = os.path.join(process_folder, f'{process}_DS.csv')
@@ -211,7 +201,7 @@ def calculate_yield(process, variant, process_df):
 
     ideal_cycle_time = filtered_row['ideal_cycle_time'].values[0]
 
-    operating_time= 8*3600
+    operating_time = 8*3600
 
     max_parts = operating_time/ideal_cycle_time
 
@@ -225,6 +215,7 @@ def calculate_yield(process, variant, process_df):
 
     return yeld
 
+
 def calculate_work_in_process(process, variant, process_df, timestamp):
     # Events in the last 24 hours with exit code 1, that is, those that are still running
     filtered_process_df = process_df[(process_df["timestamp"] >= timestamp - 86400)
@@ -237,7 +228,7 @@ def calculate_work_in_process(process, variant, process_df, timestamp):
     batch = filtered_df['box_capacity'].values[0]
     # Return number of pieces
 
-    wip=filtered_process_df["quantity"].sum()*batch
+    wip = filtered_process_df["quantity"].sum()*batch
 
     current_directory = os.path.dirname(os.path.abspath(__file__))
     process_folder = os.path.join(current_directory, '..', 'Werk', 'Prozesse', process)
@@ -247,9 +238,8 @@ def calculate_work_in_process(process, variant, process_df, timestamp):
 
     return wip
 
-def calculate_oee_av(process): #Make a DF with the ideal cycle time per variant in each process
 
-    
+def calculate_oee_av(process):  # Make a DF with the ideal cycle time per variant in each process
     # Calculate Overall Equipment Effectiveness (OEE).
 
     # Parameters:
@@ -261,14 +251,12 @@ def calculate_oee_av(process): #Make a DF with the ideal cycle time per variant 
 
     # Returns:
     # - OEE as a percentage (0 to 100).
-    
-
-
 
     # Calculate Availability
 
-    downtime = calculate_unscheduled_downtime(process, fehler_excel_path) +  calculate_production_downtime(process, fehler_excel_path)
-    operating_time = 28800 #8h per day
+    downtime = calculate_unscheduled_downtime(process, fehler_excel_path) +\
+               calculate_production_downtime(process, fehler_excel_path)
+    operating_time = 28800  # 8h per day
     availability = (operating_time - downtime) / operating_time if operating_time > 0 else 0
 
     current_directory = os.path.dirname(os.path.abspath(__file__))
@@ -279,8 +267,8 @@ def calculate_oee_av(process): #Make a DF with the ideal cycle time per variant 
 
     return availability
 
-def calculate_oee_pe(process, variant, batch, process_df, FabrikVerbindung):  # Make a DF with the ideal cycle time per variant in each process
 
+def calculate_oee_pe(process, variant, batch, process_df, FabrikVerbindung):  # Make a DF with the ideal cycle time per variant in each process
     operating_time = 28800  # 8h per day
 
     today = datetime.date.today()
@@ -291,10 +279,11 @@ def calculate_oee_pe(process, variant, batch, process_df, FabrikVerbindung):  # 
     # Count the number of rows in the filtered DataFrame
     variants_today = filtered_df.shape[0]
 
-    total_parts_produced =variants_today*batch
+    total_parts_produced = variants_today*batch
 
     # Filter the DataFrame to get the ideal_cycle_time
-    filtered_row = FabrikVerbindung[(FabrikVerbindung['process_name'] == process) & (FabrikVerbindung['variant'] == variant)]
+    filtered_row = FabrikVerbindung[(FabrikVerbindung['process_name'] == process) &
+                                    (FabrikVerbindung['variant'] == variant)]
 
     ideal_cycle_time = filtered_row['ideal_cycle_time'].values[0]
 
@@ -308,8 +297,8 @@ def calculate_oee_pe(process, variant, batch, process_df, FabrikVerbindung):  # 
 
     return total_parts_produced, performance
 
-def calculate_oee_qa(process, variant, batch, process_df,total_parts_produced):  # Make a DF with the ideal cycle time per variant in each process
 
+def calculate_oee_qa(process, variant, batch, process_df, total_parts_produced):  # Make a DF with the ideal cycle time per variant in each process
     # Calculate Quality
     good_parts_produced = total_parts_produced - calculate_fehlproduktionsquote(process, batch, variant, process_df,  fehler_excel_path)
 
@@ -319,17 +308,15 @@ def calculate_oee_qa(process, variant, batch, process_df,total_parts_produced): 
     process_folder = os.path.join(current_directory, '..', 'Werk', 'Prozesse', process)
     file_path = os.path.join(process_folder, f'{process}_DS.csv')
     variant = 'OEE - Quality'
-    write_kpi(file_path, variant,quality)
-
-
+    write_kpi(file_path, variant, quality)
 
     return quality
 
-def calculate_oeestern(process, total_parts, variant, process_df, timestamp):
 
+def calculate_oeestern(process, total_parts, variant, process_df, timestamp):
     working_time = 8*3600
 
-    oeestern = total_parts*calculate_average_cycle_time(variant, process_df, timestamp)/working_time
+    oeestern = total_parts*calculate_average_cycle_time(process, variant, process_df, timestamp)/working_time
 
     current_directory = os.path.dirname(os.path.abspath(__file__))
     process_folder = os.path.join(current_directory, '..', 'Werk', 'Prozesse', process)
@@ -337,15 +324,16 @@ def calculate_oeestern(process, total_parts, variant, process_df, timestamp):
     variant = 'OEE*'
     write_kpi(file_path, variant, oeestern)
 
-
     return oeestern
 
-def calculate_productivity(process):
+
+def calculate_productivity(process, fehler_excel_path):
     # Percentage of uptime I think
-    productivity = 1 - calculate_production_downtime(process) - calculate_unscheduled_downtime(process)
+    productivity = 1 - calculate_production_downtime(process, fehler_excel_path) - \
+                   calculate_unscheduled_downtime(process, fehler_excel_path)
 
     current_directory = os.path.dirname(os.path.abspath(__file__))
-    #cnstruct the path to the CSV file
+    # construct the path to the CSV file
     process_folder = os.path.join(current_directory, '..', 'Werk', 'Prozesse', process)
     file_path = os.path.join(process_folder, f'{process}_DS.csv')
     variant = 'Produktivitaet'
@@ -355,8 +343,8 @@ def calculate_productivity(process):
 
 
 def calculate_losgroesse(process, variant):
-
-    filtered_df = FabrikVerbindung[(FabrikVerbindung['variant'] == variant) & (FabrikVerbindung['process_name'] == process)]
+    filtered_df = FabrikVerbindung[(FabrikVerbindung['variant'] == variant) and
+                                   (FabrikVerbindung['process_name'] == process)]
 
     # Get the 'box_capacity' value
     batch = filtered_df['box_capacity'].values[0]
@@ -373,6 +361,7 @@ def calculate_losgroesse(process, variant):
 
 # MAIN FUNCTION
 
+
 def write_kpi(file_path, variant, KPI_value):
     # Load the Excel file
     workbook = openpyxl.load_workbook(file_path)
@@ -388,9 +377,6 @@ def write_kpi(file_path, variant, KPI_value):
                 header_cell = cell
                 break
 
-
-        return
-
     # Find the column index of the header cell
     column_index = header_cell.column
 
@@ -400,6 +386,7 @@ def write_kpi(file_path, variant, KPI_value):
     # Save the updated Excel file
     workbook.save(file_path)
 
+
 def calculate_process_kpis(process, variant, timestamp):
     # Obtain the process.csv as a pandas DF
     current_directory = os.path.dirname(os.path.abspath(__file__))
@@ -407,39 +394,37 @@ def calculate_process_kpis(process, variant, timestamp):
     process_df = pd.read_csv(process_path)
 
     # Call every function
-    fehlproduktionsquote = calculate_fehlproduktionsquote(process)
+    fehlproduktionsquote = calculate_fehlproduktionsquote(process)  # WHICH ONE?
     qualitaetsgrad = calculate_qualitaetsgrad(process)
     losgroesse = calculate_losgroesse(process, process_df)
     batch = losgroesse
     ausschussquote = calculate_ausschussquote(process, batch, variant, process_df, fehler_excel_path)
     nacharbeitsquote = calculate_nacharbeitquote(process, batch,  variant, process_df, fehler_excel_path)
     average_cycle_time = calculate_average_cycle_time(process, variant, process_df, timestamp)
-    average_leading_time = calculate_average_leading_time( process, process_df, timestamp)
+    average_leading_time = calculate_average_leading_time(process, variant, process_df, timestamp)
     production_downtime = calculate_production_downtime(process, fehler_excel_path)
     unscheduled_downtime = calculate_unscheduled_downtime(process, fehler_excel_path)
     leistung = (process, variant, process_df, timestamp)
     work_in_process = calculate_work_in_process(process, variant, process_df, timestamp)
-    oee_av= calculate_oee_av(process)
+    oee_av = calculate_oee_av(process)
     total_parts_produced, oee_pe = calculate_oee_pe(process, variant, batch, process_df, FabrikVerbindung)
-    oee_qa = calculate_oee_qa(process, variant, batch, process_df,total_parts_produced)
+    oee_qa = calculate_oee_qa(process, variant, batch, process_df, total_parts_produced)
     oee = oee_av*oee_pe*oee_qa*100
-    oeestern = calculate_oeestern(process,total_parts_produced, variant, process_df, timestamp)
-    productivity = calculate_productivity(process)
-
+    oeestern = calculate_oeestern(process, total_parts_produced, variant, process_df, timestamp)
+    productivity = calculate_productivity(process, fehler_excel_path)
 
     # Append the calculated values as a row for the process_DS.csv
-    hist_log_path = "".join(["..", "Werk", "Prozesse", process,"_HistLog.csv" ])
-    ds_path= "".join(["..", "Werk", "Prozesse", process, process + "_DS.csv"])
+    hist_log_path = "".join(["..", "Werk", "Prozesse", process, "_HistLog.csv"])
+    ds_path = "".join(["..", "Werk", "Prozesse", process, process + "_DS.csv"])
 
     row_to_append = [timestamp, fehlproduktionsquote, qualitaetsgrad, ausschussquote,
                      nacharbeitsquote, average_cycle_time, average_leading_time,
                      production_downtime, unscheduled_downtime, leistung, work_in_process,
                      oee, oeestern, oee_av, oee_pe, oee_qa,+ productivity, losgroesse]
 
-
     # Check if the CSV file exists
-    if not os.path.exists( hist_log_path):
-        with open( hist_log_path, 'w', newline='') as csvfile:
+    if not os.path.exists(hist_log_path):
+        with open(hist_log_path, 'w', newline='') as csvfile:
             csv_writer = csv.writer(csvfile)
             # Header row
             header = ["calculated_at", "fehlprodukionsquote", "qualitaetsgrad", "ausschussquote",
@@ -447,7 +432,6 @@ def calculate_process_kpis(process, variant, timestamp):
                       "production_downtime", "unscheduled_downtime", "leistung", "work_in_process",
                       "oee","oeestern", "oee_av", "oee_pe", "oee_qa", "productivity", "losgroesse"]
             csv_writer.writerow(header)
-
 
     with open(hist_log_path, 'a', newline='') as csvfile:
         csv_writer = csv.writer(csvfile)
