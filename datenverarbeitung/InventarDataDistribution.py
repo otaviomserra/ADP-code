@@ -180,6 +180,7 @@ class Lane:
         ID = primeiro_registro['ID']
         index_of_primeiro_registro = primeiro_registro.name
         df_DB_lane.at[index_of_primeiro_registro, 'Besetz'] = False
+        df_DB_lane.at[index_of_primeiro_registro, 'Date'] 
         if ID in df_DB_werk['ID'].values:
             linha_id = df_DB_werk[df_DB_werk['ID'] == ID]
             empty_column = linha_id.columns[2:][linha_id.iloc[:, 2:].isna().all(axis=0)][:2]
