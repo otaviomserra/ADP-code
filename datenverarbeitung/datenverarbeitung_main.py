@@ -12,6 +12,7 @@ from process_data import *
 from datetime import datetime
 import numpy as np
 
+
 class LogToCSVConverter:
     def __init__(self, log_filename, csv_filename):
         self.log_filename = log_filename
@@ -172,7 +173,7 @@ class ExcelFileHandler(FileSystemEventHandler):
                     print('entrou no pick')
                     requests.append(ProcessRequest(date, lane, timestamp))
                     for request in requests:
-                        print(request.target_lane)
+                        print(request.target_lanes)
                         print(lane)
                         print(requests)
                     Inventar.pick_event()
@@ -181,11 +182,11 @@ class ExcelFileHandler(FileSystemEventHandler):
                     print('entrou no put')
                     print(requests)
                     for request in requests:
-                        print(request.target_lane)
+                        print(request.target_lanes)
                         print(lane)
-                        if request.target_lane == lane:
+                        if lane in request.target_lanes:
                             request.resolve(timestamp)
-                            request.generate_process_log()
+                            request.generate_process_log(lane)
                             requests.remove(request)
                             print('rodou put request')
                             break
@@ -201,6 +202,59 @@ class ExcelFileHandler(FileSystemEventHandler):
 
         print("Data processing completed.")
         print("Kafka .csv generated. Data processing completed.")
+
+
+############################################################################
+# FEHLERMELDUNG
+############################################################################
+
+df_fertigung = pd.read_excel('Reject_Button.xlsm', sheet_name='LogData(Fertigung)')
+
+def handle_error(error_df):
+    # Obtains the target lane where the piece would have gone to
+    if error_df["Bauteil"].iloc[0] == "FB01":
+        target_lane = "S001.M003.02.01"
+    elif error_df["Bauteil"].iloc[0] == "FB02":
+        target_lane = "S001.M003.02.02"
+    else:
+        target_lane = "S001.M003.02.03"
+
+    # Looks for the earliest request with the target_lane and cancels it
+    for request in requests:
+        if request.target_lane == target_lane:
+            request.cancel()
+            requests.remove(request)
+            break
+
+
+class ErrorFileHandler(FileSystemEventHandler):
+    def __init__(self):
+        super().__init__(self)
+        self.last_event_time = None
+        self.min_time_interval = 1
+
+    def on_modified(self, event):
+        if event.is_directory:
+            return
+
+        current_time = time.time()
+        if self.last_event_time is None or (current_time - self.last_event_time) >= self.min_time_interval:
+            self.last_event_time = current_time
+            if event.src_path == 'Reject_Button.xlsm':
+                # Reload the Excel file
+                global df_fertigung
+                df_fertigung = pd.read_excel('Reject_Button.xlsm', sheet_name='LogData(Fertigung)')
+
+                # Get the current number of rows
+                current_row_count_fertigung = df_fertigung.shape[0]
+
+                # Check if new rows have been added and removes a request if true
+                if current_row_count_fertigung > len(df_fertigung):
+                    new_rows_fertigung = df_fertigung.iloc[len(df_fertigung):]
+                    handle_error(new_rows_fertigung)
+
+
+##################################################################
 
 
 def monitor_excel_file(logger_path):
@@ -290,15 +344,18 @@ if __name__ == "__main__":
     # REPLACING THE OLD MONITOR_EXCEL_FILE FUNCTION
     processor = DataFrameProcessor(logger_path)
     excel_event_handler = ExcelFileHandler(logger_path, processor)
+    error_handler = ErrorFileHandler()  # Fehlermeldung
     # excel_observer = Observer()
 
     # excel_observer.schedule(excel_event_handler, path=os.path.dirname(logger_path))
     # excel_observer.start()
     ###################################
 
+    # Observer checks 3 paths
     observer = Observer()
     observer.schedule(event_handler, path=os.path.dirname(log_filename))
     observer.schedule(excel_event_handler, path=os.path.dirname(logger_path), recursive=True)
+    observer.schedule(error_handler, path=os.path.dirname('Reject_Button.xlsm'), recursive=True)  # Fehlermeldung
     observer.start()
     program_lock = Lock()
 
