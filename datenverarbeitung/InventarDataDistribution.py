@@ -54,15 +54,18 @@ class Lane:
 
         self.inventar_path = os.path.join(inventar_folder_path, f"{self.inventar_name}")
         self.lane_path = os.path.join(self.inventar_path, f"{self.lane_name}")
-        self.werk_path = os.path.join(werk_folder_path, "Werk_DS.csv")
-        
+
         inventar_csv_name = f'{self.inventar_name}' + '_DS.csv'
         lane_csv_name = f'{self.lane_name}'+'_DS.csv'
         
         self.inventar_csv = os.path.join(self.inventar_path, inventar_csv_name)
         self.lane_csv = os.path.join(self.lane_path, lane_csv_name)
+        self.werk_path = os.path.join(werk_folder_path, "Werk_DS.csv ")
+
         self.lane_DB = os.path.join(self.lane_path, f'{self.lane_name}'+'_DB.csv')
         self.werk_DB = os.path.join(werk_folder_path, 'Werk'+'_DB.csv')
+
+
 
     def read_or_create(self):
         try:
@@ -212,8 +215,83 @@ class Lane:
         df_DB_werk.to_csv(self.werk_DB, index=False)
 
     def save_dashboard_format(self):
-        pass
-        # Remove the first box from the order and rearrange the ord
+        # Read csv files from Werk, Inventar and Lane
+        df_W = pd.read_csv(self.werk_path,encoding = "cp1252")
+        df_I = pd.read_csv(self.inventar_csv,encoding = "cp1252")
+        df_L = pd.read_csv(self.lane_csv,encoding = "cp1252")
+        df_DB_lane, df_DB_werk = self.read_or_create()
+
+        # Updating the csv from the lane first
+        #
+        # Find the position in which to separate the Dataframes
+        separator_idx = df_L[df_L['Bestandsmenge'] == f'{self.lane_name}'].index[0]
+
+        # Dividing the Data frame in 2
+        df_kpi = df_L.iloc[:separator_idx]
+        df_DS = df_L.iloc[separator_idx +1:]  # Jump 2 lines after separator
+
+        # Redefining indexes
+        df_DS = df_DS.reset_index(drop=True)
+        df_DS.columns = df_L.iloc[separator_idx]
+
+        # Redefining values
+        # Really dumb way, but easiest
+        df_DS['Besetzt'] = 0
+        df_DS['Time In'] = '-'
+        df_DS['Waiting Time'] = '-'
+        df_DS['Bestandsmenge'] = '-'
+        df_DS['Kapazität'] = '-'
+        df_DS['Losgröße'] = '-'
+        df_DS['Lead Time'] = '-'
+
+        condicao = df_DB_lane['Besetzt'] == True
+        linhas_a_atualizar = condicao.index[condicao].tolist()  # Encontre os índices das linhas com Besetzt True
+        # Substitua os valores de 'Name' e 'Age' em df1 nas linhas correspondentes
+        for linha in linhas_a_atualizar:
+            df_DS.loc[linha, 'Besetzt'] = 1
+            df_DS.loc[linha, 'Time In'] = df_DB_lane.loc[linha,'Timestamp']
+            df_DS.loc[linha, 'Waiting Time'] = df_DB_lane.loc[linha,'Date']
+        
+
+        path_kpi = os.path.join(self.lane_path, f"kpi_{self.lane_name}.csv")
+        path_DS = os.path.join(self.lane_path, f"DS_{self.lane_name}.csv")
+        df_kpi.to_csv(path_kpi, index=False)
+        df_DS.to_csv(path_DS, index=False)
+
+        # Caminho para o arquivo de saída onde os dois arquivos serão mesclados
+        arquivo_saida_lane = self.lane_csv
+
+        # Abrir o primeiro arquivo CSV e ler seu conteúdo
+        with open(path_kpi, "r") as file1:
+            conteudo1 = file1.read()
+
+        # Abrir o segundo arquivo CSV e ler seu conteúdo
+        with open(path_DS, "r") as file2:
+            conteudo2 = file2.read()
+
+        # Combinar o conteúdo dos dois arquivos
+        conteudo_combinado = conteudo1 + "\n" + conteudo2
+
+        # Escrever o conteúdo combinado em um novo arquivo CSV
+        with open(arquivo_saida_lane, "w") as output_file:
+            output_file.write(conteudo_combinado)
+
+        #
+        # Updating the csv from the Inventar
+        #
+        # Encontre o índice onde a primeira coluna começa com 'LD1'
+        ld1_index = df_I[df_I['Bestandsmenge'] == f'{self.lane_name}'].index[0]
+        df_I.iloc[ld1_index+1:ld1_index+len(df_DS)+1] = df_DS.values
+
+
+
+
+
+
+
+
+
+
 
 # # Class for the Digital shadow of the Inventar
 # class InventarDataDistribution:
