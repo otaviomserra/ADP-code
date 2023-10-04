@@ -39,7 +39,8 @@ class Lane:
         self.inventar_path = ""
         self.lane_path = ""
         self.boxes_array = []
-
+        self.box_capacity = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "box_capacity"].iloc[0]
+        self.variant = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "variant"].iloc[0]
         # For posterity
         self.df = None
 
@@ -251,8 +252,25 @@ class Lane:
             df_DS.loc[linha, 'Besetzt'] = 1
             df_DS.loc[linha, 'Time In'] = df_DB_lane.loc[linha,'Timestamp']
             df_DS.loc[linha, 'Waiting Time'] = df_DB_lane.loc[linha,'Date']
+            # df_DS.loc[linha, 'Bestandmenge'] = len(linhas_a_atualizar) 
+            df_DS.loc[linha, 'Bestandmenge'] = self.box_capacity
+            # df_DS.loc[linha, 'Kapazität'] = self.capacity
+            df_DS.loc[linha, 'Kapazität'] = self.box_capacity
+            df_DS.loc[linha, 'Losgröße'] = self.box_capacity
+            # Lead time for each box not needed, but gonna keep it here for purpose of not ruining the csv format
+            # df_DS.loc[linha, 'Lead Time'] = 
+             
+        # Updating the csv from the KPIs
+        # 
+        # Using functions from calculate_inventory_kpis
+        #
+        #
+        #
         
 
+        # Saving the csv from the lane
+        #
+        # Uniting both KPIs and DS csv into one
         path_kpi = os.path.join(self.lane_path, f"kpi_{self.lane_name}.csv")
         path_DS = os.path.join(self.lane_path, f"DS_{self.lane_name}.csv")
         df_kpi.to_csv(path_kpi, index=False)
