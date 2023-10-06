@@ -64,6 +64,7 @@ class Lane:
         self.werk_path = os.path.join(werk_folder_path, "Werk_DS.csv ")
 
         self.lane_DB = os.path.join(self.lane_path, f'{self.lane_name}'+'_DB.csv')
+        self.hist_csv = os.path.join(self.lane_path, f'{self.lane_name}'+'_HistLog.csv')
         self.werk_DB = os.path.join(werk_folder_path, 'Werk'+'_DB.csv')
 
 
@@ -82,7 +83,11 @@ class Lane:
                                                'date1in', 't1in', 'date1out', 't1out',
                                                'date2in', 't2in', 'date2out', 't2out',
                                                'date3in', 't3in', 'date3out', 't3out'])
-        return df_DB_lane, df_DB_werk
+        try:
+            df_Hist_lane = pd.read_csv(self.hist_csv)
+        except:
+            df_Hist_lane = pd.DataFrame(columns=["Besetzt", 'ID', 'Date_in', 'Timestamp_in','Date_out','Timestamp_out'])
+        return df_DB_lane, df_DB_werk, df_Hist_lane
     
     def create_ID(self, db_werk):
         # CRIAR UM ID NUMERICO PRA CADA CAIXA
@@ -102,7 +107,7 @@ class Lane:
         return self.boxes_array
 
     def put_event(self):
-        df_DB_lane, df_DB_werk = self.read_or_create()
+        df_DB_lane, df_DB_werk, df_Hist_lane = self.read_or_create()
         # WHICH LANE DOES IT BEGIN 
         # NEEDS TO CHANGE ACCORDINGLY IN HOW THE FABRIK IS WORKING
         # If it's the starting point of the fabrik
@@ -114,6 +119,9 @@ class Lane:
             # Adding the ID to the Databank from the lane
             new_line = [{"Besetzt": True, 'ID': ID, 'Date': self.date, 'Timestamp': self.timestamp}]
             df_DB_lane = pd.concat([df_DB_lane, pd.DataFrame(new_line)], ignore_index=True)
+            # Adding the ID to the Hist log
+            new_line_hist = [{"Besetzt": True, 'ID': ID, 'Date_in': self.date, 'Timestamp_in': self.timestamp, 'Date_out': None, 'Timestamp_out': None}]
+            df_Hist_lane = pd.concat([df_Hist_lane, pd.DataFrame(new_line_hist)], ignore_index=True)
             # Adding the ID to the Databank from the Fabrik
             if ID in df_DB_werk['ID'].values:
                 linha_id = df_DB_werk[df_DB_werk['ID'] == ID]
@@ -153,6 +161,9 @@ class Lane:
                 # Adding the ID to the Databank from the lane
                 new_line = [{"Besetzt": True, 'ID': ID, 'Date': self.date, 'Timestamp_in': self.timestamp}]
                 df_DB_lane = pd.concat([df_DB_lane, pd.DataFrame(new_line)], ignore_index=True)
+                # Adding the ID to the Hist log
+                new_line_hist = [{"Besetzt": True, 'ID': ID, 'Date_in': self.date, 'Timestamp_in': self.timestamp, 'Date_out': None, 'Timestamp_out': None}]
+                df_Hist_lane = pd.concat([df_Hist_lane, pd.DataFrame(new_line_hist)], ignore_index=True)
                 # Adding the ID to the Databank from the Fabrik
                 if ID in df_DB_werk['ID'].values:
                     linha_id = df_DB_werk[df_DB_werk['ID'] == ID]
@@ -168,6 +179,9 @@ class Lane:
                 # Adding the ID to the Databank from the lane
                 new_line = [{"Besetzt": True, 'ID': ID, 'Date': self.date, 'Timestamp': self.timestamp}]
                 df_DB_lane = pd.concat([df_DB_lane, pd.DataFrame(new_line)], ignore_index=True)
+                # Adding the ID to the Hist log
+                new_line_hist = [{"Besetzt": True, 'ID': ID, 'Date_in': self.date, 'Timestamp_in': self.timestamp, 'Date_out': None, 'Timestamp_out': None}]
+                df_Hist_lane = pd.concat([df_Hist_lane, pd.DataFrame(new_line_hist)], ignore_index=True)
                 # Adding the ID to the Databank from the Fabrik
                 if ID in df_DB_werk['ID'].values:
                     linha_id = df_DB_werk[df_DB_werk['ID'] == ID]
@@ -188,17 +202,24 @@ class Lane:
         print(self.werk_DB)
         df_DB_lane.to_csv(self.lane_DB, index=False)
         df_DB_werk.to_csv(self.werk_DB, index=False)
+        df_Hist_lane.to_csv(self.hist_csv,index = False)
 
     def pick_event(self):
-        df_DB_lane, df_DB_werk = self.read_or_create()
-        # df_DB_lane.at[0, "Besetzt"] = False
-        # primeiro_registro = df_DB_lane[df_DB_lane["Besetzt"] == False].iloc[0]
-        # ID = primeiro_registro['ID']
+        df_DB_lane, df_DB_werk, df_Hist_lane = self.read_or_create()
+        # Adding the pick event at the lane DB
         primeiro_registro = df_DB_lane[df_DB_lane["Besetzt"] == True].iloc[0]
         ID = primeiro_registro['ID']
         index_of_primeiro_registro = primeiro_registro.name
         df_DB_lane.at[index_of_primeiro_registro, 'Besetzt'] = False
-        df_DB_lane.at[index_of_primeiro_registro, 'Date'] 
+        # df_DB_lane.at[index_of_primeiro_registro, 'Date'] 
+        # Adding the pick event on Historical Log
+        primeiro_registro_hist = df_Hist_lane[df_Hist_lane["Besetzt"] == True].iloc[0]
+        ID = primeiro_registro_hist['ID']
+        index_of_primeiro_registro_hist = primeiro_registro_hist.name
+        df_Hist_lane.at[index_of_primeiro_registro_hist, 'Besetzt'] = False
+        df_Hist_lane.at[index_of_primeiro_registro_hist, 'Date_out'] = self.date
+        df_Hist_lane.at[index_of_primeiro_registro_hist, 'Timestamp_out'] = self.timestamp
+        # Changing things for werk
         if ID in df_DB_werk['ID'].values:
             linha_id = df_DB_werk[df_DB_werk['ID'] == ID]
             empty_column = linha_id.columns[2:][linha_id.iloc[:, 2:].isna().all(axis=0)][:2]
@@ -214,6 +235,7 @@ class Lane:
             df_DB_lane = df_DB_lane[df_DB_lane['ID'] != ID]
         df_DB_lane.to_csv(self.lane_DB, index=False)
         df_DB_werk.to_csv(self.werk_DB, index=False)
+        df_Hist_lane.to_csv(self.hist_csv,index = False)
 
     def save_dashboard_format(self):
         # Read csv files from Werk, Inventar and Lane

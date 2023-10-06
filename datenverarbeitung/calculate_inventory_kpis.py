@@ -7,31 +7,49 @@ import datetime
 
 
 def calculate_Bestandsmenge(df_DB_lane, box_capacity):
+    # Amount of parts currently on the lane
     condicao = df_DB_lane['Besetzt'] == True
-    linhas_a_atualizar = condicao.index[condicao].tolist()  # Encontre os índices das linhas com Besetzt True
-    Bestandsmenge = len(linhas_a_atualizar) * box_capacity
-    return Bestandsmenge 
+    linhas_a_atualizar = condicao.index[condicao].tolist()  # Find indexes with besetzt equals to True
+    Bestandsmenge = len(linhas_a_atualizar) * box_capacity 
+    return Bestandsmenge # number of parts
 
 def calculate_Kapazitaet(lane_capacity, box_capacity):
+    # Total amount of parts that fit into the lane
     kapazitaet = lane_capacity * box_capacity
-    return kapazitaet
+    return kapazitaet # number of parts
 
-def calculate_Lagernutzungsgrad():
-    return "AAAAAAAAA"
+def calculate_Lagernutzungsgrad(bestandsmenge, kapazitaet):
+    # Percentage of how full is the lane 
+    lagernutzungsgrad = bestandsmenge/kapazitaet * 100
+    return lagernutzungsgrad # %
 
 def calculate_Bestandsgenauigkeit():
-    return "AAAAAAAAA"
+    # Precision of the model in how many parts or boxes are right when compared to the real inventory
+    # There is no way of calculating how many are currently there given the model approach
+    # The program basically gets the data from the logs that Neoception generates after receiving the box
+    # This would increase the complexity of the code to deal with errors of putting the boxes
+    # Benny's program would be able to show which boxes are misplaced, however even those are not fully correct or precise per tests 
+    # and there are missing sensors such as RFIDs and Lanes with optical sensors
+
+    # A way to implement this would be either trying to hijack the information of benny's code before it gets sent to Neoception or
+    # to create a request list that would avaliate if the box were inserted into the right lane and, if not, show it that's wrong and
+    # also create a system that would be able to deal with wrong informations so that those are not considered in metrics
+    return 1 * 100 # %
 
 def calculate_Durchschnittliche_Wartezeit():
+    # Average time for the same box enter and exit the lane
     return "AAAAAAAAA"
 
 def calculate_Lagerumschlagsrate():
+    # How often a inventory replaces it's inventory
     return "AAAAAAAAA"
 
 def calculate_Reichweite():
+    # How long the current inventory is expected to last
     return "AAAAAAAAA"
 
 def calculate_Wiederbeschaffungszeit():
+    # Necessary time to replenish the lane stock based on the previous proccesess
     return "AAAAAAAAA"
 #################################################################
 # MAIN FUNCTION                                                 #
