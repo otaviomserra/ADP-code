@@ -242,7 +242,7 @@ class Lane:
         df_W = pd.read_csv(self.werk_path,encoding = "cp1252")
         df_I = pd.read_csv(self.inventar_csv,encoding = "cp1252")
         df_L = pd.read_csv(self.lane_csv,encoding = "cp1252")
-        df_DB_lane, df_DB_werk = self.read_or_create()
+        df_DB_lane, df_DB_werk,df_Hist_lane = self.read_or_create()
 
         # Updating the csv from the lane first
         #

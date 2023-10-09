@@ -36,20 +36,30 @@ def calculate_Bestandsgenauigkeit():
     # also create a system that would be able to deal with wrong informations so that those are not considered in metrics
     return 1 * 100 # %
 
-def calculate_Durchschnittliche_Wartezeit():
+def calculate_Durchschnittliche_Wartezeit(df_Hist_lane):
     # Average time for the same box enter and exit the lane
-    return "AAAAAAAAA"
+    # Calculate from Historic log
+    filtered_df = df_Hist_lane[df_Hist_lane['Besetzt'] == False].copy()
+    filtered_df['Timestamp_in'] = pd.to_datetime(filtered_df['Date_in'] + ' ' + filtered_df['Timestamp_in'])
+    filtered_df['Timestamp_out'] = pd.to_datetime(filtered_df['Date_out'] + ' ' + filtered_df['Timestamp_out'])
+    filtered_df['Diferenca_tempo'] = filtered_df['Timestamp_out'] - filtered_df['Timestamp_in']
+    average = filtered_df['Diferenca_tempo'].mean()
 
-def calculate_Lagerumschlagsrate():
+    return average
+
+def calculate_Lagerumschlagsrate(df_Hist_lane):
     # How often a inventory replaces it's inventory
+    # Calculate from Historic log
     return "AAAAAAAAA"
 
-def calculate_Reichweite():
+def calculate_Reichweite(df_Hist_lane):
     # How long the current inventory is expected to last
+    # Calculate from Historic log
     return "AAAAAAAAA"
 
 def calculate_Wiederbeschaffungszeit():
     # Necessary time to replenish the lane stock based on the previous proccesess
+    # Calculate from werk databank
     return "AAAAAAAAA"
 #################################################################
 # MAIN FUNCTION                                                 #
