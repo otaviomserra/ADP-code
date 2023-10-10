@@ -209,7 +209,17 @@ class ExcelFileHandler(FileSystemEventHandler):
 # FEHLERMELDUNG
 ############################################################################
 
-df_fertigung = pd.read_excel('Reject_Button.xlsm', sheet_name='LogData(Fertigung)')
+# READ EVERY SHEET IN THE FILE AT LEAST ONCE
+process_excel_path = "Digital_Button.xlsm"
+# Sheets for error logs
+df_fertigung = pd.read_excel(process_excel_path, sheet_name='LogData(Fertigung)')
+df_montage = pd.read_excel(process_excel_path, sheet_name='LogData(Montage)')
+
+# Sheets for process logs
+df_saegen = pd.read_excel(process_excel_path, sheet_name='LogData(Saegen)')
+df_drehen = pd.read_excel(process_excel_path, sheet_name='LogData(Drehen)')
+df_waschen = pd.read_excel(process_excel_path, sheet_name='LogData(Waschen)')
+
 
 def handle_error(error_df):
     # Obtains the target lane where the piece would have gone to
@@ -228,6 +238,11 @@ def handle_error(error_df):
             break
 
 
+def generate_other_processes(process, newrows_df):
+    # LOGS FOR DREHEN, SAEGEN, WASCHEN
+    return 0
+
+
 class ErrorFileHandler(FileSystemEventHandler):
     def __init__(self):
         super().__init__(self)
@@ -238,13 +253,14 @@ class ErrorFileHandler(FileSystemEventHandler):
         if event.is_directory:
             return
 
+        # Protection against duplicate detections
         current_time = time.time()
         if self.last_event_time is None or (current_time - self.last_event_time) >= self.min_time_interval:
             self.last_event_time = current_time
-            if event.src_path == 'Reject_Button.xlsm':
+            if event.src_path == process_excel_path:
                 # Reload the Excel file
                 global df_fertigung
-                df_fertigung = pd.read_excel('Reject_Button.xlsm', sheet_name='LogData(Fertigung)')
+                df_fertigung = pd.read_excel(process_excel_path, sheet_name='LogData(Fertigung)')
 
                 # Get the current number of rows
                 current_row_count_fertigung = df_fertigung.shape[0]
@@ -356,7 +372,7 @@ if __name__ == "__main__":
     observer = Observer()
     observer.schedule(event_handler, path=os.path.dirname(log_filename))
     observer.schedule(excel_event_handler, path=os.path.dirname(logger_path), recursive=True)
-    observer.schedule(error_handler, path=os.path.dirname('Reject_Button.xlsm'), recursive=True)  # Fehlermeldung
+    observer.schedule(error_handler, path=os.path.dirname(process_excel_path), recursive=True)  # Fehlermeldung
     observer.start()
     program_lock = Lock()
 
