@@ -278,7 +278,7 @@ class Lane:
             df_DS.loc[linha, 'Time In'] = df_DB_lane.loc[linha,'Timestamp']
             df_DS.loc[linha, 'Waiting Time'] = df_DB_lane.loc[linha,'Date']
             # df_DS.loc[linha, 'Bestandmenge'] = len(linhas_a_atualizar) 
-            df_DS.loc[linha, 'Bestandmenge'] = self.box_capacity
+            df_DS.loc[linha, 'Bestandsmenge'] = self.box_capacity
             # df_DS.loc[linha, 'Kapazität'] = self.capacity
             df_DS.loc[linha, 'Kapazität'] = self.box_capacity
             df_DS.loc[linha, 'Losgröße'] = self.box_capacity
