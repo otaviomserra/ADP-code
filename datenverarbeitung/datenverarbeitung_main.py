@@ -231,10 +231,14 @@ def handle_error(error_df):
     else:
         target_lane = "S001.M003.02.03"
 
+    # Timestamp of when the error happened
+    timestamp = error_df["Uhrzeit"].iloc[0]
+
     # Looks for the earliest request with the target_lane and cancels it
     for request in requests:
-        if request.target_lane == target_lane:
-            request.cancel()
+        if target_lane in request.target_lanes:
+            request.cancel(timestamp)
+            request.generate_process_log(target_lane)
             requests.remove(request)
             break
 

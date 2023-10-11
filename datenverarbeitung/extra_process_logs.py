@@ -50,7 +50,7 @@ def reformat_data(new_instance_df):
     # Obtain quantity (depends on variant, how would we do this?)
     menge = 4  # Placeholder
 
-    process_to_append = [date, pick_time, put_time, origin_lane, lane, duration, variant, menge]
+    process_to_append = [date, pick_time, put_time, origin_lane, lane, duration, variant, menge, 0]
     return process_to_append
 
 
@@ -66,7 +66,7 @@ def generate_process_log(process, process_to_append):
             csv_writer = csv.writer(csvfile)
             # Header row
             header = ["date", "pick_time", "put_time", "origin_lane", "target_lane",
-                      "duration", "variant", "menge"]
+                      "duration", "variant", "menge", "exit_code"]
             csv_writer.writerow(header)
 
     with open(log_path, 'a', newline='') as csvfile:

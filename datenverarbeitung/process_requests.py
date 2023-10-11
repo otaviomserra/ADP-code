@@ -1,6 +1,7 @@
 import os
 import csv
 import pandas as pd
+from datetime import datetime
 
 FabrikVerbindung = pd.read_excel("FabrikVerbindung.xlsx", index_col=0)
 
@@ -30,12 +31,45 @@ class ProcessRequest:
         # Calculate here the difference in timestamps
         # self.duration = self.put_time - self.pick_time
         # Mark the request as resolved
+
+        # Parse the timestamps into datetime objects
+        format_string = "%H:%M:%S"
+        time_A = datetime.strptime(self.put_time, format_string)
+        time_B = datetime.strptime(self.pick_time, format_string)
+
+        # Calculate the time difference
+        time_difference = time_A - time_B
+
+        # Extract the time difference components (hours, minutes, seconds)
+        hours, remainder = divmod(time_difference.total_seconds(), 3600)
+        minutes, seconds = divmod(remainder, 60)
+
+        # Format the time difference as "hh:mm:ss"
+        self.duration = "{:02d}:{:02d}:{:02d}".format(int(hours), int(minutes), int(seconds))
+
         self.exit_code = 0
 
     def cancel(self, timestamp):
         # self.duration = timestamp - self.put_time
         # Mark the request as canceled; the system should then remove it from the list without
         # creating a new process log
+
+        self.put_time = timestamp
+        # Parse the timestamps into datetime objects
+        format_string = "%H:%M:%S"
+        time_A = datetime.strptime(self.put_time, format_string)
+        time_B = datetime.strptime(self.pick_time, format_string)
+
+        # Calculate the time difference
+        time_difference = time_A - time_B
+
+        # Extract the time difference components (hours, minutes, seconds)
+        hours, remainder = divmod(time_difference.total_seconds(), 3600)
+        minutes, seconds = divmod(remainder, 60)
+
+        # Format the time difference as "hh:mm:ss"
+        self.duration = "{:02d}:{:02d}:{:02d}".format(int(hours), int(minutes), int(seconds))
+
         self.exit_code = 2
 
     def generate_process_log(self, lane):
@@ -49,14 +83,14 @@ class ProcessRequest:
                 csv_writer = csv.writer(csvfile)
                 # Header row
                 header = ["date", "pick_time", "put_time", "origin_lane", "target_lane",
-                          "duration", "variant", "menge"]
+                          "duration", "variant", "menge", "exit_code"]
                 csv_writer.writerow(header)
 
         with open(log_path, 'a', newline='') as csvfile:
             csv_writer = csv.writer(csvfile)
             # Append this instance of the process
             process_to_append = [self.date, self.pick_time, self.put_time, self.origin_lane, lane,
-                                 self.duration, self.variant, self.menge]
+                                 self.duration, self.variant, self.menge, self.exit_code]
             csv_writer.writerow(process_to_append)
 
         print("Process log created :D at")
