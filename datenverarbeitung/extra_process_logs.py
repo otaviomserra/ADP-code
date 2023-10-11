@@ -45,7 +45,7 @@ def reformat_data(new_instance_df):
     duration = "{:02d}:{:02d}:{:02d}".format(int(hours), int(minutes), int(seconds))
 
     # Obtain variant
-    variant = new_instance_df["Bauteil"].values[0]
+    variant = new_instance_df["Bauteil"].values[0].replace("-", "").replace("0", "")  # Translating from Jungmu
 
     # Obtain quantity (depends on variant, how would we do this?)
     menge = 4  # Placeholder
