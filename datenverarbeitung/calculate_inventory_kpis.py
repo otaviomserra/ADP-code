@@ -146,12 +146,69 @@ def calculate_Reichweite(Lagerumschlagsrate, Lagernutzungsgrad):
     Reichweite = (Lagernutzungsgrad/100)*Lagerumschlagsrate
     return Reichweite # days
 
-def calculate_Wiederbeschaffungszeit(df_db_werk,df_db_lane):
+def calculate_Wiederbeschaffungszeit(df_db_werk,lane_path, lane):
     # Necessary time to replenish the lane stock based on the previous proccesess
     # Calculate from werk databank
 
+    # Filtre o DataFrame para as entradas onde 'Besetzt' é True e a 'letzte Linie' é igual à posição desejada
+    position = lane
+    df_DB_werk = df_db_werk.copy()
+    filtered_df = df_DB_werk[(df_DB_werk['Besetzt'] == True) & (df_DB_werk['letzte Linie'] == position)]
 
-    return "AAAAAAAAA"
+    # Inicializar um dicionário para armazenar os ID e as somas das diferenças de tempo
+    id_somas_diff_tempo = {}
+
+    # Iterar sobre as linhas filtradas
+    for index, row in filtered_df.iterrows():
+        id = row['ID']
+        soma_diff_tempo = 0
+
+        for i in range(1, 4):  # Supondo que você tem no máximo 3 pares de entrada/saída (1 a 3)
+            date_in = row[f'date{i}in']
+            t_in = row[f't{i}in']
+            date_out = row[f'date{i}out']
+            t_out = row[f't{i}out']
+
+            if pd.notna(date_in) and pd.notna(date_out):
+                # Calcular a diferença de tempo e somar à soma_diff_tempo
+                diff_tempo = pd.to_datetime(date_out + ' ' + t_out) - pd.to_datetime(date_in + ' ' + t_in)
+                soma_diff_tempo += diff_tempo.total_seconds()
+
+        # Verificar se o ID já existe no dicionário
+        if id in id_somas_diff_tempo:
+            id_somas_diff_tempo[id] += soma_diff_tempo
+        else:
+            id_somas_diff_tempo[id] = soma_diff_tempo
+
+    # Criar um DataFrame a partir do dicionário
+    resultado_df = pd.DataFrame(list(id_somas_diff_tempo.items()), columns=['ID', 'Wiederbeschaffungszeit'])
+
+    wieder_csv_path = os.path.join(lane_path, f'{lane}'+'_wiederbeschaffungszeit.csv')
+
+    # Verificar se o arquivo CSV já existe
+    try:
+        arquivo_csv = pd.read_csv(wieder_csv_path)
+
+        # Atualizar IDs duplicados no arquivo CSV com os novos valores
+        for index, row in resultado_df.iterrows():
+            id = row['ID']
+            if id in arquivo_csv['ID'].values:
+                arquivo_csv.loc[arquivo_csv['ID'] == id, 'Wiederbeschaffungszeit'] += row['Wiederbeschaffungszeit']
+            else:
+                arquivo_csv = pd.concat([arquivo_csv, row], ignore_index=True)
+
+    except FileNotFoundError:
+        # Se o arquivo CSV não existe, criar um novo
+        arquivo_csv = resultado_df
+
+    # Salvar o arquivo CSV
+    arquivo_csv.to_csv(wieder_csv_path, index=False)
+
+    # Calcular a média das diferenças de tempo
+    media_diff_tempo = arquivo_csv['Wiederbeschaffungszeit'].mean()
+
+    media_diff_tempo = media_diff_tempo / (60 * 60 * 24)
+    return media_diff_tempo
 #################################################################
 # MAIN FUNCTION                                                 #
 #################################################################

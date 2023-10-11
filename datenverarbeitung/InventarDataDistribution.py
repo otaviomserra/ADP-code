@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+from calculate_inventory_kpis import *
 
 # Reading the dictionary which connects the lanes, target lanes and identifies the inventory/processes
 FabrikVerbindung = pd.read_excel("FabrikVerbindung.xlsx", index_col=0)
@@ -66,7 +67,7 @@ class Lane:
         self.lane_DB = os.path.join(self.lane_path, f'{self.lane_name}'+'_DB.csv')
         self.hist_csv = os.path.join(self.lane_path, f'{self.lane_name}'+'_HistLog.csv')
         self.werk_DB = os.path.join(werk_folder_path, 'Werk'+'_DB.csv')
-
+        self.inventar_kpi_df_db = os.path.join(self.inventar_path,f'{self.inventar_name}'+'_kpi_DB.csv')
 
 
     def read_or_create(self):
@@ -112,7 +113,8 @@ class Lane:
         # NEEDS TO CHANGE ACCORDINGLY IN HOW THE FABRIK IS WORKING
         # If it's the starting point of the fabrik
         Start_lanes = ['S001.M007.01.01', 'S001.M007.01.02', 'S001.M007.01.03', 'S001.M007.01.04',
-                       'S001.M007.02.01', 'S001.M007.02.02', 'S001.M007.02.03', 'S001.M007.02.04']
+                       'S001.M007.02.01', 'S001.M007.02.02', 'S001.M007.02.03', 'S001.M007.02.04',
+                       'S001.M003.02.01', 'S001.M003.02.02', 'S001.M003.02.03']
         if self.lane_address in Start_lanes:
             print('entrou no start fabrik')
             ID = self.create_ID(df_DB_werk)
@@ -145,8 +147,9 @@ class Lane:
             print('entrou no caso de meio da producao')
             # Searching for the box ID in the original lane accordding to it's path (in DatenVerbindung)
             try:
-                lane_original = FabrikVerbindung.loc[FabrikVerbindung["target_lane_address"] == self.lane_address,
-                                                     "lane_address"].iloc[0]
+                for target_list in FabrikVerbindung["target_lane_address"]:
+                    if self.lane_address in f'{target_list}':
+                        lane_original = FabrikVerbindung.loc[FabrikVerbindung["target_lane_address"] == target_list,"lane_address"].iloc[0]
                 inventar_original_name = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane_original,
                                                               "inventar"].iloc[0]
                 lane_original_name = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane_original,
@@ -285,10 +288,22 @@ class Lane:
         # Updating the csv from the KPIs
         # 
         # Using functions from calculate_inventory_kpis
-        #
-        #
-        #
-        
+        bestandsmenge = calculate_Bestandsmenge(df_DB_lane, self.box_capacity)
+        kapazitaet = calculate_Kapazitaet(self.capacity, self.box_capacity)
+        lagernutzungsgrad = calculate_Lagernutzungsgrad(bestandsmenge, kapazitaet)
+        bestandsgenauigkeit = calculate_Bestandsgenauigkeit()
+        durchschnittliche_wartezeit = calculate_Durchschnittliche_Wartezeit(df_Hist_lane)
+        lagerumschlagsrate = calculate_Lagerumschlagsrate(df_Hist_lane,self.capacity)
+        reichweite = calculate_Reichweite(lagerumschlagsrate, lagernutzungsgrad)
+        wiederbeschaffungszeit = calculate_Wiederbeschaffungszeit(df_DB_werk,self.lane_path, self.lane_name)
+        df_kpi['Bestandsmenge'] = [bestandsmenge]
+        df_kpi['Kapazität'] = [kapazitaet]
+        df_kpi['Lagernutzungsgrad'] = [lagernutzungsgrad]
+        df_kpi['Bestandsgenauigkeit'] = [bestandsgenauigkeit]
+        df_kpi['Durchschnittliche Wartezeit'] = [durchschnittliche_wartezeit]
+        df_kpi['Lagerumschlagsrate'] = [lagerumschlagsrate]
+        df_kpi['Reichweite'] = [reichweite]
+        df_kpi['Wiederbeschaffungszeit'] = [wiederbeschaffungszeit]
 
         # Saving the csv from the lane
         #
@@ -316,12 +331,56 @@ class Lane:
         with open(arquivo_saida_lane, "w") as output_file:
             output_file.write(conteudo_combinado)
 
-        #
         # Updating the csv from the Inventar
         #
-        # Encontre o índice onde a primeira coluna começa com 'LD1'
+        #  Updating the Inventar lane DS
+        #  Encontre o índice onde a primeira coluna começa com a lane name
         ld1_index = df_I[df_I['Bestandsmenge'] == f'{self.lane_name}'].index[0]
         df_I.iloc[ld1_index+1:ld1_index+len(df_DS)+1] = df_DS.values
+
+        # Updating the Inventar KPIs
+        if not os.path.exists(self.inventar_kpi_df_db):
+            df_inventar_kpi_db = pd.DataFrame(columns=['Lane', 'Bestandsmenge', 'Kapazität', 'Lagernutzungsgrad', 'Bestandsgenauigkeit', 'Durchschnittliche Wartezeit', 'Lagerumschlagsrate', 'Reichweite', 'Wiederbeschaffungszeit'])
+        else:
+            df_inventar_kpi_db = pd.read_csv(self.inventar_kpi_df_db)
+        
+        data_inventar = {
+            'Lane': [self.lane_name],
+            'Bestandsmenge': [bestandsmenge],
+            'Kapazität': [kapazitaet],
+            'Lagernutzungsgrad': [lagernutzungsgrad],
+            'Bestandsgenauigkeit': [bestandsgenauigkeit],
+            'Durchschnittliche Wartezeit': [durchschnittliche_wartezeit],
+            'Lagerumschlagsrate': [lagerumschlagsrate],
+            'Reichweite': [reichweite],
+            'Wiederbeschaffungszeit': [wiederbeschaffungszeit]
+        }
+        df_lane_kpi_db = pd.DataFrame(data_inventar)
+
+        df_inventar_kpi_db.loc[df_inventar_kpi_db['Lane'] == self.lane_name] = df_lane_kpi_db.values
+
+        df_inventar_kpi_db.to_csv(self.inventar_kpi_df_db, index=False)
+
+        somas = df_inventar_kpi_db.drop(columns=['Lane']).sum()
+        medias = df_inventar_kpi_db.drop(columns=['Lane']).mean()
+        df_I.loc[0, 'Bestandsmenge'] = somas['Bestandsmenge']
+        df_I.loc[0,'Kapazität'] = somas['Kapazität']
+        df_I.loc[0,'Lagernutzungsgrad'] = medias['Lagernutzungsgrad']
+        df_I.loc[0,'Bestandsgenauigkeit'] = medias['Bestandsgenauigkeit']
+        df_I.loc[0,'Durchschnittliche Wartezeit'] = medias['Durchschnittliche Wartezeit']
+        df_I.loc[0,'Lagerumschlagsrate'] = somas['Lagerumschlagsrate']
+        df_I.loc[0,'Reichweite'] = somas['Reichweite']
+        df_I.loc[0,'Wiederbeschaffungszeit'] = somas['Wiederbeschaffungszeit']
+
+        # Substitua os três primeiros valores das linhas "Lager_Fertigung" e "SM_Fertigung"
+        df_W.loc[df_W['Werk'] == f'{self.inventar_name}', ['Schichtlänge', 'Pausen', 'SF Besprechung']] = [medias['Lagernutzungsgrad'], medias['Bestandsgenauigkeit'], medias['Durchschnittliche Wartezeit']]
+
+
+        # Saving files back
+        df_W.to_csv(self.werk_path, index=False,encoding = "cp1252")
+        df_I.to_csv(self.inventar_csv, index=False,encoding = "cp1252")
+        df_L.to_csv(self.lane_csv, index=False,encoding = "cp1252")
+
 
 
 
