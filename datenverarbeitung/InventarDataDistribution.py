@@ -316,20 +316,23 @@ class Lane:
         # Caminho para o arquivo de saída onde os dois arquivos serão mesclados
         arquivo_saida_lane = self.lane_csv
 
-        # Abrir o primeiro arquivo CSV e ler seu conteúdo
-        with open(path_kpi, "r") as file1:
-            conteudo1 = file1.read()
+        try:
+            # Abrir o primeiro arquivo CSV e ler seu conteúdo
+            with open(path_kpi, "r") as file1:
+                conteudo1 = file1.read()
 
-        # Abrir o segundo arquivo CSV e ler seu conteúdo
-        with open(path_DS, "r") as file2:
-            conteudo2 = file2.read()
+            # Abrir o segundo arquivo CSV e ler seu conteúdo
+            with open(path_DS, "r") as file2:
+                conteudo2 = file2.read()
 
-        # Combinar o conteúdo dos dois arquivos
-        conteudo_combinado = conteudo1 + "\n" + conteudo2
+            # Combinar o conteúdo dos dois arquivos
+            conteudo_combinado = conteudo1 + "\n" + conteudo2
 
-        # Escrever o conteúdo combinado em um novo arquivo CSV
-        with open(arquivo_saida_lane, "w") as output_file:
-            output_file.write(conteudo_combinado)
+            # Escrever o conteúdo combinado em um novo arquivo CSV
+            with open(arquivo_saida_lane, "w") as output_file:
+                output_file.write(conteudo_combinado)
+        except:
+            print('não consegui juntar os arquivos')
 
         # Updating the csv from the Inventar
         #
