@@ -4,7 +4,7 @@ import numpy as np
 from InventarDataDistribution import *
 import time
 import datetime
-
+from datetime import datetime, timedelta
 
 def calculate_Bestandsmenge(df_DB_lane, box_capacity):
     # Amount of parts currently on the lane
@@ -38,28 +38,119 @@ def calculate_Bestandsgenauigkeit():
 
 def calculate_Durchschnittliche_Wartezeit(df_Hist_lane):
     # Average time for the same box enter and exit the lane
-    # Calculate from Historic log
+    # Calculate from Historic log by averaging how long it took for a box to enter and exit the lane
+    # Can be optimized by changing the exit time format (right now in days because Dashboard wanted, but it's a dumb format)
+    # There are also other time formats more adequate to visualization
+
     filtered_df = df_Hist_lane[df_Hist_lane['Besetzt'] == False].copy()
     filtered_df['Timestamp_in'] = pd.to_datetime(filtered_df['Date_in'] + ' ' + filtered_df['Timestamp_in'])
     filtered_df['Timestamp_out'] = pd.to_datetime(filtered_df['Date_out'] + ' ' + filtered_df['Timestamp_out'])
     filtered_df['Diferenca_tempo'] = filtered_df['Timestamp_out'] - filtered_df['Timestamp_in']
-    average = filtered_df['Diferenca_tempo'].mean()
+    # Calcule a diferença de tempo onde 'Besetzt' for False
+    diferencas_tempo = filtered_df.loc[filtered_df['Besetzt'] == False, 'Timestamp_out'] - filtered_df.loc[df_Hist_lane['filtered_df'] == False, 'Timestamp_in']
+    # Calcule a média das diferenças de tempo
+    media_diferencas_tempo = diferencas_tempo.mean()
+    # Calcule os dias, horas, minutos e segundos da média
+    dias = media_diferencas_tempo.days
+    segundos_total = media_diferencas_tempo.seconds
+    segundos_total_2 = media_diferencas_tempo.seconds
+    horas, segundos_total = divmod(segundos_total, 3600)
+    horas_total = dias * 24 + segundos_total_2 // 3600
+    minutos, segundos = divmod(segundos_total, 60)
 
-    return average
+    # Formate a média no formato "DD hh:mm:ss" se houver dias, ou no formato "hh:mm:ss" se não houver dias
+    media_dd_hh_mm_ss = f"{dias} {horas:02}:{minutos:02}:{segundos:02}" if dias > 0 else f"{horas:02}:{minutos:02}:{segundos:02}"
 
-def calculate_Lagerumschlagsrate(df_Hist_lane):
+    # Formate a média no formato "hh:mm:ss"
+    media_hh_mm_ss = f"{horas_total:02}:{minutos:02}:{segundos:02}"
+    media_diferencas_tempo_2 = diferencas_tempo.mean().total_seconds() / (60 * 60 * 24)
+    
+    return media_diferencas_tempo_2 # days
+
+def calculate_Lagerumschlagsrate(df_Hist_lane,lane_capacity):
     # How often a inventory replaces it's inventory
     # Calculate from Historic log
-    return "AAAAAAAAA"
+    # The definition itself from the group is somewhat wrong, but the Dashboard wanted as the time needed to a complete inventory to be changes
+    # This code gets how long it took for a box to enter and exit and make groups according to the capacity of the lane
+    # By doing that it sums how long it took for the group to enter and exit the lane 
+    # and average the time between the groups
+    # so it does not take account for the time in between a new product entering
+    # in other words the time from the exit of one until it's substituted 
+    # It can be opitimized by taken this missing time and by reordering the groups to get better average (dropping outliers groups or boxes)
+    # If alterations are made here, need to change Reichweite
 
-def calculate_Reichweite(df_Hist_lane):
+    # Crie uma cópia do DataFrame original para não fazer alterações nele
+    df_copy = df_Hist_lane.copy()
+
+    # Filtrar os registros em que 'Besetzt' é False
+    df_copy = df_copy[df_copy['Besetzt'] == False]
+    
+    # Ordenar os registros por 'Date_in' e 'Timestamp_in'
+    df_copy['DateTime_in'] = pd.to_datetime(df_copy['Date_in'] + ' ' + df_copy['Timestamp_in'])
+    df_copy.sort_values(by=['DateTime_in'], inplace=True)
+
+    # Calcular a diferença de tempo entre entrada e saída para cada par de entrada e saída
+    df_copy['DateTime_out'] = pd.to_datetime(df_copy['Date_out'] + ' ' + df_copy['Timestamp_out'])
+    df_copy['Tempo_de_Troca'] = (df_copy['DateTime_out'] - df_copy['DateTime_in']).dt.total_seconds()
+
+    # Definir a capacidade máxima da estante
+    capacidade = lane_capacity  # Substitua pelo valor correto
+    # Calcular o tempo médio de troca para conjuntos completos dentro do último ano
+    um_ano_antes = datetime.now() - timedelta(days=365)
+
+    df_last_year = df_copy[df_copy['DateTime_in'] >= um_ano_antes]
+    df_last_year = df_last_year.reset_index(drop=True)
+
+    # Identificar quando um conjunto completo de peças foi trocado
+    df_last_year['Conjunto'] = df_last_year.groupby(df_last_year.index // capacidade)['DateTime_in'].cumcount()
+
+    # Calcular o número de conjuntos completos
+    conjuntos_completos = df_last_year.shape[0] // capacidade
+    # Inicializar uma lista para armazenar as somas dos tempos de troca por conjunto
+    somas_por_conjunto = []
+    # Verificar se há dados suficientes para calcular o tempo médio
+    try:
+        if conjuntos_completos >= 2:
+            # Identificar quando um conjunto completo de peças foi trocado
+            df_last_year['Conjunto'] = df_last_year.index // capacidade
+
+            # Calcular a soma dos tempos de troca por conjunto
+            soma_por_conjunto = df_last_year.groupby('Conjunto')['Tempo_de_Troca'].sum()
+
+            # Adicionar as somas dos tempos de troca por conjunto à lista
+            somas_por_conjunto.extend(soma_por_conjunto)
+
+            # Calcular a média das somas dos tempos de troca por conjunto
+            tempo_medio  = sum(somas_por_conjunto) / len(somas_por_conjunto)
+
+            #print("Tempo médio de troca para o estoque completo (último ano):", tempo_medio)
+            #print('Há mais de dois conjuntos')
+        else:
+            # Caso não haja dados suficientes, estime o tempo com base na última troca
+            ultima_troca = df_last_year['Tempo_de_Troca'].tail(1).values[0]
+            tempo_medio = ultima_troca * capacidade
+            #print("Estimativa de tempo de troca com base na última peça:", tempo_medio)
+            #print("Não houve dados o suficiente")
+    except:
+        tempo_medio = '-'
+        #print("Tempo médio de troca para o estoque completo (último ano):", tempo_medio)
+
+    # Converter de segundos para dias
+    tempo_medio = tempo_medio/ (60 * 60 * 24)
+
+    return tempo_medio # days
+
+def calculate_Reichweite(Lagerumschlagsrate, Lagernutzungsgrad):
     # How long the current inventory is expected to last
-    # Calculate from Historic log
-    return "AAAAAAAAA"
+    # Calculate from how fill is the lane right now and multiplying by the average time that the lane needed to cast all it's content
+    Reichweite = (Lagernutzungsgrad/100)*Lagerumschlagsrate
+    return Reichweite # days
 
-def calculate_Wiederbeschaffungszeit():
+def calculate_Wiederbeschaffungszeit(df_db_werk,df_db_lane):
     # Necessary time to replenish the lane stock based on the previous proccesess
     # Calculate from werk databank
+
+
     return "AAAAAAAAA"
 #################################################################
 # MAIN FUNCTION                                                 #
