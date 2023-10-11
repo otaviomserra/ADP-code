@@ -41,29 +41,31 @@ def calculate_Durchschnittliche_Wartezeit(df_Hist_lane):
     # Calculate from Historic log by averaging how long it took for a box to enter and exit the lane
     # Can be optimized by changing the exit time format (right now in days because Dashboard wanted, but it's a dumb format)
     # There are also other time formats more adequate to visualization
+    try:
+        filtered_df = df_Hist_lane[df_Hist_lane['Besetzt'] == False].copy()
+        filtered_df['Timestamp_in'] = pd.to_datetime(filtered_df['Date_in'] + ' ' + filtered_df['Timestamp_in'])
+        filtered_df['Timestamp_out'] = pd.to_datetime(filtered_df['Date_out'] + ' ' + filtered_df['Timestamp_out'])
+        filtered_df['Diferenca_tempo'] = filtered_df['Timestamp_out'] - filtered_df['Timestamp_in']
+        # Calcule a diferença de tempo onde 'Besetzt' for False
+        diferencas_tempo = filtered_df.loc[filtered_df['Besetzt'] == False, 'Timestamp_out'] - filtered_df.loc[df_Hist_lane['filtered_df'] == False, 'Timestamp_in']
+        # Calcule a média das diferenças de tempo
+        media_diferencas_tempo = diferencas_tempo.mean()
+        # Calcule os dias, horas, minutos e segundos da média
+        dias = media_diferencas_tempo.days
+        segundos_total = media_diferencas_tempo.seconds
+        segundos_total_2 = media_diferencas_tempo.seconds
+        horas, segundos_total = divmod(segundos_total, 3600)
+        horas_total = dias * 24 + segundos_total_2 // 3600
+        minutos, segundos = divmod(segundos_total, 60)
 
-    filtered_df = df_Hist_lane[df_Hist_lane['Besetzt'] == False].copy()
-    filtered_df['Timestamp_in'] = pd.to_datetime(filtered_df['Date_in'] + ' ' + filtered_df['Timestamp_in'])
-    filtered_df['Timestamp_out'] = pd.to_datetime(filtered_df['Date_out'] + ' ' + filtered_df['Timestamp_out'])
-    filtered_df['Diferenca_tempo'] = filtered_df['Timestamp_out'] - filtered_df['Timestamp_in']
-    # Calcule a diferença de tempo onde 'Besetzt' for False
-    diferencas_tempo = filtered_df.loc[filtered_df['Besetzt'] == False, 'Timestamp_out'] - filtered_df.loc[df_Hist_lane['filtered_df'] == False, 'Timestamp_in']
-    # Calcule a média das diferenças de tempo
-    media_diferencas_tempo = diferencas_tempo.mean()
-    # Calcule os dias, horas, minutos e segundos da média
-    dias = media_diferencas_tempo.days
-    segundos_total = media_diferencas_tempo.seconds
-    segundos_total_2 = media_diferencas_tempo.seconds
-    horas, segundos_total = divmod(segundos_total, 3600)
-    horas_total = dias * 24 + segundos_total_2 // 3600
-    minutos, segundos = divmod(segundos_total, 60)
+        # Formate a média no formato "DD hh:mm:ss" se houver dias, ou no formato "hh:mm:ss" se não houver dias
+        media_dd_hh_mm_ss = f"{dias} {horas:02}:{minutos:02}:{segundos:02}" if dias > 0 else f"{horas:02}:{minutos:02}:{segundos:02}"
 
-    # Formate a média no formato "DD hh:mm:ss" se houver dias, ou no formato "hh:mm:ss" se não houver dias
-    media_dd_hh_mm_ss = f"{dias} {horas:02}:{minutos:02}:{segundos:02}" if dias > 0 else f"{horas:02}:{minutos:02}:{segundos:02}"
-
-    # Formate a média no formato "hh:mm:ss"
-    media_hh_mm_ss = f"{horas_total:02}:{minutos:02}:{segundos:02}"
-    media_diferencas_tempo_2 = diferencas_tempo.mean().total_seconds() / (60 * 60 * 24)
+        # Formate a média no formato "hh:mm:ss"
+        media_hh_mm_ss = f"{horas_total:02}:{minutos:02}:{segundos:02}"
+        media_diferencas_tempo_2 = diferencas_tempo.mean().total_seconds() / (60 * 60 * 24)
+    except:
+        media_diferencas_tempo = 0
     
     return media_diferencas_tempo_2 # days
 
@@ -132,7 +134,7 @@ def calculate_Lagerumschlagsrate(df_Hist_lane,lane_capacity):
             #print("Estimativa de tempo de troca com base na última peça:", tempo_medio)
             #print("Não houve dados o suficiente")
     except:
-        tempo_medio = '-'
+        tempo_medio = 0
         #print("Tempo médio de troca para o estoque completo (último ano):", tempo_medio)
 
     # Converter de segundos para dias
