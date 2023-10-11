@@ -5,11 +5,11 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
 # Define the Excel file path and sheet name
-excel_file_path = 'Reject_Button.xlsm'
+process_excel_path = "Digital_Button.xlsm"
 messen_fehler_sheet = 'LogData(Fertigung)'
 
 # Read the Excel file initially
-df_fertigung = pd.read_excel('Reject_Button.xlsm', sheet_name='LogData(Fertigung)')
+df_fertigung = pd.read_excel(process_excel_path, sheet_name='LogData(Fertigung)')
 
 requests = []
 
@@ -46,10 +46,10 @@ class ErrorFileHandler(FileSystemEventHandler):
         current_time = time.time()
         if self.last_event_time is None or (current_time - self.last_event_time) >= self.min_time_interval:
             self.last_event_time = current_time
-            if event.src_path == excel_file_path:
+            if event.src_path == process_excel_path:
                 # Reload the Excel file
                 global df_fertigung
-                df_fertigung = pd.read_excel('Reject_Button.xlsm', sheet_name='LogData(Fertigung)')
+                df_fertigung = pd.read_excel(process_excel_path, sheet_name='LogData(Fertigung)')
 
                 # Get the current number of rows
                 current_row_count_fertigung = df_fertigung.shape[0]
