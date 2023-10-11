@@ -171,7 +171,8 @@ class ExcelFileHandler(FileSystemEventHandler):
                 Inventar = Lane(lane, date, timestamp, event_type)
                 if event_type == 'CARRIER_ACTION_PICK':
                     print('entrou no pick')
-                    requests.append(ProcessRequest(date, lane, timestamp))
+                    if lane not in ["S001.M001.01.01, S001.M001.01.02"]:  # Fraesplatz doesn't generate requests
+                        requests.append(ProcessRequest(date, lane, timestamp))
                     for request in requests:
                         print(request.target_lanes)
                         print(lane)

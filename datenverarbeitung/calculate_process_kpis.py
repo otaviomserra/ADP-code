@@ -155,7 +155,7 @@ def calculate_ausschussquote(process, batch, variant, process_df,  fehler_excel_
                 process_folder = os.path.join(current_directory, '..', 'Werk', 'Prozesse', process)
                 file_path = os.path.join(process_folder, f'{process}_DS.csv')
                 variant = 'Ausschusssquote'
-                write_kpi(file_path, variant,ausschusssquote)
+                write_kpi(file_path, variant, ausschusssquote)
 
                 return ausschusssquote
 
