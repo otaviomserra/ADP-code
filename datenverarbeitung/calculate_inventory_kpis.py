@@ -65,7 +65,7 @@ def calculate_Durchschnittliche_Wartezeit(df_Hist_lane):
         media_hh_mm_ss = f"{horas_total:02}:{minutos:02}:{segundos:02}"
         media_diferencas_tempo_2 = diferencas_tempo.mean().total_seconds() / (60 * 60 * 24)
     except:
-        media_diferencas_tempo = 0
+        media_diferencas_tempo_2 = 0
     
     return media_diferencas_tempo_2 # days
 
