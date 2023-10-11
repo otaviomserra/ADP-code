@@ -80,65 +80,67 @@ def calculate_Lagerumschlagsrate(df_Hist_lane,lane_capacity):
     # in other words the time from the exit of one until it's substituted 
     # It can be opitimized by taken this missing time and by reordering the groups to get better average (dropping outliers groups or boxes)
     # If alterations are made here, need to change Reichweite
-
-    # Crie uma cópia do DataFrame original para não fazer alterações nele
-    df_copy = df_Hist_lane.copy()
-
-    # Filtrar os registros em que 'Besetzt' é False
-    df_copy = df_copy[df_copy['Besetzt'] == False]
-    
-    # Ordenar os registros por 'Date_in' e 'Timestamp_in'
-    df_copy['DateTime_in'] = pd.to_datetime(df_copy['Date_in'] + ' ' + df_copy['Timestamp_in'])
-    df_copy.sort_values(by=['DateTime_in'], inplace=True)
-
-    # Calcular a diferença de tempo entre entrada e saída para cada par de entrada e saída
-    df_copy['DateTime_out'] = pd.to_datetime(df_copy['Date_out'] + ' ' + df_copy['Timestamp_out'])
-    df_copy['Tempo_de_Troca'] = (df_copy['DateTime_out'] - df_copy['DateTime_in']).dt.total_seconds()
-
-    # Definir a capacidade máxima da estante
-    capacidade = lane_capacity  # Substitua pelo valor correto
-    # Calcular o tempo médio de troca para conjuntos completos dentro do último ano
-    um_ano_antes = datetime.now() - timedelta(days=365)
-
-    df_last_year = df_copy[df_copy['DateTime_in'] >= um_ano_antes]
-    df_last_year = df_last_year.reset_index(drop=True)
-
-    # Identificar quando um conjunto completo de peças foi trocado
-    df_last_year['Conjunto'] = df_last_year.groupby(df_last_year.index // capacidade)['DateTime_in'].cumcount()
-
-    # Calcular o número de conjuntos completos
-    conjuntos_completos = df_last_year.shape[0] // capacidade
-    # Inicializar uma lista para armazenar as somas dos tempos de troca por conjunto
-    somas_por_conjunto = []
-    # Verificar se há dados suficientes para calcular o tempo médio
     try:
-        if conjuntos_completos >= 2:
-            # Identificar quando um conjunto completo de peças foi trocado
-            df_last_year['Conjunto'] = df_last_year.index // capacidade
+        # Crie uma cópia do DataFrame original para não fazer alterações nele
+        df_copy = df_Hist_lane.copy()
 
-            # Calcular a soma dos tempos de troca por conjunto
-            soma_por_conjunto = df_last_year.groupby('Conjunto')['Tempo_de_Troca'].sum()
+        # Filtrar os registros em que 'Besetzt' é False
+        df_copy = df_copy[df_copy['Besetzt'] == False]
+        
+        # Ordenar os registros por 'Date_in' e 'Timestamp_in'
+        df_copy['DateTime_in'] = pd.to_datetime(df_copy['Date_in'] + ' ' + df_copy['Timestamp_in'])
+        df_copy.sort_values(by=['DateTime_in'], inplace=True)
 
-            # Adicionar as somas dos tempos de troca por conjunto à lista
-            somas_por_conjunto.extend(soma_por_conjunto)
+        # Calcular a diferença de tempo entre entrada e saída para cada par de entrada e saída
+        df_copy['DateTime_out'] = pd.to_datetime(df_copy['Date_out'] + ' ' + df_copy['Timestamp_out'])
+        df_copy['Tempo_de_Troca'] = (df_copy['DateTime_out'] - df_copy['DateTime_in']).dt.total_seconds()
 
-            # Calcular a média das somas dos tempos de troca por conjunto
-            tempo_medio  = sum(somas_por_conjunto) / len(somas_por_conjunto)
+        # Definir a capacidade máxima da estante
+        capacidade = lane_capacity  # Substitua pelo valor correto
+        # Calcular o tempo médio de troca para conjuntos completos dentro do último ano
+        um_ano_antes = datetime.now() - timedelta(days=365)
 
+        df_last_year = df_copy[df_copy['DateTime_in'] >= um_ano_antes]
+        df_last_year = df_last_year.reset_index(drop=True)
+
+        # Identificar quando um conjunto completo de peças foi trocado
+        df_last_year['Conjunto'] = df_last_year.groupby(df_last_year.index // capacidade)['DateTime_in'].cumcount()
+
+        # Calcular o número de conjuntos completos
+        conjuntos_completos = df_last_year.shape[0] // capacidade
+        # Inicializar uma lista para armazenar as somas dos tempos de troca por conjunto
+        somas_por_conjunto = []
+        # Verificar se há dados suficientes para calcular o tempo médio
+        try:
+            if conjuntos_completos >= 2:
+                # Identificar quando um conjunto completo de peças foi trocado
+                df_last_year['Conjunto'] = df_last_year.index // capacidade
+
+                # Calcular a soma dos tempos de troca por conjunto
+                soma_por_conjunto = df_last_year.groupby('Conjunto')['Tempo_de_Troca'].sum()
+
+                # Adicionar as somas dos tempos de troca por conjunto à lista
+                somas_por_conjunto.extend(soma_por_conjunto)
+
+                # Calcular a média das somas dos tempos de troca por conjunto
+                tempo_medio  = sum(somas_por_conjunto) / len(somas_por_conjunto)
+
+                #print("Tempo médio de troca para o estoque completo (último ano):", tempo_medio)
+                #print('Há mais de dois conjuntos')
+            else:
+                # Caso não haja dados suficientes, estime o tempo com base na última troca
+                ultima_troca = df_last_year['Tempo_de_Troca'].tail(1).values[0]
+                tempo_medio = ultima_troca * capacidade
+                #print("Estimativa de tempo de troca com base na última peça:", tempo_medio)
+                #print("Não houve dados o suficiente")
+        except:
+            tempo_medio = 0
             #print("Tempo médio de troca para o estoque completo (último ano):", tempo_medio)
-            #print('Há mais de dois conjuntos')
-        else:
-            # Caso não haja dados suficientes, estime o tempo com base na última troca
-            ultima_troca = df_last_year['Tempo_de_Troca'].tail(1).values[0]
-            tempo_medio = ultima_troca * capacidade
-            #print("Estimativa de tempo de troca com base na última peça:", tempo_medio)
-            #print("Não houve dados o suficiente")
+
+        # Converter de segundos para dias
+        tempo_medio = tempo_medio/ (60 * 60 * 24)
     except:
         tempo_medio = 0
-        #print("Tempo médio de troca para o estoque completo (último ano):", tempo_medio)
-
-    # Converter de segundos para dias
-    tempo_medio = tempo_medio/ (60 * 60 * 24)
 
     return tempo_medio # days
 
