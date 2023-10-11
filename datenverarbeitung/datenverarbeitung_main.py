@@ -250,7 +250,7 @@ def generate_other_processes(process, newrows_df):
 
 class ErrorFileHandler(FileSystemEventHandler):
     def __init__(self):
-        super().__init__(self)
+        super().__init__()
         self.last_event_time = None
         self.min_time_interval = 1
 
@@ -377,7 +377,7 @@ if __name__ == "__main__":
     observer = Observer()
     observer.schedule(event_handler, path=os.path.dirname(log_filename))
     observer.schedule(excel_event_handler, path=os.path.dirname(logger_path), recursive=True)
-    observer.schedule(error_handler, path=os.path.dirname(process_excel_path), recursive=True)  # Fehlermeldung
+    # observer.schedule(error_handler, path=os.path.dirname(process_excel_path), recursive=True)  # Fehlermeldung
     observer.start()
     program_lock = Lock()
 
