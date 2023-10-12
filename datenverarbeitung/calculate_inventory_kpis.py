@@ -6,6 +6,7 @@ import time
 import datetime
 from datetime import datetime, timedelta
 
+
 def calculate_Bestandsmenge(df_DB_lane, box_capacity):
     # Amount of parts currently on the lane
     condicao = df_DB_lane['Besetzt'] == True
@@ -13,15 +14,18 @@ def calculate_Bestandsmenge(df_DB_lane, box_capacity):
     Bestandsmenge = len(linhas_a_atualizar) * box_capacity 
     return Bestandsmenge # number of parts
 
+
 def calculate_Kapazitaet(lane_capacity, box_capacity):
     # Total amount of parts that fit into the lane
     kapazitaet = lane_capacity * box_capacity
-    return kapazitaet # number of parts
+    return kapazitaet  # number of parts
+
 
 def calculate_Lagernutzungsgrad(bestandsmenge, kapazitaet):
     # Percentage of how full is the lane 
     lagernutzungsgrad = bestandsmenge/kapazitaet * 100
-    return lagernutzungsgrad # %
+    return lagernutzungsgrad  # %
+
 
 def calculate_Bestandsgenauigkeit():
     # Precision of the model in how many parts or boxes are right when compared to the real inventory
@@ -34,7 +38,7 @@ def calculate_Bestandsgenauigkeit():
     # A way to implement this would be either trying to hijack the information of benny's code before it gets sent to Neoception or
     # to create a request list that would avaliate if the box were inserted into the right lane and, if not, show it that's wrong and
     # also create a system that would be able to deal with wrong informations so that those are not considered in metrics
-    return 1 * 100 # %
+    return 1 * 100  # %
 
 def calculate_Durchschnittliche_Wartezeit(df_Hist_lane):
     # Average time for the same box enter and exit the lane
@@ -69,16 +73,19 @@ def calculate_Durchschnittliche_Wartezeit(df_Hist_lane):
     
     return media_diferencas_tempo_2 # days
 
+
 def calculate_Lagerumschlagsrate(df_Hist_lane,lane_capacity):
     # How often a inventory replaces it's inventory
     # Calculate from Historic log
-    # The definition itself from the group is somewhat wrong, but the Dashboard wanted as the time needed to a complete inventory to be changes
+    # The definition itself from the group is somewhat wrong, but the Dashboard wanted
+    # as the time needed to a complete inventory to be changes
     # This code gets how long it took for a box to enter and exit and make groups according to the capacity of the lane
     # By doing that it sums how long it took for the group to enter and exit the lane 
     # and average the time between the groups
     # so it does not take account for the time in between a new product entering
     # in other words the time from the exit of one until it's substituted 
-    # It can be opitimized by taken this missing time and by reordering the groups to get better average (dropping outliers groups or boxes)
+    # It can be opitimized by taken this missing time and by reordering the groups
+    # to get better average (dropping outliers groups or boxes)
     # If alterations are made here, need to change Reichweite
     try:
         # Crie uma cópia do DataFrame original para não fazer alterações nele
@@ -125,32 +132,35 @@ def calculate_Lagerumschlagsrate(df_Hist_lane,lane_capacity):
                 # Calcular a média das somas dos tempos de troca por conjunto
                 tempo_medio  = sum(somas_por_conjunto) / len(somas_por_conjunto)
 
-                #print("Tempo médio de troca para o estoque completo (último ano):", tempo_medio)
-                #print('Há mais de dois conjuntos')
+                # print("Tempo médio de troca para o estoque completo (último ano):", tempo_medio)
+                # print('Há mais de dois conjuntos')
             else:
                 # Caso não haja dados suficientes, estime o tempo com base na última troca
                 ultima_troca = df_last_year['Tempo_de_Troca'].tail(1).values[0]
                 tempo_medio = ultima_troca * capacidade
-                #print("Estimativa de tempo de troca com base na última peça:", tempo_medio)
-                #print("Não houve dados o suficiente")
+                # print("Estimativa de tempo de troca com base na última peça:", tempo_medio)
+                # print("Não houve dados o suficiente")
         except:
             tempo_medio = 0
-            #print("Tempo médio de troca para o estoque completo (último ano):", tempo_medio)
+            # print("Tempo médio de troca para o estoque completo (último ano):", tempo_medio)
 
         # Converter de segundos para dias
-        tempo_medio = tempo_medio/ (60 * 60 * 24)
+        tempo_medio = tempo_medio/(60 * 60 * 24)
     except:
         tempo_medio = 0
 
-    return tempo_medio # days
+    return tempo_medio  # days
+
 
 def calculate_Reichweite(Lagerumschlagsrate, Lagernutzungsgrad):
     # How long the current inventory is expected to last
-    # Calculate from how fill is the lane right now and multiplying by the average time that the lane needed to cast all it's content
+    # Calculate from how fill is the lane right now and multiplying by the average time
+    # that the lane needed to cast all it's content
     Reichweite = (Lagernutzungsgrad/100)*Lagerumschlagsrate
-    return Reichweite # days
+    return Reichweite  # days
 
-def calculate_Wiederbeschaffungszeit(df_db_werk,lane_path, lane):
+
+def calculate_Wiederbeschaffungszeit(df_db_werk, lane_path, lane):
     # Necessary time to replenish the lane stock based on the previous proccesess
     # Calculate from werk databank
 

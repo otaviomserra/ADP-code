@@ -205,7 +205,7 @@ class Lane:
         print(self.werk_DB)
         df_DB_lane.to_csv(self.lane_DB, index=False)
         df_DB_werk.to_csv(self.werk_DB, index=False)
-        df_Hist_lane.to_csv(self.hist_csv,index = False)
+        df_Hist_lane.to_csv(self.hist_csv, index=False)
 
     def pick_event(self):
         df_DB_lane, df_DB_werk, df_Hist_lane = self.read_or_create()
@@ -229,7 +229,7 @@ class Lane:
             if not empty_column.empty:  # Adding date and time out and changing the Besetz to false
                 df_DB_werk.loc[df_DB_werk['ID'] == ID, empty_column[0]] = self.date  # First slot with None as value
                 df_DB_werk.loc[df_DB_werk['ID'] == ID, empty_column[1]] = self.timestamp  # Second slot with None as value
-            df_DB_werk.loc[df_DB_werk['ID'] == ID, df_DB_werk.columns[1]] = False  #Besetz
+            df_DB_werk.loc[df_DB_werk['ID'] == ID, df_DB_werk.columns[1]] = False  # Besetz
         Ending_lanes = ['S001.M006.01.01', 'S001.M006.01.02', 'S001.M006.01.03', 'S001.M006.01.04',
                         'S001.M006.01.05', 'S001.M006.02.01', 'S001.M006.02.02', 'S001.M006.02.03',
                         'S001.M006.02.04', 'S001.M006.02.05']
@@ -238,14 +238,14 @@ class Lane:
             df_DB_lane = df_DB_lane[df_DB_lane['ID'] != ID]
         df_DB_lane.to_csv(self.lane_DB, index=False)
         df_DB_werk.to_csv(self.werk_DB, index=False)
-        df_Hist_lane.to_csv(self.hist_csv,index = False)
+        df_Hist_lane.to_csv(self.hist_csv, index=False)
 
     def save_dashboard_format(self):
         # Read csv files from Werk, Inventar and Lane
-        df_W = pd.read_csv(self.werk_path,encoding = "cp1252")
-        df_I = pd.read_csv(self.inventar_csv,encoding = "cp1252")
-        df_L = pd.read_csv(self.lane_csv,encoding = "cp1252")
-        df_DB_lane, df_DB_werk,df_Hist_lane = self.read_or_create()
+        df_W = pd.read_csv(self.werk_path, encoding="cp1252")
+        df_I = pd.read_csv(self.inventar_csv, encoding="cp1252")
+        df_L = pd.read_csv(self.lane_csv, encoding="cp1252")
+        df_DB_lane, df_DB_werk, df_Hist_lane = self.read_or_create()
 
         # Updating the csv from the lane first
         #
@@ -266,24 +266,26 @@ class Lane:
         df_DS['Time In'] = '-'
         df_DS['Waiting Time'] = '-'
         df_DS['Bestandsmenge'] = '-'
-        df_DS['Kapazität'] = '-'
-        df_DS['Losgröße'] = '-'
+        df_DS['Kapazitaet'] = '-'
+        df_DS['Losgroesse'] = '-'
         df_DS['Lead Time'] = '-'
 
         condicao = df_DB_lane['Besetzt'] == True
         linhas_a_atualizar = condicao.index[condicao].tolist()  # Encontre os índices das linhas com Besetzt True
         # Substitua os valores de 'Name' e 'Age' em df1 nas linhas correspondentes
         for linha in linhas_a_atualizar:
+            print("entrou aqui")
             df_DS.loc[linha, 'Besetzt'] = 1
-            df_DS.loc[linha, 'Time In'] = df_DB_lane.loc[linha,'Timestamp']
-            df_DS.loc[linha, 'Waiting Time'] = df_DB_lane.loc[linha,'Date']
+            df_DS.loc[linha, 'Time In'] = df_DB_lane.loc[linha, 'Timestamp']
+            df_DS.loc[linha, 'Waiting Time'] = df_DB_lane.loc[linha, 'Date']
             # df_DS.loc[linha, 'Bestandmenge'] = len(linhas_a_atualizar) 
             df_DS.loc[linha, 'Bestandsmenge'] = self.box_capacity
-            # df_DS.loc[linha, 'Kapazität'] = self.capacity
-            df_DS.loc[linha, 'Kapazität'] = self.box_capacity
-            df_DS.loc[linha, 'Losgröße'] = self.box_capacity
+            # df_DS.loc[linha, 'Kapazitaet'] = self.capacity
+            df_DS.loc[linha, 'Kapazitaet'] = self.box_capacity
+            df_DS.loc[linha, 'Losgroesse'] = self.box_capacity
             # Lead time for each box not needed, but gonna keep it here for purpose of not ruining the csv format
-            # df_DS.loc[linha, 'Lead Time'] = 
+            # df_DS.loc[linha, 'Lead Time'] =
+            print(df_DS)
              
         # Updating the csv from the KPIs
         # 
@@ -293,11 +295,11 @@ class Lane:
         lagernutzungsgrad = calculate_Lagernutzungsgrad(bestandsmenge, kapazitaet)
         bestandsgenauigkeit = calculate_Bestandsgenauigkeit()
         durchschnittliche_wartezeit = calculate_Durchschnittliche_Wartezeit(df_Hist_lane)
-        lagerumschlagsrate = calculate_Lagerumschlagsrate(df_Hist_lane,self.capacity)
+        lagerumschlagsrate = calculate_Lagerumschlagsrate(df_Hist_lane, self.capacity)
         reichweite = calculate_Reichweite(lagerumschlagsrate, lagernutzungsgrad)
-        wiederbeschaffungszeit = calculate_Wiederbeschaffungszeit(df_DB_werk,self.lane_path, self.lane_name)
+        wiederbeschaffungszeit = calculate_Wiederbeschaffungszeit(df_DB_werk, self.lane_path, self.lane_name)
         df_kpi['Bestandsmenge'] = [bestandsmenge]
-        df_kpi['Kapazität'] = [kapazitaet]
+        df_kpi['Kapazitaet'] = [kapazitaet]
         df_kpi['Lagernutzungsgrad'] = [lagernutzungsgrad]
         df_kpi['Bestandsgenauigkeit'] = [bestandsgenauigkeit]
         df_kpi['Durchschnittliche Wartezeit'] = [durchschnittliche_wartezeit]
@@ -317,16 +319,23 @@ class Lane:
         arquivo_saida_lane = self.lane_csv
 
         try:
+            print("entrou para salvar")
             # Abrir o primeiro arquivo CSV e ler seu conteúdo
             with open(path_kpi, "r") as file1:
                 conteudo1 = file1.read()
+
+            print(conteudo1)
 
             # Abrir o segundo arquivo CSV e ler seu conteúdo
             with open(path_DS, "r") as file2:
                 conteudo2 = file2.read()
 
+            print(conteudo2)
+
             # Combinar o conteúdo dos dois arquivos
-            conteudo_combinado = conteudo1 + "\n" + conteudo2
+            conteudo_combinado = conteudo1 + conteudo2
+
+            print(conteudo_combinado)
 
             # Escrever o conteúdo combinado em um novo arquivo CSV
             with open(arquivo_saida_lane, "w") as output_file:
@@ -343,14 +352,14 @@ class Lane:
 
         # Updating the Inventar KPIs
         if not os.path.exists(self.inventar_kpi_df_db):
-            df_inventar_kpi_db = pd.DataFrame(columns=['Lane', 'Bestandsmenge', 'Kapazität', 'Lagernutzungsgrad', 'Bestandsgenauigkeit', 'Durchschnittliche Wartezeit', 'Lagerumschlagsrate', 'Reichweite', 'Wiederbeschaffungszeit'])
+            df_inventar_kpi_db = pd.DataFrame(columns=['Lane', 'Bestandsmenge', 'Kapazitaet', 'Lagernutzungsgrad', 'Bestandsgenauigkeit', 'Durchschnittliche Wartezeit', 'Lagerumschlagsrate', 'Reichweite', 'Wiederbeschaffungszeit'])
         else:
             df_inventar_kpi_db = pd.read_csv(self.inventar_kpi_df_db)
         
         data_inventar = {
             'Lane': [self.lane_name],
             'Bestandsmenge': [bestandsmenge],
-            'Kapazität': [kapazitaet],
+            'Kapazitaet': [kapazitaet],
             'Lagernutzungsgrad': [lagernutzungsgrad],
             'Bestandsgenauigkeit': [bestandsgenauigkeit],
             'Durchschnittliche Wartezeit': [durchschnittliche_wartezeit],
@@ -367,7 +376,7 @@ class Lane:
         somas = df_inventar_kpi_db.drop(columns=['Lane']).sum()
         medias = df_inventar_kpi_db.drop(columns=['Lane']).mean()
         df_I.loc[0, 'Bestandsmenge'] = somas['Bestandsmenge']
-        df_I.loc[0,'Kapazität'] = somas['Kapazität']
+        df_I.loc[0,'Kapazitaet'] = somas['Kapazitaet']
         df_I.loc[0,'Lagernutzungsgrad'] = medias['Lagernutzungsgrad']
         df_I.loc[0,'Bestandsgenauigkeit'] = medias['Bestandsgenauigkeit']
         df_I.loc[0,'Durchschnittliche Wartezeit'] = medias['Durchschnittliche Wartezeit']
@@ -376,13 +385,13 @@ class Lane:
         df_I.loc[0,'Wiederbeschaffungszeit'] = somas['Wiederbeschaffungszeit']
 
         # Substitua os três primeiros valores das linhas "Lager_Fertigung" e "SM_Fertigung"
-        df_W.loc[df_W['Werk'] == f'{self.inventar_name}', ['Schichtlänge', 'Pausen', 'SF Besprechung']] = [medias['Lagernutzungsgrad'], medias['Bestandsgenauigkeit'], medias['Durchschnittliche Wartezeit']]
+        df_W.loc[df_W['Werk'] == f'{self.inventar_name}', ['Schichtlaenge', 'Pausen', 'SF Besprechung']] = [medias['Lagernutzungsgrad'], medias['Bestandsgenauigkeit'], medias['Durchschnittliche Wartezeit']]
 
 
         # Saving files back
-        df_W.to_csv(self.werk_path, index=False,encoding = "cp1252")
-        df_I.to_csv(self.inventar_csv, index=False,encoding = "cp1252")
-        df_L.to_csv(self.lane_csv, index=False,encoding = "cp1252")
+        df_W.to_csv(self.werk_path, index=False, encoding="cp1252")
+        df_I.to_csv(self.inventar_csv, index=False, encoding="cp1252")
+        # df_L.to_csv(self.lane_csv, index=False,encoding = "cp1252")
 
 
 

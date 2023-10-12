@@ -1,6 +1,6 @@
-Bestandsmenge,Kapazität,Lagernutzungsgrad,Bestandsgenauigkeit,Durchschnittliche Wartezeit,Lagerumschlagsrate,Reichweite,Wiederbeschaffungszeit
+Bestandsmenge,Kapazitaet,Lagernutzungsgrad,Bestandsgenauigkeit,Durchschnittliche Wartezeit,Lagerumschlagsrate,Reichweite,Wiederbeschaffungszeit
 3,3,100,100,0.409675925925926,0.824108796296296,0.248252314814815,0.411030092592593
-LK2,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazität,Losgröße,Lead Time
+LK2,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
 Box 1,1,0.649872685185185,0.922141203703704,6,7,7,0.025787037037037
 Box 2,1,0.756585648148148,1.34143518518519E-02,-,-,-,-
 Box 3,1,0.193159722222222,0.934479166666667,-,-,-,-
