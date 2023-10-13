@@ -6,8 +6,15 @@ import time
 import os.path
 import csv
 from datetime import datetime
+import pythoncom
+import win32com
 
-process_excel_path = "Digital_Button.xlsm"
+# I don't even know what this is, but the app crashes without it
+xl = win32com.client.Dispatch("Excel.Application", pythoncom.CoInitialize())
+
+# Excel file to be monitored
+current_dir = os.path.dirname(__file__)
+process_excel_path = os.path.join(current_dir, "Digital_Button.xlsm")
 # Open a process to monitor the excel sheets
 app = xw.App(visible=False)
 workbook = app.books.open(process_excel_path)
@@ -85,7 +92,7 @@ def generate_process_log(process, process_to_append):
 
 class ErrorFileHandler(FileSystemEventHandler):
     def __init__(self):
-        super().__init__(self)
+        super().__init__()
         self.last_event_time = None
         self.min_time_interval = 1
 
@@ -138,6 +145,7 @@ observer = Observer()
 error_handler = ErrorFileHandler()
 observer.schedule(error_handler, path=os.path.dirname(process_excel_path), recursive=True)
 observer.start()
+print("bibo")
 
 try:
     while True:
