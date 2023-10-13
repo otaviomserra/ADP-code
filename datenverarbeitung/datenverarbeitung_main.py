@@ -211,7 +211,8 @@ class ExcelFileHandler(FileSystemEventHandler):
 ############################################################################
 
 # READ EVERY SHEET IN THE FILE AT LEAST ONCE
-process_excel_path = "Digital_Button.xlsm"
+current_dir = os.path.dirname(__file__)
+process_excel_path = os.path.join(current_dir, "Digital_Button.xlsm")
 # Sheets for error logs
 df_fertigung = pd.read_excel(process_excel_path, sheet_name='LogData(Fertigung)')
 df_montage = pd.read_excel(process_excel_path, sheet_name='LogData(Montage)')
@@ -377,7 +378,7 @@ if __name__ == "__main__":
     observer = Observer()
     observer.schedule(event_handler, path=os.path.dirname(log_filename))
     observer.schedule(excel_event_handler, path=os.path.dirname(logger_path), recursive=True)
-    # observer.schedule(error_handler, path=os.path.dirname(process_excel_path), recursive=True)  # Fehlermeldung
+    observer.schedule(error_handler, path=os.path.dirname(process_excel_path), recursive=True)  # Fehlermeldung
     observer.start()
     program_lock = Lock()
 
