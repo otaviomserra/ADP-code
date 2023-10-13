@@ -1,19 +1,19 @@
-Werk,header,header.1,…,Schichtl�nge,Pausen,SF Besprechung
-Werk,value,value,…,,,
-Prozesse,header,header,…,,,
-prozess1,value,value,…,,,
-prozess2,value,value,…,,,
-prozess3,value,value,…,,,
-prozess4,value,value,…,,,
-prozess5,value,value,…,,,
-prozess6,value,value,…,,,
-Inventories,LNG,BGK,Wartezeit,,,
-smSägen,0,0,0,,,
-smDrehen,0,0,0,,,
-smFräsen,0,0,0,,,
-smMessen,0,0,0,,,
-Lager_Fertigung,100,93,"0,154606481",,,
-SM_Fertigung,82,100,"0,536238426",,,
-Zentral_Lager,67,100,"0,686412037",,,
-SM_Lieferant,69,100,"0,409675926",,,
-SM_Montage,81,93,"0,917951389",,,
+Werk,Schichtlaenge,Pausen,SF Besprechung,Stueckzahl,Kundentakt,Ausfallzeit,Ausbringung(montage),Produktivitaet,Fehlproduktionsquote,VA Time,NVA Time,Durchlaufzeit,VA Ratio,Wait1,Process1,Wait2,Process2,Wait3,Process3,Wait4,Process4,Produktionstakt
+Werk,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
+Prozesse,Cycle Time,Process Time,OEE,Ausbringung,Anzahl Typ,WIP,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+Saegen,1,2,3,4,5,1,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+Drehen,6,7,8,9,10,0,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+Fraesen,11,12,13,14,15,1,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+Waschen,16,17,18,19,20,0,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+Messen,21,22,23,24,25,1,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+Montage,26,27,28,29,30,0,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+Inventories,LNG,BGK,Wartezeit,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+smSaegen,0,0,0,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+smDrehen,0,0,0,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+smFraesen,0,0,0,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+SM_Messen,0,0,0,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+Lager_Fertigung,100,93,0.154606,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+SM_Fertigung,82,100,0.536238,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+Zentral_Lager,67,100,0.686412,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+SM_Lieferant,69,100,0.409676,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+SM_Montage,81,93,0.917951,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
