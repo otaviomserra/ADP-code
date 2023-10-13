@@ -337,7 +337,7 @@ def calculate_productivity(process, fehler_excel_path):
     process_folder = os.path.join(current_directory, '..', 'Werk', 'Prozesse', process)
     file_path = os.path.join(process_folder, f'{process}_DS.csv')
     variant = 'Produktivitaet'
-    write_kpi(file_path, variant,productivity)
+    write_kpi(file_path, variant, productivity)
 
     return productivity
 
@@ -430,7 +430,7 @@ def calculate_process_kpis(process, variant, timestamp):
             header = ["calculated_at", "fehlprodukionsquote", "qualitaetsgrad", "ausschussquote",
                       "nacharbeitsquote", "average_cycle_time", "average_leading_time",
                       "production_downtime", "unscheduled_downtime", "leistung", "work_in_process",
-                      "oee","oeestern", "oee_av", "oee_pe", "oee_qa", "productivity", "losgroesse"]
+                      "oee", "oeestern", "oee_av", "oee_pe", "oee_qa", "productivity", "losgroesse"]
             csv_writer.writerow(header)
 
     with open(hist_log_path, 'a', newline='') as csvfile:

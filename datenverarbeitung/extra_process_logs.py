@@ -17,12 +17,14 @@ current_dir = os.path.dirname(__file__)
 process_excel_path = os.path.join(current_dir, "Digital_Button.xlsm")
 # Open a process to monitor the excel sheets
 app = xw.App(visible=False)
-workbook = app.books.open(process_excel_path)
 
 # Track the initial state of each sheet
 sheet_states = {}
+workbook = app.books.open(process_excel_path, read_only=True)
 for sheet in workbook.sheets:
     sheet_states[sheet.name] = sheet.used_range.address
+workbook.close()
+print(sheet_states)
 
 
 def reformat_data(new_instance_df):
@@ -33,8 +35,8 @@ def reformat_data(new_instance_df):
     date = input_date.strftime("%d.%m.%Y")
 
     # Obtain start and end times
-    pick_time = new_instance_df["Start"].values[0]
-    put_time = new_instance_df["End"].values[0]
+    pick_time = str(new_instance_df["Start"].values[0])
+    put_time = str(new_instance_df["End"].values[0])
 
     # Origin and target lanes are completely irrelevant for this
     origin_lane = ""
@@ -44,7 +46,7 @@ def reformat_data(new_instance_df):
     time_A = datetime.strptime(pick_time, "%H:%M:%S")
     time_B = datetime.strptime(put_time, "%H:%M:%S")
 
-    time_difference = time_A - time_B
+    time_difference = time_B - time_A
 
     hours, remainder = divmod(time_difference.total_seconds(), 3600)
     minutes, seconds = divmod(remainder, 60)
@@ -90,6 +92,7 @@ def generate_process_log(process, process_to_append):
     return 0
 
 
+"""
 class ErrorFileHandler(FileSystemEventHandler):
     def __init__(self):
         super().__init__()
@@ -138,8 +141,53 @@ class ErrorFileHandler(FileSystemEventHandler):
 
                         else:
                             pass
+"""
+
+try:
+    while True:
+        workbook = app.books.open(process_excel_path, read_only=True)
+        for sheet in workbook.sheets:
+            current_state = sheet.used_range.address
+            if current_state != sheet_states[sheet.name]:
+                # The sheet has changed
+                print(f"Change detected in sheet '{sheet.name}'")
+                # Add your logic to handle the change here
+                # Generating process logs
+                if sheet.name in ["LogData(Saegen)", "LogData(Drehen)", "LogData(Waschen)"]:
+                    print("Found the sheet")
+                    # Extract process name
+                    prefix = "LogData("
+                    suffix = ")"
+                    process_name = sheet.name[len(prefix):-len(suffix)]
+
+                    # Extract the new line and use it to generate the process logs
+                    process_df = pd.read_excel(process_excel_path, sheet_name=sheet.name)
+                    new_row = process_df.tail(1)
+
+                    # Use the new row to generate process logs
+                    process_to_append = reformat_data(new_row)
+                    generate_process_log(process_name, process_to_append)
+
+                    # Update the sheet state
+                    sheet_states[sheet.name] = current_state
+
+                elif sheet.name in ["LogData(Fertigung)", "LogData(Montage)"]:
+                    # This can also be used to implement error logs. Not sure if I'll do it here
+                    # or if I'll continue to do it the way I did before.
+                    pass
+
+                else:
+                    pass
+        workbook.close()
+        time.sleep(30)
+
+except KeyboardInterrupt:
+    pass
+finally:
+    app.quit()
 
 
+"""
 # Create an observer to monitor file changes
 observer = Observer()
 error_handler = ErrorFileHandler()
@@ -153,3 +201,4 @@ try:
 except KeyboardInterrupt:
     observer.stop()
 observer.join()
+"""
