@@ -277,7 +277,11 @@ class Lane:
             print("entrou aqui")
             df_DS.loc[linha, 'Besetzt'] = 1
             df_DS.loc[linha, 'Time In'] = df_DB_lane.loc[linha, 'Timestamp']
-            df_DS.loc[linha, 'Waiting Time'] = df_DB_lane.loc[linha, 'Date']
+            # Parse the input date string
+            input_date = datetime.strptime(df_DB_lane.loc[linha, 'Date'], "%d/%b/%Y")
+            # Format the date into the "DD.MM.YYYY" format
+            output_date_string = input_date.strftime("%d.%m.%Y")
+            df_DS.loc[linha, 'Waiting Time'] = output_date_string
             # df_DS.loc[linha, 'Bestandmenge'] = len(linhas_a_atualizar) 
             df_DS.loc[linha, 'Bestandsmenge'] = self.box_capacity
             # df_DS.loc[linha, 'Kapazitaet'] = self.capacity

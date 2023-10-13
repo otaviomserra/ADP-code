@@ -11,7 +11,7 @@ from InventarDataDistribution import *
 from process_data import *
 from datetime import datetime
 import numpy as np
-
+import pytz
 
 class LogToCSVConverter:
     def __init__(self, log_filename, csv_filename):
@@ -313,10 +313,25 @@ def read_kafka_lane_time_event(kafka_path):
         ######## MODIFICAR APÓS O CHICO
         date = last_row.iloc[0]
         timestamp = last_row.iloc[1]
+        # Defina os fusos horários
+        utc_timezone = pytz.timezone('UTC')
+        berlin_timezone = pytz.timezone('Europe/Berlin')
+
+        # Combine a coluna 'Date' e 'Hour' em uma coluna de data e hora
+        datetime_str = date + ' ' + timestamp
+        datetime_obj = datetime.strptime(datetime_str, '%d/%b/%Y %H:%M:%S')
+        datetime_utc = utc_timezone.localize(datetime_obj)
+
+        # Converta para o fuso horário de Berlim e salve em variáveis
+        datetime_berlin = datetime_utc.astimezone(berlin_timezone)
+
+        # Separe a data e o horário e salve em variáveis
+        date_berlin = datetime_berlin.strftime('%d/%b/%Y')
+        hour_berlin = datetime_berlin.strftime('%H:%M:%S')
         event_type = last_row.iloc[6]
         lane = last_row.iloc[-1]
 
-        return date, lane, timestamp, event_type
+        return date_berlin, lane, hour_berlin, event_type
     except FileNotFoundError:
         return None  # Handle file not found exception
     except Exception as e:
