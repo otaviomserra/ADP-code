@@ -306,7 +306,7 @@ class Lane:
         durchschnittliche_wartezeit = calculate_Durchschnittliche_Wartezeit(df_Hist_lane)
         lagerumschlagsrate = calculate_Lagerumschlagsrate(df_Hist_lane, self.capacity)
         reichweite = calculate_Reichweite(lagerumschlagsrate, lagernutzungsgrad)
-        wiederbeschaffungszeit = calculate_Wiederbeschaffungszeit(df_DB_werk, self.lane_path, self.lane_name)
+        wiederbeschaffungszeit = calculate_Wiederbeschaffungszeit(df_DB_werk, self.lane_path, self.lane_address)
         df_kpi['Bestandsmenge'] = [bestandsmenge]
         df_kpi['Kapazitaet'] = [kapazitaet]
         df_kpi['Lagernutzungsgrad'] = [lagernutzungsgrad]

@@ -51,7 +51,7 @@ def calculate_Durchschnittliche_Wartezeit(df_Hist_lane):
         filtered_df['Timestamp_out'] = pd.to_datetime(filtered_df['Date_out'] + ' ' + filtered_df['Timestamp_out'])
         filtered_df['Diferenca_tempo'] = filtered_df['Timestamp_out'] - filtered_df['Timestamp_in']
         # Calcule a diferença de tempo onde 'Besetzt' for False
-        diferencas_tempo = filtered_df.loc[filtered_df['Besetzt'] == False, 'Timestamp_out'] - filtered_df.loc[df_Hist_lane['filtered_df'] == False, 'Timestamp_in']
+        diferencas_tempo = filtered_df['Diferenca_tempo']
         # Calcule a média das diferenças de tempo
         media_diferencas_tempo = diferencas_tempo.mean()
         # Calcule os dias, horas, minutos e segundos da média
