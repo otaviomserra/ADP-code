@@ -1,8 +1,8 @@
 Bestandsmenge,Kapazitaet,Lagernutzungsgrad,Bestandsgenauigkeit,Durchschnittliche Wartezeit,Lagerumschlagsrate,Reichweite,Wiederbeschaffungszeit
-5,5,100,100,0.77505787037037,0.535185185185185,0.2559375,0.277685185185185
+0,0,0,0,0,0,0,0
 FB2,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
-Box 1,1,13:00:00,13.10.2023,4.0,4.0,4.0,0
-Box 2,1,13:00:30,13.10.2023,4.0,4.0,4.0,0
-Box 3,1,13:01:00,13.10.2023,4.0,4.0,4.0,0
-Box 4,0,0,0,-,-,-,-
-Box 5,0,0,0,-,-,-,-
+Box 1,0,-,-,-,-,-,-
+Box 2,0,-,-,-,-,-,-
+Box 3,0,-,-,-,-,-,-
+Box 4,0,-,-,-,-,-,-
+Box 5,0,-,-,-,-,-,-

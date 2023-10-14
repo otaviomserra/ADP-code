@@ -1,10 +1,10 @@
 Bestandsmenge,Kapazitaet,Lagernutzungsgrad,Bestandsgenauigkeit,Durchschnittliche Wartezeit,Lagerumschlagsrate,Reichweite,Wiederbeschaffungszeit
-x,x,x,x,x,x,x,x
+0,0,0,0,0,0,0,0
 FS1,Besetzt,Time In,Waiting Time,-,-,-,-
-Box 1,1,x,x,-,-,-,-
-Box 2,1,x,x,-,-,-,-
-Box 3,1,x,x,-,-,-,-
+Box 1,0,0,0,-,-,-,-
+Box 2,0,0,0,-,-,-,-
+Box 3,0,0,0,-,-,-,-
 FS2,Besetzt,Time In,Waiting Time,-,-,-,-
-Box 1,1,x,x,-,-,-,-
-Box 2,1,x,x,-,-,-,-
-Box 3,1,x,x,-,-,-,-
+Box 1,0,0,0,-,-,-,-
+Box 2,0,0,0,-,-,-,-
+Box 3,0,0,0,-,-,-,-

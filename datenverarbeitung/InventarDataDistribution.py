@@ -114,7 +114,8 @@ class Lane:
         # If it's the starting point of the fabrik
         Start_lanes = ['S001.M007.01.01', 'S001.M007.01.02', 'S001.M007.01.03', 'S001.M007.01.04',
                        'S001.M007.02.01', 'S001.M007.02.02', 'S001.M007.02.03', 'S001.M007.02.04',
-                       'S001.M003.02.01', 'S001.M003.02.02', 'S001.M003.02.03']
+                       'S001.M003.02.01', 'S001.M003.02.02']
+        # , 'S001.M003.02.03'
         if self.lane_address in Start_lanes:
             print('entrou no start fabrik')
             ID = self.create_ID(df_DB_werk)
@@ -233,6 +234,7 @@ class Lane:
         Ending_lanes = ['S001.M006.01.01', 'S001.M006.01.02', 'S001.M006.01.03', 'S001.M006.01.04',
                         'S001.M006.01.05', 'S001.M006.02.01', 'S001.M006.02.02', 'S001.M006.02.03',
                         'S001.M006.02.04', 'S001.M006.02.05']
+        # FK 1 - 8 could be added
         if self.lane_address in Ending_lanes:
             # IF IT'S THE LAST LANE FROM THE PRODUCTION LINE, REMOVE THE ID FROM THE LANE
             df_DB_lane = df_DB_lane[df_DB_lane['ID'] != ID]
