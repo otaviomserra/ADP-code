@@ -87,7 +87,8 @@ class Lane:
         try:
             df_Hist_lane = pd.read_csv(self.hist_csv)
         except:
-            df_Hist_lane = pd.DataFrame(columns=["Besetzt", 'ID', 'Date_in', 'Timestamp_in','Date_out','Timestamp_out'])
+            df_Hist_lane = pd.DataFrame(columns=["Besetzt", 'ID', 'Date_in', 'Timestamp_in',
+                                                 'Date_out', 'Timestamp_out'])
         return df_DB_lane, df_DB_werk, df_Hist_lane
     
     def create_ID(self, db_werk):
@@ -114,7 +115,7 @@ class Lane:
         # If it's the starting point of the fabrik
         Start_lanes = ['S001.M007.01.01', 'S001.M007.01.02', 'S001.M007.01.03', 'S001.M007.01.04',
                        'S001.M007.02.01', 'S001.M007.02.02', 'S001.M007.02.03', 'S001.M007.02.04',
-                       'S001.M003.02.01', 'S001.M003.02.02']
+                       'S001.M003.02.01', 'S001.M003.02.02', 'S001.M003.02.03']
         # , 'S001.M003.02.03'
         if self.lane_address in Start_lanes:
             print('entrou no start fabrik')
@@ -123,7 +124,8 @@ class Lane:
             new_line = [{"Besetzt": True, 'ID': ID, 'Date': self.date, 'Timestamp': self.timestamp}]
             df_DB_lane = pd.concat([df_DB_lane, pd.DataFrame(new_line)], ignore_index=True)
             # Adding the ID to the Hist log
-            new_line_hist = [{"Besetzt": True, 'ID': ID, 'Date_in': self.date, 'Timestamp_in': self.timestamp, 'Date_out': None, 'Timestamp_out': None}]
+            new_line_hist = [{"Besetzt": True, 'ID': ID, 'Date_in': self.date, 'Timestamp_in': self.timestamp,
+                              'Date_out': None, 'Timestamp_out': None}]
             df_Hist_lane = pd.concat([df_Hist_lane, pd.DataFrame(new_line_hist)], ignore_index=True)
             # Adding the ID to the Databank from the Fabrik
             if ID in df_DB_werk['ID'].values:
@@ -150,7 +152,8 @@ class Lane:
             try:
                 for target_list in FabrikVerbindung["target_lane_address"]:
                     if self.lane_address in f'{target_list}':
-                        lane_original = FabrikVerbindung.loc[FabrikVerbindung["target_lane_address"] == target_list,"lane_address"].iloc[0]
+                        lane_original = FabrikVerbindung.loc[FabrikVerbindung["target_lane_address"] == target_list,
+                                                             "lane_address"].iloc[0]
                 inventar_original_name = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane_original,
                                                               "inventar"].iloc[0]
                 lane_original_name = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane_original,
@@ -163,7 +166,7 @@ class Lane:
                 false_besetz_line = df_original[df_original["Besetzt"] == False]
                 ID = false_besetz_line["ID"].iloc[0]
                 # Adding the ID to the Databank from the lane
-                new_line = [{"Besetzt": True, 'ID': ID, 'Date': self.date, 'Timestamp_in': self.timestamp}]
+                new_line = [{"Besetzt": True, 'ID': ID, 'Date': self.date, 'Timestamp': self.timestamp}]
                 df_DB_lane = pd.concat([df_DB_lane, pd.DataFrame(new_line)], ignore_index=True)
                 # Adding the ID to the Hist log
                 new_line_hist = [{"Besetzt": True, 'ID': ID, 'Date_in': self.date, 'Timestamp_in': self.timestamp, 'Date_out': None, 'Timestamp_out': None}]
@@ -256,7 +259,7 @@ class Lane:
 
         # Dividing the Data frame in 2
         df_kpi = df_L.iloc[:separator_idx]
-        df_DS = df_L.iloc[separator_idx +1:]  # Jump 2 lines after separator
+        df_DS = df_L.iloc[separator_idx + 1:]  # Jump 2 lines after separator
 
         # Redefining indexes
         df_DS = df_DS.reset_index(drop=True)
@@ -358,7 +361,9 @@ class Lane:
 
         # Updating the Inventar KPIs
         if not os.path.exists(self.inventar_kpi_df_db):
-            df_inventar_kpi_db = pd.DataFrame(columns=['Lane', 'Bestandsmenge', 'Kapazitaet', 'Lagernutzungsgrad', 'Bestandsgenauigkeit', 'Durchschnittliche Wartezeit', 'Lagerumschlagsrate', 'Reichweite', 'Wiederbeschaffungszeit'])
+            df_inventar_kpi_db = pd.DataFrame(columns=['Lane', 'Bestandsmenge', 'Kapazitaet', 'Lagernutzungsgrad',
+                                                       'Bestandsgenauigkeit', 'Durchschnittliche Wartezeit',
+                                                       'Lagerumschlagsrate', 'Reichweite', 'Wiederbeschaffungszeit'])
         else:
             df_inventar_kpi_db = pd.read_csv(self.inventar_kpi_df_db)
         
@@ -391,8 +396,8 @@ class Lane:
         df_I.loc[0,'Wiederbeschaffungszeit'] = somas['Wiederbeschaffungszeit']
 
         # Substitua os três primeiros valores das linhas "Lager_Fertigung" e "SM_Fertigung"
-        df_W.loc[df_W['Werk'] == f'{self.inventar_name}', ['Schichtlaenge', 'Pausen', 'SF Besprechung']] = [medias['Lagernutzungsgrad'], medias['Bestandsgenauigkeit'], medias['Durchschnittliche Wartezeit']]
-
+        df_W.loc[df_W['Werk'] == f'{self.inventar_name}', ['Schichtlaenge', 'Pausen', 'SF Besprechung']] = \
+            [medias['Lagernutzungsgrad'], medias['Bestandsgenauigkeit'], medias['Durchschnittliche Wartezeit']]
 
         # Saving files back
         df_W.to_csv(self.werk_path, index=False, encoding="cp1252")

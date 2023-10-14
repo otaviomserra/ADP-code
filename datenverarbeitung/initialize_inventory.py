@@ -45,39 +45,42 @@ def generate_kafka_messages(lane, number_of_boxes, file):
     # For each prior lane, we require a put event followed by a pick event
     for prior_lane in box_paths[lane]:
         for i in range(number_of_boxes):
-            # Write a put event into the lane
-            file.write(f'[13/Oct/2023 0{1 + box_paths[lane].index(prior_lane)}:00:0{i}] "DEBUG" "ils_event_consumer" '
-                       '"KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | '
-                       '[content={"header":{"traceId":"54b850b1-b646-4ef8-b8d6-817a3dc319bc",'
-                       '"id":"625505b6-24c8-4326-a96d-4ef5ffde3511",'
-                       '"organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b",'
-                       '"timestamp":"2023-10-13T14:23:47.355603218Z"},'
-                       '"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.01",'
-                       '"carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY",'
-                       '"carrierId":"9502b9cf-1833-a7cd-b3a6-646e05e26239","currentCount":2}}}}]')
+            # Write all put events into the lane
+            file.write('[13/Oct/2023 0' + str(1 + box_paths[lane].index(prior_lane)) + f':00:0{i}] "DEBUG" ' +
+                       '"ils_event_consumer" "KAFKA | RECEIVED | ' +
+                       '[topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | ' +
+                       '[content={"header":{"traceId":"54b850b1-b646-4ef8-b8d6-817a3dc319bc",' +
+                       '"id":"625505b6-24c8-4326-a96d-4ef5ffde3511",' +
+                       '"organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b",' +
+                       '"timestamp":"2023-10-13T14:23:47.355603218Z"},"body":{"action":{"carrier":{"laneAddress":"' +
+                       prior_lane + '","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY",' +
+                       '"carrierId":"9502b9cf-1833-a7cd-b3a6-646e05e26239","currentCount":2}}}}]"')
             file.write("\n")
-            # Write a pick event from the lane
-            file.write(f'[13/Oct/2023 0{1 + box_paths[lane].index(prior_lane)}:30:0{i}] "DEBUG" "ils_event_consumer" '
-                       '"KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | '
-                       '[content={"header":{"traceId":"54b850b1-b646-4ef8-b8d6-817a3dc319bc",'
-                       '"id":"625505b6-24c8-4326-a96d-4ef5ffde3511",'
-                       '"organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b",'
-                       '"timestamp":"2023-10-13T14:23:47.355603218Z"},'
-                       '"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.01",'
-                       '"carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY",'
-                       '"carrierId":"9502b9cf-1833-a7cd-b3a6-646e05e26239","currentCount":2}}}}]')
+
+        for i in range(number_of_boxes):
+            # Write all pick events from the lane
+            file.write('[13/Oct/2023 0' + str(1 + box_paths[lane].index(prior_lane)) + f':30:0{i}] "DEBUG" ' +
+                       '"ils_event_consumer" "KAFKA | RECEIVED | ' +
+                       '[topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | ' +
+                       '[content={"header":{"traceId":"54b850b1-b646-4ef8-b8d6-817a3dc319bc",' +
+                       '"id":"625505b6-24c8-4326-a96d-4ef5ffde3511",' +
+                       '"organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b",' +
+                       '"timestamp":"2023-10-13T14:23:47.355603218Z"},"body":{"action":{"carrier":{"laneAddress":"' +
+                       prior_lane + '","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY",' +
+                       '"carrierId":"9502b9cf-1833-a7cd-b3a6-646e05e26239","currentCount":2}}}}]"')
             file.write("\n")
-    # Conclude with a put event at the destination lane
+
+    # Conclude with all put events at the destination lane
     for i in range(number_of_boxes):
-        file.write(f'[13/Oct/2023 0{1 + path_size}:00:0{i}] "DEBUG" "ils_event_consumer" '
-                   '"KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | '
-                   '[content={"header":{"traceId":"54b850b1-b646-4ef8-b8d6-817a3dc319bc",'
-                   '"id":"625505b6-24c8-4326-a96d-4ef5ffde3511",'
-                   '"organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b",'
-                   '"timestamp":"2023-10-13T14:23:47.355603218Z"},'
-                   '"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.01",'
-                   '"carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY",'
-                   '"carrierId":"9502b9cf-1833-a7cd-b3a6-646e05e26239","currentCount":2}}}}]')
+        file.write('[13/Oct/2023 0' + str(1 + path_size) + f':00:0{i}] "DEBUG" ' +
+                   '"ils_event_consumer" "KAFKA | RECEIVED | ' +
+                   '[topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | ' +
+                   '[content={"header":{"traceId":"54b850b1-b646-4ef8-b8d6-817a3dc319bc",' +
+                   '"id":"625505b6-24c8-4326-a96d-4ef5ffde3511",' +
+                   '"organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b",' +
+                   '"timestamp":"2023-10-13T14:23:47.355603218Z"},"body":{"action":{"carrier":{"laneAddress":"' +
+                   lane + '","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY",' +
+                   '"carrierId":"9502b9cf-1833-a7cd-b3a6-646e05e26239","currentCount":2}}}}]"')
         file.write("\n")
 
 

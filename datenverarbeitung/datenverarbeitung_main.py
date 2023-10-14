@@ -302,11 +302,13 @@ def read_kafka_lane_time_event(kafka_path):
         df = pd.read_csv(kafka_path)
 
         if df.empty:
+            print("Empty exception!")
             return None  # The CSV file is empty.
 
         last_row = df.iloc[-1]
 
         if len(last_row) < 3:
+            print("Too short exception!")
             return None  # The last row doesn't have enough columns.
 
 
@@ -314,27 +316,37 @@ def read_kafka_lane_time_event(kafka_path):
         date = last_row.iloc[0]
         timestamp = last_row.iloc[1]
         # Defina os fusos horários
+        print("Just before defining timezones")
         utc_timezone = pytz.timezone('UTC')
         berlin_timezone = pytz.timezone('Europe/Berlin')
+        print("Just after defining timezones")
 
         # Combine a coluna 'Date' e 'Hour' em uma coluna de data e hora
         datetime_str = date + ' ' + timestamp
+        print(datetime_str)
         datetime_obj = datetime.strptime(datetime_str, '%d/%b/%Y %H:%M:%S')
+        print(datetime_obj)
+        print("Just before assigning datetime_utc")
         datetime_utc = utc_timezone.localize(datetime_obj)
 
         # Converta para o fuso horário de Berlim e salve em variáveis
         datetime_berlin = datetime_utc.astimezone(berlin_timezone)
+        print("Just after assigning datetime_berlin")
 
         # Separe a data e o horário e salve em variáveis
-        date_berlin = datetime_berlin.strftime('%d/%b/%Y')
-        hour_berlin = datetime_berlin.strftime('%H:%M:%S')
+        date_berlin = str(datetime_berlin.strftime('%d/%b/%Y'))
+        print(date_berlin)
+        hour_berlin = str(datetime_berlin.strftime('%H:%M:%S'))
+        print(hour_berlin)
         event_type = last_row.iloc[6]
         lane = last_row.iloc[-1]
 
         return date_berlin, lane, hour_berlin, event_type
     except FileNotFoundError:
+        print("File not found exception!")
         return None  # Handle file not found exception
     except Exception as e:
+        print("Something else is fucky!")
         return None  # Handle other exceptions
 
 

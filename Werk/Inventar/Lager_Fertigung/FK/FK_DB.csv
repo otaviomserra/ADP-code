@@ -1,1 +1,5 @@
-Besetz,ID,Date,Timestamp
+Besetz,ID,Date,Timestamp,Besetzt
+,84,13/Oct/2023,03:00:00,True
+,85,13/Oct/2023,03:00:01,True
+,86,13/Oct/2023,03:00:02,True
+,87,13/Oct/2023,03:00:03,True
