@@ -278,8 +278,9 @@ class Lane:
         condicao = df_DB_lane['Besetzt'] == True
         linhas_a_atualizar = condicao.index[condicao].tolist()  # Encontre os índices das linhas com Besetzt True
         # Substitua os valores de 'Name' e 'Age' em df1 nas linhas correspondentes
-        for linha in linhas_a_atualizar:
-            print("entrou aqui")
+        for truelinha in linhas_a_atualizar:
+            linha = linhas_a_atualizar.index(truelinha)
+            print("\nentrou aqui")
             df_DS.loc[linha, 'Besetzt'] = 1
             df_DS.loc[linha, 'Time In'] = df_DB_lane.loc[linha, 'Timestamp']
             # Parse the input date string
@@ -294,7 +295,6 @@ class Lane:
             df_DS.loc[linha, 'Losgroesse'] = self.box_capacity
             # Lead time for each box not needed, but gonna keep it here for purpose of not ruining the csv format
             # df_DS.loc[linha, 'Lead Time'] =
-            print(df_DS)
              
         # Updating the csv from the KPIs
         # 
