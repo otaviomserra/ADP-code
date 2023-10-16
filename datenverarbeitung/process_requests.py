@@ -15,7 +15,7 @@ class ProcessRequest:
         self.target_lanes = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane,
                                                  "target_lane_address"].iloc[0].split(",")
         self.process = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "process_name"].iloc[0]
-        self.variant = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "variant"].iloc[0]
+        self.variant = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "lane_inventar"].iloc[0]
         self.menge = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "box_capacity"].iloc[0]
 
         # Events: used to create the process log, put_time is empty for now because the request is still active
@@ -26,7 +26,7 @@ class ProcessRequest:
         # Exit code: 1 when request is active, 0 when request is completed, 2 when request is canceled
         self.exit_code = 1
 
-    def resolve(self, timestamp):
+    def resolve(self, lane, timestamp):
         self.put_time = timestamp
         # Calculate here the difference in timestamps
         # self.duration = self.put_time - self.pick_time
@@ -47,9 +47,13 @@ class ProcessRequest:
         # Format the time difference as "hh:mm:ss"
         self.duration = "{:02d}:{:02d}:{:02d}".format(int(hours), int(minutes), int(seconds))
 
+        # Specifically for Messen and TransportLieferung (variant is only known at the end):
+        if self.origin_lane in ["S001.M002.01.01", "S001.M002.01.02", "S001.M003.02.03"]:
+            self.variant = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "lane_inventar"].iloc[0]
+
         self.exit_code = 0
 
-    def cancel(self, timestamp):
+    def cancel(self, lane, timestamp):
         # self.duration = timestamp - self.put_time
         # Mark the request as canceled; the system should then remove it from the list without
         # creating a new process log
@@ -69,6 +73,10 @@ class ProcessRequest:
 
         # Format the time difference as "hh:mm:ss"
         self.duration = "{:02d}:{:02d}:{:02d}".format(int(hours), int(minutes), int(seconds))
+
+        # Specifically for Messen and TransportLieferung (variant is only known at the end):
+        if self.origin_lane in ["S001.M002.01.01", "S001.M002.01.02", "S001.M003.02.03"]:
+            self.variant = FabrikVerbindung.loc[FabrikVerbindung["lane_address"] == lane, "lane_inventar"].iloc[0]
 
         self.exit_code = 2
 

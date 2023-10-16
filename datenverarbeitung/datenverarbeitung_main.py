@@ -177,7 +177,9 @@ class ExcelFileHandler(FileSystemEventHandler):
                         print(request.target_lanes)
                         print(lane)
                         print(requests)
-                    Inventar.pick_event()
+                    # Current structure cannot model the first two inventories
+                    if lane not in ["S001.M001.01.01, S001.M001.01.02", "S001.M002.01.01, S001.M002.01.02"]:
+                        Inventar.pick_event()
 
                 elif event_type == 'CARRIER_ACTION_PUT':
                     print('entrou no put')
@@ -186,12 +188,14 @@ class ExcelFileHandler(FileSystemEventHandler):
                         print(request.target_lanes)
                         print(lane)
                         if lane in request.target_lanes:
-                            request.resolve(timestamp)
+                            request.resolve(timestamp, lane)
                             request.generate_process_log(lane)
                             requests.remove(request)
                             print('rodou put request')
                             break
-                    Inventar.put_event()
+                    # Current structure cannot model the first two inventories
+                    if lane not in ["S001.M001.01.01, S001.M001.01.02", "S001.M002.01.01, S001.M002.01.02"]:
+                        Inventar.put_event()
                 Inventar.save_dashboard_format()
 
     def process_modified_excel(self):
@@ -238,7 +242,7 @@ def handle_error(error_df):
     # Looks for the earliest request with the target_lane and cancels it
     for request in requests:
         if target_lane in request.target_lanes:
-            request.cancel(timestamp)
+            request.cancel(timestamp, target_lane)
             request.generate_process_log(target_lane)
             requests.remove(request)
             break

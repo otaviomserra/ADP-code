@@ -62,7 +62,7 @@ class Lane:
         
         self.inventar_csv = os.path.join(self.inventar_path, inventar_csv_name)
         self.lane_csv = os.path.join(self.lane_path, lane_csv_name)
-        self.werk_path = os.path.join(werk_folder_path, "Werk_DS.csv ")
+        self.werk_path = os.path.join(werk_folder_path, "Werk_DS.csv")
 
         self.lane_DB = os.path.join(self.lane_path, f'{self.lane_name}'+'_DB.csv')
         self.hist_csv = os.path.join(self.lane_path, f'{self.lane_name}'+'_HistLog.csv')
@@ -386,14 +386,18 @@ class Lane:
 
         somas = df_inventar_kpi_db.drop(columns=['Lane']).sum()
         medias = df_inventar_kpi_db.drop(columns=['Lane']).mean()
+        print("Somas:")
+        print(somas)
+        print("Medias:")
+        print(medias)
         df_I.loc[0, 'Bestandsmenge'] = somas['Bestandsmenge']
-        df_I.loc[0,'Kapazitaet'] = somas['Kapazitaet']
-        df_I.loc[0,'Lagernutzungsgrad'] = medias['Lagernutzungsgrad']
-        df_I.loc[0,'Bestandsgenauigkeit'] = medias['Bestandsgenauigkeit']
-        df_I.loc[0,'Durchschnittliche Wartezeit'] = medias['Durchschnittliche Wartezeit']
-        df_I.loc[0,'Lagerumschlagsrate'] = somas['Lagerumschlagsrate']
-        df_I.loc[0,'Reichweite'] = somas['Reichweite']
-        df_I.loc[0,'Wiederbeschaffungszeit'] = somas['Wiederbeschaffungszeit']
+        df_I.loc[0, 'Kapazitaet'] = somas['Kapazitaet']
+        df_I.loc[0, 'Lagernutzungsgrad'] = medias['Lagernutzungsgrad']
+        df_I.loc[0, 'Bestandsgenauigkeit'] = medias['Bestandsgenauigkeit']
+        df_I.loc[0, 'Durchschnittliche Wartezeit'] = medias['Durchschnittliche Wartezeit']
+        df_I.loc[0, 'Lagerumschlagsrate'] = somas['Lagerumschlagsrate']
+        df_I.loc[0, 'Reichweite'] = somas['Reichweite']
+        df_I.loc[0, 'Wiederbeschaffungszeit'] = somas['Wiederbeschaffungszeit']
 
         # Substitua os três primeiros valores das linhas "Lager_Fertigung" e "SM_Fertigung"
         df_W.loc[df_W['Werk'] == f'{self.inventar_name}', ['Schichtlaenge', 'Pausen', 'SF Besprechung']] = \
