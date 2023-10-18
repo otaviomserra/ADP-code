@@ -8,6 +8,7 @@ import csv
 from datetime import datetime
 import pythoncom
 import win32com
+from calculate_process_kpis import *
 
 # I don't even know what this is, but the app crashes without it
 xl = win32com.client.Dispatch("Excel.Application", pythoncom.CoInitialize())
@@ -85,6 +86,10 @@ def generate_process_log(process, process_to_append):
 
     print("Process log created :D at")
     print(log_path)
+
+    # Calculate kpis
+    print(process_to_append[6])
+    calculate_process_kpis(process, process_to_append[6], process_to_append[2])
 
     # Then, generate the process_HistLog.csv in BRENNAN'S format.
     print("why are we doing this")

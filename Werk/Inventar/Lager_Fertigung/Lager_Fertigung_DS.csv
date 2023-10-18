@@ -1,5 +1,5 @@
 Bestandsmenge,Kapazitaet,Lagernutzungsgrad,Bestandsgenauigkeit,Durchschnittliche Wartezeit,Lagerumschlagsrate,Reichweite,Wiederbeschaffungszeit
-44.0,80.0,60.0,100.0,0.02083333333333331,0.3124999999999999,0.18749999999999994,0.0
+40.0,80.0,53.333333333333336,100.0,0.0847952835648148,1.0592100694444444,0.6146927083333333,0.0
 FB1,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
 Box 1,1,03:00:00,13.10.2023,8.0,8.0,8.0,-
 Box 2,1,03:00:01,13.10.2023,8.0,8.0,8.0,-
@@ -16,5 +16,5 @@ FK,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
 Box 1,1,03:00:00,13.10.2023,4.0,4.0,4.0,-
 Box 2,1,03:00:01,13.10.2023,4.0,4.0,4.0,-
 Box 3,1,03:00:02,13.10.2023,4.0,4.0,4.0,-
-Box 4,1,03:00:03,13.10.2023,4.0,4.0,4.0,-
+Box 4,0,-,-,-,-,-,-
 Box 5,0,-,-,-,-,-,-

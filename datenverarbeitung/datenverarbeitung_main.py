@@ -188,7 +188,7 @@ class ExcelFileHandler(FileSystemEventHandler):
                         print(request.target_lanes)
                         print(lane)
                         if lane in request.target_lanes:
-                            request.resolve(timestamp, lane)
+                            request.resolve(lane, timestamp)
                             request.generate_process_log(lane)
                             requests.remove(request)
                             print('rodou put request')

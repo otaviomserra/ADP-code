@@ -214,6 +214,9 @@ class Lane:
     def pick_event(self):
         df_DB_lane, df_DB_werk, df_Hist_lane = self.read_or_create()
         # Adding the pick event at the lane DB
+        print(f"\n\nDEBUGGING: PRINTING DF_DB_LANE for {self.lane_name}")
+        print(df_DB_lane)
+        print("\n")
         primeiro_registro = df_DB_lane[df_DB_lane["Besetzt"] == True].iloc[0]
         ID = primeiro_registro['ID']
         index_of_primeiro_registro = primeiro_registro.name
