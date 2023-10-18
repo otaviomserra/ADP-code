@@ -24,7 +24,7 @@ def calculate_Kapazitaet(lane_capacity, box_capacity):
 def calculate_Lagernutzungsgrad(bestandsmenge, kapazitaet):
     # Percentage of how full is the lane 
     lagernutzungsgrad = bestandsmenge/kapazitaet * 100
-    return lagernutzungsgrad  # %
+    return round(lagernutzungsgrad)  # %
 
 
 def calculate_Bestandsgenauigkeit():
