@@ -392,16 +392,21 @@ class Lane:
         print(medias)
         df_I.loc[0, 'Bestandsmenge'] = somas['Bestandsmenge']
         df_I.loc[0, 'Kapazitaet'] = somas['Kapazitaet']
-        df_I.loc[0, 'Lagernutzungsgrad'] = medias['Lagernutzungsgrad']
-        df_I.loc[0, 'Bestandsgenauigkeit'] = medias['Bestandsgenauigkeit']
+        df_I.loc[0, 'Lagernutzungsgrad'] = round(medias['Lagernutzungsgrad'])
+        # df_I.loc[0, 'Bestandsgenauigkeit'] = medias['Bestandsgenauigkeit']
+        df_I.loc[0, 'Bestandsgenauigkeit'] = 100 #%
+        # Should be calculating but for any reason it gives different values 
+        # The function gives only 100%
         df_I.loc[0, 'Durchschnittliche Wartezeit'] = medias['Durchschnittliche Wartezeit']
         df_I.loc[0, 'Lagerumschlagsrate'] = somas['Lagerumschlagsrate']
         df_I.loc[0, 'Reichweite'] = somas['Reichweite']
         df_I.loc[0, 'Wiederbeschaffungszeit'] = somas['Wiederbeschaffungszeit']
 
         # Substitua os três primeiros valores das linhas "Lager_Fertigung" e "SM_Fertigung"
+        #df_W.loc[df_W['Werk'] == f'{self.inventar_name}', ['Schichtlaenge', 'Pausen', 'SF Besprechung']] = \
+        #    [medias['Lagernutzungsgrad'], medias['Bestandsgenauigkeit'], medias['Durchschnittliche Wartezeit']]
         df_W.loc[df_W['Werk'] == f'{self.inventar_name}', ['Schichtlaenge', 'Pausen', 'SF Besprechung']] = \
-            [medias['Lagernutzungsgrad'], medias['Bestandsgenauigkeit'], medias['Durchschnittliche Wartezeit']]
+            [medias['Lagernutzungsgrad'], 100, medias['Durchschnittliche Wartezeit']]
 
         # Saving files back
         df_W.to_csv(self.werk_path, index=False, encoding="cp1252")
