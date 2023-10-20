@@ -1,5 +1,5 @@
 Bestandsmenge,Kapazitaet,Lagernutzungsgrad,Bestandsgenauigkeit,Durchschnittliche Wartezeit,Lagerumschlagsrate,Reichweite,Wiederbeschaffungszeit
-156.0,228.0,42.751322751322746,55.55555555555556,0.0,0.0,0.0,1.0833333333333333
+152.0,228.0,41,100,0.0,0.0,0.0,1.0416666666666665
 LD2,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
 Box 1,1,05:00:00,13.10.2023,4.0,4.0,4.0,-
 Box 2,1,05:00:01,13.10.2023,4.0,4.0,4.0,-
@@ -7,7 +7,7 @@ Box 3,0,-,-,-,-,-,-
 FB2,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
 Box 1,1,05:00:00,13.10.2023,4.0,4.0,4.0,-
 Box 2,1,05:00:01,13.10.2023,4.0,4.0,4.0,-
-Box 3,1,05:12:23,16.10.2023,4.0,4.0,4.0,-
+Box 3,0,-,-,-,-,-,-
 LG3,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
 Box 1,1,05:00:00,13.10.2023,4.0,4.0,4.0,-
 Box 2,1,05:00:01,13.10.2023,4.0,4.0,4.0,-
@@ -41,74 +41,74 @@ Box 1,1,05:00:00,13.10.2023,8.0,8.0,8.0,-
 Box 2,1,05:00:01,13.10.2023,8.0,8.0,8.0,-
 Box 3,1,05:00:02,13.10.2023,8.0,8.0,8.0,-
 FK1,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
-Box 1,0,-,-,-,-,-,-
-Box 2,0,-,-,-,-,-,-
-Box 3,0,-,-,-,-,-,-
-Box 4,0,-,-,-,-,-,-
-Box 5,0,-,-,-,-,-,-
-Box 6,0,-,-,-,-,-,-
-Box 7,0,-,-,-,-,-,-
-Box 8,0,-,-,-,-,-,-
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+Box 5,-,-,-,-,-,-,-
+Box 6,-,-,-,-,-,-,-
+Box 7,-,-,-,-,-,-,-
+Box 8,-,-,-,-,-,-,-
 FK2,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
-Box 1,0,-,-,-,-,-,-
-Box 2,0,-,-,-,-,-,-
-Box 3,0,-,-,-,-,-,-
-Box 4,0,-,-,-,-,-,-
-Box 5,0,-,-,-,-,-,-
-Box 6,0,-,-,-,-,-,-
-Box 7,0,-,-,-,-,-,-
-Box 8,0,-,-,-,-,-,-
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+Box 5,-,-,-,-,-,-,-
+Box 6,-,-,-,-,-,-,-
+Box 7,-,-,-,-,-,-,-
+Box 8,-,-,-,-,-,-,-
 FK3,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
-Box 1,0,-,-,-,-,-,-
-Box 2,0,-,-,-,-,-,-
-Box 3,0,-,-,-,-,-,-
-Box 4,0,-,-,-,-,-,-
-Box 5,0,-,-,-,-,-,-
-Box 6,0,-,-,-,-,-,-
-Box 7,0,-,-,-,-,-,-
-Box 8,0,-,-,-,-,-,-
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+Box 5,-,-,-,-,-,-,-
+Box 6,-,-,-,-,-,-,-
+Box 7,-,-,-,-,-,-,-
+Box 8,-,-,-,-,-,-,-
 FK4,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
-Box 1,0,-,-,-,-,-,-
-Box 2,0,-,-,-,-,-,-
-Box 3,0,-,-,-,-,-,-
-Box 4,0,-,-,-,-,-,-
-Box 5,0,-,-,-,-,-,-
-Box 6,0,-,-,-,-,-,-
-Box 7,0,-,-,-,-,-,-
-Box 8,0,-,-,-,-,-,-
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+Box 5,-,-,-,-,-,-,-
+Box 6,-,-,-,-,-,-,-
+Box 7,-,-,-,-,-,-,-
+Box 8,-,-,-,-,-,-,-
 FK5,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
-Box 1,0,-,-,-,-,-,-
-Box 2,0,-,-,-,-,-,-
-Box 3,0,-,-,-,-,-,-
-Box 4,0,-,-,-,-,-,-
-Box 5,0,-,-,-,-,-,-
-Box 6,0,-,-,-,-,-,-
-Box 7,0,-,-,-,-,-,-
-Box 8,0,-,-,-,-,-,-
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+Box 5,-,-,-,-,-,-,-
+Box 6,-,-,-,-,-,-,-
+Box 7,-,-,-,-,-,-,-
+Box 8,-,-,-,-,-,-,-
 FK6,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
-Box 1,0,-,-,-,-,-,-
-Box 2,0,-,-,-,-,-,-
-Box 3,0,-,-,-,-,-,-
-Box 4,0,-,-,-,-,-,-
-Box 5,0,-,-,-,-,-,-
-Box 6,0,-,-,-,-,-,-
-Box 7,0,-,-,-,-,-,-
-Box 8,0,-,-,-,-,-,-
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+Box 5,-,-,-,-,-,-,-
+Box 6,-,-,-,-,-,-,-
+Box 7,-,-,-,-,-,-,-
+Box 8,-,-,-,-,-,-,-
 FK7,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
-Box 1,0,-,-,-,-,-,-
-Box 2,0,-,-,-,-,-,-
-Box 3,0,-,-,-,-,-,-
-Box 4,0,-,-,-,-,-,-
-Box 5,0,-,-,-,-,-,-
-Box 6,0,-,-,-,-,-,-
-Box 7,0,-,-,-,-,-,-
-Box 8,0,-,-,-,-,-,-
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+Box 5,-,-,-,-,-,-,-
+Box 6,-,-,-,-,-,-,-
+Box 7,-,-,-,-,-,-,-
+Box 8,-,-,-,-,-,-,-
 FK8,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
-Box 1,0,-,-,-,-,-,-
-Box 2,0,-,-,-,-,-,-
-Box 3,0,-,-,-,-,-,-
-Box 4,0,-,-,-,-,-,-
-Box 5,0,-,-,-,-,-,-
-Box 6,0,-,-,-,-,-,-
-Box 7,0,-,-,-,-,-,-
-Box 8,0,-,-,-,-,-,-
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+Box 5,-,-,-,-,-,-,-
+Box 6,-,-,-,-,-,-,-
+Box 7,-,-,-,-,-,-,-
+Box 8,-,-,-,-,-,-,-

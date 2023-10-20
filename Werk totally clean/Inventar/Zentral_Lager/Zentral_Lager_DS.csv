@@ -1,0 +1,74 @@
+Bestandsmenge,Kapazitaet,Lagernutzungsgrad,Bestandsgenauigkeit,Durchschnittliche Wartezeit,Lagerumschlagsrate,Reichweite,Wiederbeschaffungszeit
+-,-,-,-,-,-,-,-
+LD1,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+Box 5,-,-,-,-,-,-,-
+Box 6,-,-,-,-,-,-,-
+Box 7,-,-,-,-,-,-,-
+Box 8,-,-,-,-,-,-,-
+LD2,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+Box 5,-,-,-,-,-,-,-
+Box 6,-,-,-,-,-,-,-
+Box 7,-,-,-,-,-,-,-
+Box 8,-,-,-,-,-,-,-
+LK1,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+Box 5,-,-,-,-,-,-,-
+Box 6,-,-,-,-,-,-,-
+Box 7,-,-,-,-,-,-,-
+Box 8,-,-,-,-,-,-,-
+LK2,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+Box 5,-,-,-,-,-,-,-
+Box 6,-,-,-,-,-,-,-
+Box 7,-,-,-,-,-,-,-
+Box 8,-,-,-,-,-,-,-
+LG1,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+Box 5,-,-,-,-,-,-,-
+Box 6,-,-,-,-,-,-,-
+Box 7,-,-,-,-,-,-,-
+Box 8,-,-,-,-,-,-,-
+LG2,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+Box 5,-,-,-,-,-,-,-
+Box 6,-,-,-,-,-,-,-
+Box 7,-,-,-,-,-,-,-
+Box 8,-,-,-,-,-,-,-
+LG3,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+Box 5,-,-,-,-,-,-,-
+Box 6,-,-,-,-,-,-,-
+Box 7,-,-,-,-,-,-,-
+Box 8,-,-,-,-,-,-,-
+LG4,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+Box 5,-,-,-,-,-,-,-
+Box 6,-,-,-,-,-,-,-
+Box 7,-,-,-,-,-,-,-
+Box 8,-,-,-,-,-,-,-

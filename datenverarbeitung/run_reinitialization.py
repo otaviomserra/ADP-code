@@ -17,7 +17,7 @@ for line in reinit:
     print(line)
     target.close()
     target = open(target_file, "a")
-    time.sleep(2.2)
+    time.sleep(2.0)
 
 print("\n\n\n")
 print("Done.")

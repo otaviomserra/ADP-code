@@ -1,0 +1,42 @@
+Bestandsmenge,Kapazitaet,Lagernutzungsgrad,Bestandsgenauigkeit,Durchschnittliche Wartezeit,Lagerumschlagsrate,Reichweite,Wiederbeschaffungszeit
+-,-,-,-,-,-,-,-
+LD1,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+LD2,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+LK1,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+LK2,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+LG1,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+LG3,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+LG2,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
+LG4,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
+Box 1,-,-,-,-,-,-,-
+Box 2,-,-,-,-,-,-,-
+Box 3,-,-,-,-,-,-,-
+Box 4,-,-,-,-,-,-,-
