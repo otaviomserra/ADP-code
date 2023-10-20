@@ -84,7 +84,7 @@ def calculate_Lagerumschlagsrate(df_Hist_lane,lane_capacity):
     # and average the time between the groups
     # so it does not take account for the time in between a new product entering
     # in other words the time from the exit of one until it's substituted 
-    # It can be opitimized by taken this missing time and by reordering the groups
+    # It can be optimized by taken this missing time and by reordering the groups
     # to get better average (dropping outliers groups or boxes)
     # If alterations are made here, need to change Reichweite
     try:

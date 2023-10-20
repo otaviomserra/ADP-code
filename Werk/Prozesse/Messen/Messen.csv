@@ -1,0 +1,3 @@
+date,pick_time,put_time,origin_lane,target_lane,duration,variant,menge,exit_code
+20.10.2023,12:40:03,12:40:13,,,00:00:10,FK1,4,0
+20.10.2023,12:42:26,12:42:32,,,00:00:06,FK2,4,0
