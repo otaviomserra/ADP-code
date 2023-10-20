@@ -319,6 +319,14 @@ def read_kafka_lane_time_event(kafka_path):
         ######## MODIFICAR APÓS O CHICO
         date = last_row.iloc[0]
         timestamp = last_row.iloc[1]
+        # Correct from 12h format to 24h format
+        hour = int(timestamp[:2])
+        if hour < 8:
+            hour += 12
+            hour = str(hour)
+            timestamp = hour + timestamp[2:]
+
+        """
         # Defina os fusos horários
         print("Just before defining timezones")
         utc_timezone = pytz.timezone('UTC')
@@ -342,10 +350,11 @@ def read_kafka_lane_time_event(kafka_path):
         print(date_berlin)
         hour_berlin = str(datetime_berlin.strftime('%H:%M:%S'))
         print(hour_berlin)
+        """
         event_type = last_row.iloc[6]
         lane = last_row.iloc[-1]
 
-        return date_berlin, lane, hour_berlin, event_type
+        return date, lane, timestamp, event_type
     except FileNotFoundError:
         print("File not found exception!")
         return None  # Handle file not found exception
