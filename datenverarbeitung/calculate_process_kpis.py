@@ -385,7 +385,10 @@ def calculate_oee_pe(process, variant, batch, process_df):
 
     ideal_runtime = ideal_cycle_times[process_variant] * number_of_runs
 
-    performance = min(1, ideal_runtime/runtime_seconds)
+    try:
+        performance = min(1, ideal_runtime/runtime_seconds)
+    except ZeroDivisionError:
+        performance = 1
 
     current_directory = os.path.dirname(os.path.abspath(__file__))
     process_folder = os.path.join(current_directory, '..', 'Werk', 'Prozesse', process)
@@ -509,18 +512,90 @@ def write_kpi(file_path, variant, KPI_value):
     ds_df.to_csv(file_path, index=False)
 
 
-def update_histlog(process, variant, timestamp):
-    hist_log_path = os.path.join("", f"..\\Werk\\Prozesse\\{process}\\" + f"{process}_HistLog.csv")
-    # hist_log_path = "".join(["..", "Werk", "Prozesse", process, "_HistLog.csv"])
-    ds_path = os.path.join("", f"..\\Werk\\Prozesse\\{process}\\" + f"{process}_DS.csv")
-    # ds_path = "".join(["..", "Werk", "Prozesse", process, process + "_DS.csv"])
+def update_global_kpis():
+    werk_ds_path = os.path.join("", "..\\Werk\\Werk_DS.csv")
+    werk_ds = pd.read_csv(werk_ds_path)
 
-    ds_df = pd.read_csv(ds_path).head(1)
-    histlog_df = pd.read_csv(hist_log_path)
+    # Process times and VAR can be calculated directly from the values in Werk_DS
+    # Wartezeiten must be converted to seconds (86400 seconds per day)
+    wait1 = 86400*int(float(werk_ds.iloc[9]["SF Besprechung"]))
+    process1 = int(werk_ds.iloc[2]["Pausen"])
+    wait2 = 86400*(int(float(werk_ds.iloc[10]["SF Besprechung"]))+int(float(werk_ds.iloc[11]["SF Besprechung"])))
+    process2 = int(werk_ds.iloc[3]["Pausen"]) + int(werk_ds.iloc[4]["Pausen"]) + int(werk_ds.iloc[5]["Pausen"])
+    wait3 = 86400*int(float(werk_ds.iloc[12]["SF Besprechung"]))
+    process3 = int(werk_ds.iloc[6]["Pausen"])
+    wait4 = 86400 * (int(float(werk_ds.iloc[13]["SF Besprechung"])) + int(float(werk_ds.iloc[14]["SF Besprechung"])) +
+                     int(float(werk_ds.iloc[15]["SF Besprechung"])) + int(float(werk_ds.iloc[16]["SF Besprechung"])) +
+                     int(float(werk_ds.iloc[17]["SF Besprechung"])))
+    process4 = int(werk_ds.iloc[7]["Pausen"])
 
+    # Calculate value-added and non-value-added time in seconds
+    va_time = process1 + process2 + process3 + process4
+    nva_time = wait1 + wait2 + wait3 + wait4
+    var = int((100 * va_time)/(va_time + nva_time))  # In percentage
 
-def update_werk():
-    return 0
+    # Ausbringung and lead time can also be calculated directly from Werk_DS
+    lead_time = va_time + nva_time
+    ausbringung_list = [int(float(werk_ds.iloc[i]["Stueckzahl"])) for i in range(2, 8)]
+    ausbringung = sum(ausbringung_list)
+    print(ausbringung)
+    try:
+        produktionstakt = int(100*lead_time/ausbringung_list[5])/100
+    except ZeroDivisionError:
+        produktionstakt = 0
+
+    # Calculating downtime and Fehlproduktionsquote requires opening the process_DS files
+    process_list = ["Saegen", "Fraesen", "Drehen", "Waschen", "Messen", "Montage"]
+    downtime_list = []
+    fehlproduktionsquote_list = []
+    productivity = 0  # To be replaced by quality from Montage
+
+    for process in process_list:
+        process_path = os.path.join("", f"..\\Werk\\Prozesse\\{process}\\{process}_DS.csv")
+        process_ds = pd.read_csv(process_path)
+
+        # Calculate downtime in seconds
+        downtime = str(process_ds.iloc[0]["Production Downtime"])
+        try:
+            time_obj = datetime.strptime(downtime, "%H:%M:%S")
+            downtime = time_obj.hour * 3600 + time_obj.minute * 60 + time_obj.second
+            downtime_list.append(downtime)
+        except:
+            downtime_list.append(0)
+
+        # Calculate Fehlproduktionsquote
+        fehlproduktionsquote = process_ds.iloc[0]["Fehlproduktionsquote"]
+        fehlproduktionsquote_list.append(fehlproduktionsquote)
+
+        # Obtain productivity
+        if process == "Montage":
+            productivity = int(100*float(process_ds.iloc[0]["Qualitaetsgrad"]))
+
+    global_downtime = sum(downtime_list)
+    total_failed_parts = sum([fehlproduktionsquote_list[i]*ausbringung_list[i] for i in range(6)])
+    global_fehlproduktionsquote = int(100*total_failed_parts/ausbringung)  # In percentage
+
+    # Write all those values to the top row of Werk_DS
+    werk_ds.at[0, "Ausfallzeit"] = global_downtime
+    werk_ds.at[0, "Ausbringung(montage)"] = ausbringung
+    werk_ds.at[0, "Produktivitaet"] = productivity
+    werk_ds.at[0, "Fehlproduktionsquote"] = global_fehlproduktionsquote
+    werk_ds.at[0, "VA Time"] = va_time
+    werk_ds.at[0, "NVA Time"] = nva_time
+    werk_ds.at[0, "Durchlaufzeit"] = lead_time
+    werk_ds.at[0, "VA Ratio"] = var
+    werk_ds.at[0, "Wait1"] = wait1
+    werk_ds.at[0, "Process1"] = process1
+    werk_ds.at[0, "Wait2"] = wait2
+    werk_ds.at[0, "Process2"] = process2
+    werk_ds.at[0, "Wait3"] = wait3
+    werk_ds.at[0, "Process3"] = process3
+    werk_ds.at[0, "Wait4"] = wait4
+    werk_ds.at[0, "Process4"] = process4
+    werk_ds.at[0, "Produktionstakt"] = produktionstakt
+
+    # Save the Werk_DS
+    werk_ds.to_csv(werk_ds_path, index=False)
 
 
 def calculate_process_kpis(process, variant, date, timestamp):
@@ -595,3 +670,6 @@ def calculate_process_kpis(process, variant, date, timestamp):
     werk_ds.at[process_index, "Kundentakt"] = anzahl_typ
     werk_ds.at[process_index, "Ausfallzeit"] = work_in_process
     werk_ds.to_csv(werk_ds_path, index=False)
+
+    # Recalculate front page KPIs
+    update_global_kpis()

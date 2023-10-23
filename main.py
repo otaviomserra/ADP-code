@@ -25,8 +25,8 @@ import os
 if not os.path.exists('logs'):
    os.makedirs('logs')
 
-pfparadedarerrado=f"logs/{formatted_time}.log"
-fileHandler = (pfparadedarerrado + '.')[:-1]
+log_path = f"datenverarbeitung\\raw_logs\\{formatted_time}.log"
+fileHandler = (log_path + '.')[:-1]
 #print(fileHandler)
 #fileHandler = "logs/teste.log"
 
@@ -49,7 +49,7 @@ log_config = {
         },
         "file": {
             "class": "logging.handlers.RotatingFileHandler",
-            "mode":"a",
+            "mode": "a",
             "formatter": "std_out",
             "filename": fileHandler,
             "maxBytes": 1048576,

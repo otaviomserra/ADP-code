@@ -1,12 +1,12 @@
 Werk,Schichtlaenge,Pausen,SF Besprechung,Stueckzahl,Kundentakt,Ausfallzeit,Ausbringung(montage),Produktivitaet,Fehlproduktionsquote,VA Time,NVA Time,Durchlaufzeit,VA Ratio,Wait1,Process1,Wait2,Process2,Wait3,Process3,Wait4,Process4,Produktionstakt
-Werk,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Werk,1,1,1,1,1,9007,24,0,0,926,345600,346526,0,0,5,0,12,0,6,345600,903,86631.5
 Prozesse,Cycle Time,Process Time,OEE,Ausbringung,Anzahl Typ,WIP,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
-Saegen,1,6,100,4,2,0,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
-Fraesen,1,6,100,4.0,2,0,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
-Drehen,1,6,68,4.0,8,0,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+Saegen,1,5,100,4,2,0,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+Fraesen,1,6,100,4,2,0,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+Drehen,0,2,68,4.0,8,0,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
 Waschen,1,4,100,4,10,0,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
-Messen,1,6,100,4.0,10,0,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
-Montage,225,903,14,4.0,2,0,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+Messen,1,6,100,4,10,0,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+Montage,225,903,14,4,2,0,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
 Inventories,LNG,BGK,Wartezeit,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
 smSaegen,10,10,0.5,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
 smDrehen,10,10,0.5,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-

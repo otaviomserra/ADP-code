@@ -91,9 +91,6 @@ def generate_process_log(process, process_to_append):
     print(process_to_append[6])
     calculate_process_kpis(process, process_to_append[6], process_to_append[0], process_to_append[2])
 
-    # Then, generate the process_HistLog.csv in BRENNAN'S format.
-    print("why are we doing this")
-
     return 0
 
 
