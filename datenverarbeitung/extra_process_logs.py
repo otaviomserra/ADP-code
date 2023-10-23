@@ -38,6 +38,8 @@ def reformat_data(new_instance_df):
     # Obtain start and end times
     pick_time = str(new_instance_df["Start"].values[0])
     put_time = str(new_instance_df["End"].values[0])
+    print(pick_time)
+    print(put_time)
 
     # Origin and target lanes are completely irrelevant for this
     origin_lane = ""
@@ -54,8 +56,11 @@ def reformat_data(new_instance_df):
 
     duration = "{:02d}:{:02d}:{:02d}".format(int(hours), int(minutes), int(seconds))
 
-    # Obtain variant
-    variant = new_instance_df["Bauteil"].values[0].replace("-", "").replace("0", "")  # Translating from Jungmu
+    try:
+        # Obtain variant
+        variant = new_instance_df["Bauteil"].values[0].replace("-", "").replace("0", "")  # Translating from Jungmu
+    except:
+        variant = "FB1"
 
     # Obtain quantity (depends on variant, how would we do this?)
     menge = 4  # Placeholder
@@ -94,56 +99,51 @@ def generate_process_log(process, process_to_append):
     return 0
 
 
-"""
-class ErrorFileHandler(FileSystemEventHandler):
-    def __init__(self):
-        super().__init__()
-        self.last_event_time = None
-        self.min_time_interval = 1
+def log_error(process, variant, fehler_df):
+    # Log for Fehlproduktionsquote
+    current_directory = os.path.dirname(os.path.abspath(__file__))
+    relative_path = os.path.join("..", "Werk", "Prozesse", process, process + ".csv")
+    log_path = os.path.join(current_directory, relative_path)
 
-    def on_modified(self, event):
-        if event.is_directory:
-            return
+    process_log = pd.read_csv(log_path)
+    # Change the last exit code matching the variant to 2
+    filtered_df = process_log[(process_log['variant'] == variant) & (process_log['exit_code'] == 0)]
+    last_index = filtered_df.index[-1]
+    process_log.at[last_index, 'exit_code'] = 2
 
-        # Protection against duplicate events
-        current_time = time.time()
-        if self.last_event_time is None or (current_time - self.last_event_time) >= self.min_time_interval:
-            self.last_event_time = current_time
+    process_log.to_csv(log_path, index=False)
 
-            if event.src_path == process_excel_path:
-                # Detects changes in the excel file and shows which sheet was modified
-                for sheet in workbook.sheets:
-                    current_state = sheet.used_range.address
-                    if current_state != sheet_states[sheet.name]:
-                        # The sheet has changed
-                        print(f"Change detected in sheet '{sheet.name}'")
+    # Log for Ausschuss/Nacharbeitsquote
+    if process != "Montage":
+        today = process_log.tail(1)["date"].iloc[0]
+        processes_today = process_log[process_log["date"] == today]
 
-                        # Generating process logs
-                        if sheet.name in ["LogData(Saegen), LogData(Drehen), LogData(Waschen)"]:
-                            # Extract process name
-                            prefix = "LogData("
-                            suffix = ")"
-                            process_name = sheet.name[len(prefix):-len(suffix)]
+        input_date = datetime.strptime(today, "%d.%m.%Y")
+        reformatted_today = input_date.strftime("%A, %B %d, %Y")
 
-                            # Extract the new line and use it to generate the process logs
-                            process_df = pd.read_excel(process_excel_path, sheet_name=sheet.name)
-                            new_row = process_df.tail(1)
+        filtered_fehler_df = fehler_df[(fehler_df["Datum"] == reformatted_today) &
+                                       (fehler_df["Bauteil"].str[:2] == variant[:2])]
+        nacharbeits_df = filtered_fehler_df[filtered_fehler_df["Ausschusstyp"] == "Nacharbeitsteil"]
+        num_nacharbeit = nacharbeits_df.shape[0]
+        ausschuss_df = filtered_fehler_df[filtered_fehler_df["Ausschusstyp"] == "Ausschussteil"]
+        num_ausschuss = ausschuss_df.shape[0]
 
-                            # Use the new row to generate process logs
-                            process_to_append = reformat_data(new_row)
-                            generate_process_log(process_name, process_to_append)
+        num_total = processes_today.shape[0]
 
-                            # Update the sheet state
-                            sheet_states[sheet.name] = current_state
+        try:
+            nacharbeitsquote = num_nacharbeit / num_total
+            ausschussquote = num_ausschuss / num_total
+        except ZeroDivisionError:
+            nacharbeitsquote = 0
+            ausschussquote = 0
 
-                        elif sheet.name in ["LogData(Fertigung)", "LogData(Montage)"]:
-                            # This can also be used to implement error logs. Not sure if I'll do it here
-                            # or if I'll continue to do it the way I did before.
-                            pass
+        current_directory = os.path.dirname(os.path.abspath(__file__))
+        process_folder = os.path.join(current_directory, '..', 'Werk', 'Prozesse', process)
+        file_path = os.path.join(process_folder, f'{process}_DS.csv')
+        write_kpi(file_path, "Nacharbeitsquote", int(100*nacharbeitsquote))
+        write_kpi(file_path, "Ausschussquote", int(100*ausschussquote))
+        write_kpi(file_path, "Fehlproduktionsquote", int(100*(nacharbeitsquote + ausschussquote)))
 
-                        else:
-                            pass
-"""
 
 try:
     while True:
@@ -155,12 +155,14 @@ try:
                 print(f"Change detected in sheet '{sheet.name}'")
                 # Add your logic to handle the change here
                 # Generating process logs
-                if sheet.name in ["LogData(Saegen)", "LogData(Drehen)", "LogData(Waschen)"]:
+                if sheet.name in ["LogData(Saegen)", "LogData(Drehen)", "LogData(Waschen)", "LogData(Montagezeit)"]:
                     print("Found the sheet")
                     # Extract process name
                     prefix = "LogData("
                     suffix = ")"
                     process_name = sheet.name[len(prefix):-len(suffix)]
+                    if process_name == "Montagezeit":
+                        process_name = "Montage"
 
                     # Extract the new line and use it to generate the process logs
                     process_df = pd.read_excel(process_excel_path, sheet_name=sheet.name)
@@ -173,10 +175,30 @@ try:
                     # Update the sheet state
                     sheet_states[sheet.name] = current_state
 
-                elif sheet.name in ["LogData(Fertigung)", "LogData(Montage)"]:
-                    # This can also be used to implement error logs. Not sure if I'll do it here
-                    # or if I'll continue to do it the way I did before.
-                    pass
+                elif sheet.name == "LogData(Fertigung)":
+                    process_df = pd.read_excel(process_excel_path, sheet_name=sheet.name)
+                    new_row = process_df.tail(1)
+
+                    variant = new_row["Bauteil"].values[0].replace("-", "").replace("0", "")
+                    process_per_variant = {"FS1": "Saegen", "FS2": "Saegen", "FB1": "Fraesen", "FB2": "Fraesen",
+                                           "FK1": "Drehen", "FK2": "Drehen", "FK3": "Drehen", "FK4": "Drehen",
+                                           "FK5": "Drehen", "FK6": "Drehen", "FK7": "Drehen", "FK8": "Drehen"}
+
+                    log_error(process_per_variant[variant], variant, process_df)
+                    print(f"Error logged for {process_per_variant[variant]}")
+
+                    # Update the sheet state
+                    sheet_states[sheet.name] = current_state
+
+                elif sheet.name == "LogData(Montage)":
+                    process_df = pd.read_excel(process_excel_path, sheet_name=sheet.name)
+                    new_row = process_df.tail(1)
+
+                    log_error("Montage", "FB1", process_df)
+                    print("Error logged for Montage")
+
+                    # Update the sheet state
+                    sheet_states[sheet.name] = current_state
 
                 else:
                     pass
@@ -187,7 +209,6 @@ except KeyboardInterrupt:
     pass
 finally:
     app.quit()
-
 
 """
 # Create an observer to monitor file changes

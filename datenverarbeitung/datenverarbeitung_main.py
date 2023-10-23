@@ -418,7 +418,7 @@ if __name__ == "__main__":
     observer = Observer()
     observer.schedule(event_handler, path=os.path.dirname(log_filename))
     observer.schedule(excel_event_handler, path=os.path.dirname(logger_path), recursive=True)
-    observer.schedule(error_handler, path=os.path.dirname(process_excel_path), recursive=True)  # Fehlermeldung
+    # observer.schedule(error_handler, path=os.path.dirname(process_excel_path), recursive=True)  # unused
     observer.start()
     program_lock = Lock()
 

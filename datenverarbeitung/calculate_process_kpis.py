@@ -89,18 +89,19 @@ def calculate_average_cycle_time(variant, process, process_df, timestamp, period
     # Period to search for in the logs
     search_interval = 86400
     if period == "week":
-        search_interval = 86400*7
+        search_interval = 86400 * 7
     elif period == "month":
-        search_interval = 86400*30
+        search_interval = 86400 * 30
     elif period == "year":
-        search_interval = 86400*365
+        search_interval = 86400 * 365
 
     # Day of the last instance of the process
     today = process_df.tail(1)["date"].iloc[0]
     print(today)
 
     # Filter events that happened within the desired period
-    filtered_process_df = process_df[(process_df["date"] == today) & (process_df["variant"] == variant) & (process_df["exit_code"] == 0)]
+    filtered_process_df = process_df[
+        (process_df["date"] == today) & (process_df["variant"] == variant) & (process_df["exit_code"] == 0)]
 
     # Use the durations to calculate the mean, divide by the Losgroesse to get cycle time per unit
     print(filtered_process_df["duration"])
@@ -118,6 +119,8 @@ def calculate_average_cycle_time(variant, process, process_df, timestamp, period
                  "FK7": "KS_7", "FK8": "KS_8", "FK": "KS (avg)", "FB1": "D25", "FB2": "D40", "FS1": "D25", "FS2": "D40"}
 
     variant = 'Cycle Time ' + f'{translate[variant]}'
+    time_obj = datetime.strptime(cycle_time, "%H:%M:%S")
+    cycle_time = time_obj.hour * 3600 + time_obj.minute * 60 + time_obj.second
     write_kpi(file_path, variant, cycle_time)
 
     return cycle_time
@@ -128,7 +131,8 @@ def calculate_process_time(process, variant, process_df, timestamp):
     today = process_df.tail(1)["date"].iloc[0]
 
     # Filter events that happened within the desired period
-    filtered_process_df = process_df[(process_df["date"] == today) & (process_df["variant"] == variant) & (process_df["exit_code"] == 0)]
+    filtered_process_df = process_df[
+        (process_df["date"] == today) & (process_df["variant"] == variant) & (process_df["exit_code"] == 0)]
 
     # Use the durations to calculate the mean, divide by the Losgroesse to get cycle time per unit
     durations = filtered_process_df["duration"].tolist()
@@ -144,6 +148,8 @@ def calculate_process_time(process, variant, process_df, timestamp):
                  "FK7": "KS_7", "FK8": "KS_8", "FK": "KS (avg)", "FB1": "D25", "FB2": "D40", "FS1": "D25", "FS2": "D40"}
 
     variant = 'Prozesszeit ' + f'{translate[variant]}'
+    time_obj = datetime.strptime(process_time, "%H:%M:%S")
+    process_time = time_obj.hour * 3600 + time_obj.minute * 60 + time_obj.second
     write_kpi(file_path, variant, process_time)
 
     return process_time
@@ -151,8 +157,11 @@ def calculate_process_time(process, variant, process_df, timestamp):
 
 def calculate_production_downtime(process, fehler_excel_path):
     ausfall_df = pd.read_excel(fehler_excel_path, sheet_name='LogData(Ausfallzeit)')
-    today = ausfall_df.tail(1)["Datum"].iloc[0]
-    filtered_df = ausfall_df[ausfall_df["Datum"] == today]
+    try:
+        today = ausfall_df.tail(1)["Datum"].iloc[0]
+        filtered_df = ausfall_df[ausfall_df["Datum"] == today]
+    except:
+        filtered_df = ausfall_df
 
     downtime = "00:00:00"
     translate_machine = {"Drehen": "Drehmaschine", "Fraesen": "Fraesmaschine", "Saegen": "Bandsaege"}
@@ -202,7 +211,8 @@ def calculate_nacharbeitquote(process, variant, process_df, fehler_excel_path): 
     today = process_df.tail(1)["date"].iloc[0]
 
     # Filter the DataFrame for the desired variant and today's date
-    filtered_df = process_df[(process_df['variant'] == variant) & (process_df['date'] == today) & (process_df['exit_code'] == 2)]
+    filtered_df = process_df[
+        (process_df['variant'] == variant) & (process_df['date'] == today) & (process_df['exit_code'] == 2)]
 
     # Count the number of rows in the filtered DataFrame
     variants_today = filtered_df.shape[0]
@@ -216,10 +226,10 @@ def calculate_nacharbeitquote(process, variant, process_df, fehler_excel_path): 
             for cell in row:
                 if cell.value == process:
                     process_cell = cell
-                    nacharbeitsteil_cell = fehler_excel.cell(row=process_cell.row + 2, column=process_cell.column+1)
+                    nacharbeitsteil_cell = fehler_excel.cell(row=process_cell.row + 2, column=process_cell.column + 1)
                     na_teile = nacharbeitsteil_cell.value
 
-                    nacharbeitsquote = na_teile*100/total_parts
+                    nacharbeitsquote = na_teile * 100 / total_parts
 
                     current_directory = os.path.dirname(os.path.abspath(__file__))
                     process_folder = os.path.join(current_directory, '..', 'Werk', 'Prozesse', process)
@@ -232,7 +242,7 @@ def calculate_nacharbeitquote(process, variant, process_df, fehler_excel_path): 
         return 0
 
 
-def calculate_ausschussquote(process, variant, process_df,  fehler_excel_path):  # Prozentzahl
+def calculate_ausschussquote(process, variant, process_df, fehler_excel_path):  # Prozentzahl
     today = process_df.tail(1)["date"].iloc[0]
 
     # Filter the DataFrame for the desired variant and today's date
@@ -241,7 +251,7 @@ def calculate_ausschussquote(process, variant, process_df,  fehler_excel_path): 
     # Count the number of rows in the filtered DataFrame
     variants_today = filtered_df.shape[0]
     batch = process_df["menge"].tail(1).iloc[0]
-    total_parts = variants_today*batch
+    total_parts = variants_today * batch
 
     fehler_excel = pd.read_excel(fehler_excel_path, sheet_name='LogData(Fertigung)')
 
@@ -252,7 +262,7 @@ def calculate_ausschussquote(process, variant, process_df,  fehler_excel_path): 
                     process_cell = cell
                     ausschissteil_cell = fehler_excel.cell(row=process_cell.row + 2, column=process_cell.column)
                     as_teile = ausschissteil_cell.value
-                    ausschusssquote = as_teile*100/total_parts
+                    ausschusssquote = as_teile * 100 / total_parts
 
                     current_directory = os.path.dirname(os.path.abspath(__file__))
                     process_folder = os.path.join(current_directory, '..', 'Werk', 'Prozesse', process)
@@ -273,13 +283,13 @@ def calculate_fehlproduktionsquote(process, batch, variant, process_df, fehler_e
     num_failed = failed_processes.shape[0]
     num_total = processes_today.shape[0]
 
-    fehlerproduktionsquote = num_failed/num_total
+    fehlerproduktionsquote = num_failed / num_total
 
     current_directory = os.path.dirname(os.path.abspath(__file__))
     process_folder = os.path.join(current_directory, '..', 'Werk', 'Prozesse', process)
     file_path = os.path.join(process_folder, f'{process}_DS.csv')
     variant = 'Fehlproduktionsquote'
-    write_kpi(file_path, variant, fehlerproduktionsquote)
+    write_kpi(file_path, variant, int(100*fehlerproduktionsquote))
 
     return fehlerproduktionsquote
 
@@ -386,7 +396,7 @@ def calculate_oee_pe(process, variant, batch, process_df):
     ideal_runtime = ideal_cycle_times[process_variant] * number_of_runs
 
     try:
-        performance = min(1, ideal_runtime/runtime_seconds)
+        performance = min(1, ideal_runtime / runtime_seconds)
     except ZeroDivisionError:
         performance = 1
 
@@ -417,10 +427,10 @@ def calculate_oee_qa(process, variant, batch, process_df, total_parts_produced, 
 
 
 def calculate_oeestern(process, total_parts, variant, process_df, timestamp):
-    working_time = 8*3600
+    working_time = 8 * 3600
 
     try:
-        oeestern = total_parts*calculate_average_cycle_time(variant, process, process_df, timestamp)/working_time
+        oeestern = total_parts * calculate_average_cycle_time(variant, process, process_df, timestamp) / working_time
 
         current_directory = os.path.dirname(os.path.abspath(__file__))
         process_folder = os.path.join(current_directory, '..', 'Werk', 'Prozesse', process)
@@ -439,12 +449,6 @@ def calculate_oeestern(process, total_parts, variant, process_df, timestamp):
 
 
 def calculate_productivity(process, fehler_excel_path):
-
-
-
-
-
-
     try:
         # Percentage of uptime I think
         productivity = 1 - calculate_production_downtime(process, fehler_excel_path) - \
@@ -518,21 +522,21 @@ def update_global_kpis():
 
     # Process times and VAR can be calculated directly from the values in Werk_DS
     # Wartezeiten must be converted to seconds (86400 seconds per day)
-    wait1 = 86400*int(float(werk_ds.iloc[9]["SF Besprechung"]))
+    wait1 = int(86400 * float(werk_ds.iloc[9]["SF Besprechung"]))
     process1 = int(werk_ds.iloc[2]["Pausen"])
-    wait2 = 86400*(int(float(werk_ds.iloc[10]["SF Besprechung"]))+int(float(werk_ds.iloc[11]["SF Besprechung"])))
+    wait2 = int(86400 * (float(werk_ds.iloc[10]["SF Besprechung"]) + float(werk_ds.iloc[11]["SF Besprechung"])))
     process2 = int(werk_ds.iloc[3]["Pausen"]) + int(werk_ds.iloc[4]["Pausen"]) + int(werk_ds.iloc[5]["Pausen"])
-    wait3 = 86400*int(float(werk_ds.iloc[12]["SF Besprechung"]))
+    wait3 = int(86400 * float(werk_ds.iloc[12]["SF Besprechung"]))
     process3 = int(werk_ds.iloc[6]["Pausen"])
-    wait4 = 86400 * (int(float(werk_ds.iloc[13]["SF Besprechung"])) + int(float(werk_ds.iloc[14]["SF Besprechung"])) +
-                     int(float(werk_ds.iloc[15]["SF Besprechung"])) + int(float(werk_ds.iloc[16]["SF Besprechung"])) +
-                     int(float(werk_ds.iloc[17]["SF Besprechung"])))
+    wait4 = int(86400 * (float(werk_ds.iloc[13]["SF Besprechung"]) + float(werk_ds.iloc[14]["SF Besprechung"]) +
+                         float(werk_ds.iloc[15]["SF Besprechung"]) + float(werk_ds.iloc[16]["SF Besprechung"]) +
+                         float(werk_ds.iloc[17]["SF Besprechung"])))
     process4 = int(werk_ds.iloc[7]["Pausen"])
 
     # Calculate value-added and non-value-added time in seconds
     va_time = process1 + process2 + process3 + process4
     nva_time = wait1 + wait2 + wait3 + wait4
-    var = int((100 * va_time)/(va_time + nva_time))  # In percentage
+    var = int((100 * va_time) / (va_time + nva_time))  # In percentage
 
     # Ausbringung and lead time can also be calculated directly from Werk_DS
     lead_time = va_time + nva_time
@@ -540,7 +544,7 @@ def update_global_kpis():
     ausbringung = sum(ausbringung_list)
     print(ausbringung)
     try:
-        produktionstakt = int(100*lead_time/ausbringung_list[5])/100
+        produktionstakt = int(100 * lead_time / ausbringung_list[5]) / 100
     except ZeroDivisionError:
         produktionstakt = 0
 
@@ -548,7 +552,7 @@ def update_global_kpis():
     process_list = ["Saegen", "Fraesen", "Drehen", "Waschen", "Messen", "Montage"]
     downtime_list = []
     fehlproduktionsquote_list = []
-    productivity = 0  # To be replaced by quality from Montage
+    productivity = 0  # To be replaced by Performance from Montage
 
     for process in process_list:
         process_path = os.path.join("", f"..\\Werk\\Prozesse\\{process}\\{process}_DS.csv")
@@ -569,11 +573,11 @@ def update_global_kpis():
 
         # Obtain productivity
         if process == "Montage":
-            productivity = int(100*float(process_ds.iloc[0]["Qualitaetsgrad"]))
+            productivity = int(100*float(process_ds.iloc[0]["OEE - Performance/Leistung"]))
 
     global_downtime = sum(downtime_list)
-    total_failed_parts = sum([fehlproduktionsquote_list[i]*ausbringung_list[i] for i in range(6)])
-    global_fehlproduktionsquote = int(100*total_failed_parts/ausbringung)  # In percentage
+    total_failed_parts = sum([fehlproduktionsquote_list[i] * ausbringung_list[i] for i in range(6)])
+    global_fehlproduktionsquote = int(100 * total_failed_parts / ausbringung)  # In percentage
 
     # Write all those values to the top row of Werk_DS
     werk_ds.at[0, "Ausfallzeit"] = global_downtime
@@ -593,6 +597,13 @@ def update_global_kpis():
     werk_ds.at[0, "Wait4"] = wait4
     werk_ds.at[0, "Process4"] = process4
     werk_ds.at[0, "Produktionstakt"] = produktionstakt
+
+    # Save the adjustments based on the standards
+    werk_ds.at[0, "Schichtlaenge"] = 60
+    werk_ds.at[0, "Pausen"] = 6
+    werk_ds.at[0, "SF Besprechung"] = 6
+    werk_ds.at[0, "Stueckzahl"] = 48
+    werk_ds.at[0, "Kundentakt"] = 60
 
     # Save the Werk_DS
     werk_ds.to_csv(werk_ds_path, index=False)
@@ -628,7 +639,7 @@ def calculate_process_kpis(process, variant, date, timestamp):
     oee_av = calculate_oee_av(process, fehler_excel_path)
     oee_pe = calculate_oee_pe(process, variant, batch, process_df)
     # oee_qa = calculate_oee_qa(process, variant, batch, process_df, total_parts_produced, fehler_excel_path)
-    oee = oee_av*oee_pe*qualitaetsgrad
+    oee = oee_av * oee_pe * qualitaetsgrad
     # oeestern = calculate_oeestern(process, total_parts_produced, variant, process_df, timestamp)
 
     current_directory = os.path.dirname(os.path.abspath(__file__))
@@ -642,7 +653,7 @@ def calculate_process_kpis(process, variant, date, timestamp):
     ds_path = os.path.join("", f"..\\Werk\\Prozesse\\{process}\\" + f"{process}_DS.csv")
 
     histlog_row = {"Date": [date], "Time": [timestamp], "Variant": [variant], "Menge": [batch], "OEE Gesamt": [oee],
-                      "OEE Verfuegbarkeit": [oee_av], "OEE Leistung": [oee_pe], "OEE Qualitaet": [qualitaetsgrad]}
+                   "OEE Verfuegbarkeit": [oee_av], "OEE Leistung": [oee_pe], "OEE Qualitaet": [qualitaetsgrad]}
     histlog_to_append = pd.DataFrame(histlog_row)
 
     histlog_df = pd.read_csv(hist_log_path)
@@ -656,16 +667,18 @@ def calculate_process_kpis(process, variant, date, timestamp):
     process_list = ["Saegen", "Fraesen", "Drehen", "Waschen", "Messen", "Montage"]
     process_index = 2 + process_list.index(process)
 
+    """
     # Reformat cycle/process times as seconds
     time_obj = datetime.strptime(average_cycle_time, "%H:%M:%S")
     average_cycle_time = time_obj.hour * 3600 + time_obj.minute * 60 + time_obj.second
     time_obj = datetime.strptime(average_process_time, "%H:%M:%S")
     average_process_time = time_obj.hour * 3600 + time_obj.minute * 60 + time_obj.second
+    """
 
     # This uses the column names at the top of Werk_DS
     werk_ds.at[process_index, "Schichtlaenge"] = average_cycle_time
     werk_ds.at[process_index, "Pausen"] = average_process_time
-    werk_ds.at[process_index, "SF Besprechung"] = int(oee*100)
+    werk_ds.at[process_index, "SF Besprechung"] = int(oee * 100)
     werk_ds.at[process_index, "Stueckzahl"] = leistung
     werk_ds.at[process_index, "Kundentakt"] = anzahl_typ
     werk_ds.at[process_index, "Ausfallzeit"] = work_in_process
