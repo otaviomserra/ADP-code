@@ -362,6 +362,10 @@ class Lane:
         ld1_index = df_I[df_I['Bestandsmenge'] == f'{self.lane_name}'].index[0]
         df_I.iloc[ld1_index+1:ld1_index+len(df_DS)+1] = df_DS.values
 
+        # Change the first row of each lane to show Bestandsmenge/Kapazität
+        df_I.iloc[ld1_index+1]["Lagerumschlagsrate"] = kapazitaet
+        df_I.iloc[ld1_index+1]["Durchschnittliche Wartezeit"] = bestandsmenge
+
         # Updating the Inventar KPIs
         if not os.path.exists(self.inventar_kpi_df_db):
             df_inventar_kpi_db = pd.DataFrame(columns=['Lane', 'Bestandsmenge', 'Kapazitaet', 'Lagernutzungsgrad',

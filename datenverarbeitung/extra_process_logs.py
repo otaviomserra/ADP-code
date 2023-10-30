@@ -152,6 +152,8 @@ def log_error(process, variant, fehler_df):
 
 try:
     while True:
+        time1 = datetime.now()
+        print(f"Time 1 is {time1}")
         workbook = app.books.open(process_excel_path, read_only=True)
         for sheet in workbook.sheets:
             current_state = sheet.used_range.address
@@ -208,7 +210,9 @@ try:
                 else:
                     pass
         workbook.close()
-        time.sleep(30)
+        time2 = datetime.now()
+        print(f"Time 2 is {time2}")
+        time.sleep(10)
 
 except KeyboardInterrupt:
     pass
