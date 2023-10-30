@@ -1,0 +1,6 @@
+Date,Hour,Topic,traceId,id,organisationId,carrierActionType,carrierId,currentCount,laneAddress
+30/Oct/2023,01:29:46,organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc,78abf456-af6c-4650-a4bb-89f505ebbb94,3743d579-bd80-4d07-b34c-19a03792e95b,b6c197fa-c1d2-43ec-930f-57daf8c7aa9b,CARRIER_ACTION_PUT,,5,S001.M003.02.02
+30/Oct/2023,01:29:46,organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc,eb8dd78a-a698-4f94-bf6c-648b681d5306,da4a26fd-07cd-49c0-969c-c2af928995e3,b6c197fa-c1d2-43ec-930f-57daf8c7aa9b,CARRIER_ACTION_PICK,,4,S001.M003.02.02
+30/Oct/2023,01:34:17,organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc,c2242c3d-01c7-48bb-8dbc-e0ae1cd60708,e469cbd5-fe2b-4dd9-a08e-05ca447ceed6,b6c197fa-c1d2-43ec-930f-57daf8c7aa9b,CARRIER_ACTION_PICK,,2,S001.M006.02.02
+30/Oct/2023,01:34:57,organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc,8d5eb84a-2b37-45b3-bb83-d7630143880a,76fc81b0-6eb7-410b-a064-593180feca8d,b6c197fa-c1d2-43ec-930f-57daf8c7aa9b,CARRIER_ACTION_PICK,e1ab223c-b8fb-1cf2-3c4a-7073edfdd023,2,S001.M004.04.02
+30/Oct/2023,01:35:25,organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc,63def4a4-2cdb-48b6-a3d4-e28935924455,fde264eb-7400-4d9e-b23d-8464048fc24a,b6c197fa-c1d2-43ec-930f-57daf8c7aa9b,CARRIER_ACTION_PUT,,3,S001.M006.02.02

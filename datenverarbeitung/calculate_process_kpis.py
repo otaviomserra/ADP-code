@@ -313,7 +313,7 @@ def calculate_yield(process, variant, process_df):
     filtered_df = process_df[(process_df['variant'] == variant) & (process_df['date'] == today) &
                              (process_df['exit_code'] == 0)]
 
-    yeld = filtered_df["menge"].mean()
+    yeld = filtered_df["menge"].sum()
 
     current_directory = os.path.dirname(os.path.abspath(__file__))
     process_folder = os.path.join(current_directory, '..', 'Werk', 'Prozesse', process)
@@ -577,7 +577,7 @@ def update_global_kpis():
 
     global_downtime = sum(downtime_list)
     total_failed_parts = sum([fehlproduktionsquote_list[i] * ausbringung_list[i] for i in range(6)])
-    global_fehlproduktionsquote = int(100 * total_failed_parts / ausbringung)  # In percentage
+    global_fehlproduktionsquote = int(total_failed_parts / ausbringung)  # In percentage
 
     # Write all those values to the top row of Werk_DS
     werk_ds.at[0, "Ausfallzeit"] = global_downtime

@@ -212,7 +212,7 @@ try:
         workbook.close()
         time2 = datetime.now()
         print(f"Time 2 is {time2}")
-        time.sleep(10)
+        time.sleep(30)
 
 except KeyboardInterrupt:
     pass

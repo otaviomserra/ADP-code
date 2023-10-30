@@ -1,6 +1,6 @@
 Bestandsmenge,Kapazitaet,Lagernutzungsgrad,Bestandsgenauigkeit,Durchschnittliche Wartezeit,Lagerumschlagsrate,Reichweite,Wiederbeschaffungszeit
-12.0,12.0,100,100,0,0,0.0,0.125
+8.0,12.0,67,100,0,0,0.0,0.08333333333333333
 LG4,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
 Box 1,1,15:00:00,29.10.2023,4.0,4.0,4.0,-
 Box 2,1,15:00:01,29.10.2023,4.0,4.0,4.0,-
-Box 3,1,15:00:02,29.10.2023,4.0,4.0,4.0,-
+Box 3,0,-,-,-,-,-,-

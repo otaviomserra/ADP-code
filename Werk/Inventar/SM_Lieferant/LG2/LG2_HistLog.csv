@@ -1,6 +1,7 @@
 Besetzt,ID,Date_in,Timestamp_in,Date_out,Timestamp_out
 False,16,29/Oct/2023,14:00:00,29/Oct/2023,14:30:00
 False,17,29/Oct/2023,14:00:01,29/Oct/2023,14:30:01
-True,50,29/Oct/2023,14:00:00,,
+False,18,29/Oct/2023,14:00:02,29/Oct/2023,14:30:02
+False,50,29/Oct/2023,14:00:00,30/Oct/2023,13:34:57
 True,51,29/Oct/2023,14:00:01,,
 True,52,29/Oct/2023,14:00:02,,
