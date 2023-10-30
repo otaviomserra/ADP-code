@@ -1,5 +1,11 @@
 import os
 
+# Legacy
+# Datenverarbeitung_main doesn't run directly in shell 
+# Windows observers may have something to do with this
+# Currently alternative is running 3 programs in PyCharm (just activative multi run)
+# Run Benny's main, datenvearbeitung_main and extra_process_logs
+
 # Find the absolute path of the main script
 this_script_path = os.path.abspath(__file__)
 

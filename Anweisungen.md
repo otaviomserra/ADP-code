@@ -1,4 +1,6 @@
-# Python-Anforderungen
+# Anforderungen
+
+## Python-Anforderungen
 
 Folgende Python-Module sollten mithilfe von ```pip install package-name``` installiert werden, indem ```package-name``` ist:
 - django-environ
@@ -16,3 +18,9 @@ Folgende Python-Module sollten mithilfe von ```pip install package-name``` insta
 - logging
 - json
 - csv
+
+## Pycharm-Anforderungen
+
+### Parallel run
+For runnning multiple scripts directly on pycharm
+1.

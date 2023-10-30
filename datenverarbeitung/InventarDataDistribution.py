@@ -1,3 +1,6 @@
+# Main program where important Inventory classes and functions are defined
+# Also where the program itself runs the inventory cases for events
+
 import os
 import pandas as pd
 from calculate_inventory_kpis import *
@@ -19,19 +22,31 @@ class Boxes:
 
 # Class for lane description
 class Lane:
-    # Instancia com o objeto lane, as quais contém caixas indentadas 
-    # contém funções de manipulação pra que execute o sistema FIFO
-    # Não precisa se preocupar com o tamanho máximo, pois no databank de cada lane (que é o operacional)
-    # ele vai ser limitado de acordo com os puts
-    # datank da lane é completamente diferente do _DS.csv pra ser mostrado pro Brennan
-    # Não podem serem os mesmos pois vão precisar de informações diferentes
-    # https://chat.openai.com/share/2b5104e9-3d09-436b-9ce2-e18a33491666 concatenar csvs
-    # todas as funções vão precisar serem calculadas com a caixa como parametro
-
-    # funcao pra só retirar uma id do DB de uma lane quando receber o put na outra
-    # o put na lane 2 copia o ID e as infos da caixa q já saiu mas n foi apagado do DB da lane 1
-    # depois disso o ID da box é apagado da lane 1 e assim por conseguinte até a última instancia
+    # Class for handling all the Lane informations and functions.
+    # There 3 important sections: 
+    #   First is saving all the lane informations such as variants, lane address, and paths to navigate.
+    #   Second is to deal with both put and pick event manipulating the current information.
+    #   Third is to basically save all the alterations and calculate the metrics.
+    # Other important details of this code are that great part of the information is obtained by the Fabrikverbindung excel.
+    #   This occurs because the only information available is the lane address, timestamp and event type.
+    #       The others such as IDs (carriers, lanes, etc) are not really reliable or documented in Benny's code
+    #       and there are missing RFIDs in a lot of carriers to track every movement.
+    #       The system would be reliable as soon as all the sensors worked.
+    #       For implementing the IDs from Neoception this would require to enter the information into the class 
+    #       In which this info could be obtained after filtering it in datenverarbeitung_main by the kafka.logs
+    #       Other option would be getting the sensor data directly from the main controller (but nobody gave us access or really know where it is)
+    # Other important functions is read_or_create where it creates the basics dataframes structures
+    #   Werk databank is where it would store all the box IDs and timestamps, however I could not come to a good data structure and reliable source of info
+    #   so this would require improvements in case of further works in the program
+    #   Currently the most inventory that a box is actually tracked is 3 (i.e. Central warehouse,SM Lieferant and Montage)
+    #   if sensors for waschen or supermarkets for the production part are implemented, the Werk DB would need alteration such as the starting lanes
+    #   for initializing the IDs in the Fabrik.
+    #   The ID system itself would be useless if all the RFIDs worked and if the IDs itself were decipherable 
+    #       (there is no dictionary for searching info according to one ID)       
+    # For future works, this class can be divided between small functions and classes to better organization
+    # and comprehension.
     def __init__(self, lane, date, timestamp, event_type):
+        # Initializing the class with it's informations
         self.lane_address = lane
         self.event_type = event_type
         self.timestamp = timestamp
@@ -71,6 +86,14 @@ class Lane:
 
 
     def read_or_create(self):
+        # Function to read or creating a new file for:
+        # Lane Databank, Werk Databank, Historical lane csv modell
+        # Obs. Werk Databank is really poor handled, right now the data structure is only works for maximum 3 different invetories 
+        # and doesn't take account for which inventory it would be.
+        # For further works, it would be interesting to rename the timestamps and add a collumn with all the lanes that the box with that specif ID went
+        # with the path that the box made in the Fabrik it would need different ways but more robust to calculate metrics
+        # With more sensors or more lanes, the Werk DB could also take account for the processes lanes (waschen, fraesen, etc) 
+        # and it would need more timestamps collumns or specific only for that
         try:
             df_DB_lane = pd.read_csv(self.lane_DB)
         except:
@@ -92,10 +115,9 @@ class Lane:
         return df_DB_lane, df_DB_werk, df_Hist_lane
     
     def create_ID(self, db_werk):
-        # CRIAR UM ID NUMERICO PRA CADA CAIXA
-        # OU SEJA, ESTÁ INSTANCIANDO UM OBJETO COM REFERENCIA EM UMA LANE ESPECIFICA
-        # SÓ CRIA UM ID CASO SEJAM LANES ESPECIFICAS (INICIO DA LINHA DE PRODUCAO)
-        # ESSE ID TEM PARAMETRO DA LANE
+        # Create a numerical ID for each box that is initialized in the Fabrik
+        # This creation only happens in the starting lanes, but can also be created in other lanes by calling this function
+        #   However this would not be taked account in some metrics (needs to be more robust) 
         if db_werk.empty:
             return 1
         else:
@@ -103,12 +125,28 @@ class Lane:
             return last_id+1
 
     def get_ID_array(self, df):
+        # Unused function
+        # first idea was to store the information in a class
+        # but the info wouldn't be saved for other runs
         self.df = df
         filtered_df = df[df["Besetzt"] == True]
         self.boxes_array = filtered_df['ID'].tolist()
         return self.boxes_array
 
     def put_event(self):
+        # This function is one of the main functions of the code and could be further divided into smaller parts
+        # There are 2 cases for a box being putted in a lane:
+        #   First case - Is the starting lane of the fabrik (either the central warehouse or the lanes for production)
+        #       This would mean that it needs to create and ID and register the information in the Lane Databank, Historical lane and Werk DB
+        #   Second case - Is in the middle of the production line of the Fabrik, in that case some more steps happen
+        #       If the box was inserted here, this means that this box came from somewhere, so the first step is to find where it came from,
+        #       for that it uses the info in Fabrikverbindung excel to find the original lane and navigate into the folder structure and find the Databanks
+        #           This could be further improved by just generating a databank with all the paths infos to optimize the code
+        #       after accessing the original lane file, it copies the information (ID) and adds it to the lane DB where it was just inserted
+        #       this info also gets to be added into the Werk DB by searching for the ID it just got and adding a new timestamp in 
+        #       To end, it removes the the the information from the original lane Databank where it was written as besetzt == False
+        #           This is a simulation of a requests system, after a box is picked from a lane, it is not automatically removed from the lane
+        #           the besetzt just turns into False and wait until it is putted into the next lane so that it can save the ID and the FIFO modell works        #
         df_DB_lane, df_DB_werk, df_Hist_lane = self.read_or_create()
         # WHICH LANE DOES IT BEGIN 
         # NEEDS TO CHANGE ACCORDINGLY IN HOW THE FABRIK IS WORKING
@@ -118,7 +156,7 @@ class Lane:
                        'S001.M003.02.01', 'S001.M003.02.02', 'S001.M003.02.03']
         # , 'S001.M003.02.03'
         if self.lane_address in Start_lanes:
-            print('entrou no start fabrik')
+            print('Put event in the starting lanes')
             ID = self.create_ID(df_DB_werk)
             # Adding the ID to the Databank from the lane
             new_line = [{"Besetzt": True, 'ID': ID, 'Date': self.date, 'Timestamp': self.timestamp}]
@@ -147,7 +185,7 @@ class Lane:
         # If it's not a lane which starts the production line
         # The information should only be copied from the lane before
         else:
-            print('entrou no caso de meio da producao')
+            print('Put event in mid of production line')
             # Searching for the box ID in the original lane accordding to it's path (in DatenVerbindung)
             try:
                 for target_list in FabrikVerbindung["target_lane_address"]:
@@ -212,6 +250,12 @@ class Lane:
         df_Hist_lane.to_csv(self.hist_csv, index=False)
 
     def pick_event(self):
+        # This is the other main function from this script and could also be further divided into small functions
+        # What happens here is much simpler when compared to the put event
+        # Basically the script only turns the Besetzt from True to False in the Lane Databank and in the Historical info in the lane
+        # It also saves the timestamp out in the Historical lane and in Werk DB
+        # In case it's one of the ending lanes, the ID with besetz false gets removed from the lane databank
+        # as it won't have a next lane where is putted in.
         df_DB_lane, df_DB_werk, df_Hist_lane = self.read_or_create()
         # Adding the pick event at the lane DB
         print(f"\n\nDEBUGGING: PRINTING DF_DB_LANE for {self.lane_name}")
@@ -249,6 +293,14 @@ class Lane:
         df_Hist_lane.to_csv(self.hist_csv, index=False)
 
     def save_dashboard_format(self):
+        # This is the last main fucntion of the code where the Kennzahlen (metrics) are calculated 
+        # and both model and metrics are saved in the dashboard format
+        # There are 3 important files for dashboard: Lane, Inventar and Werk
+        # In lane there are 2 different data structures, first the metrics for the lane and after the lane modell with some info
+        #   Important to notice that kapazitaet, bestandsmenge and losgrosse in the modell is for each box and not for the lane
+        # In Inventar file is basically the metrics for all the lanes (some are just a sum and other are averaged), after that the modell for each lane
+        # In Werk file it is only some metrics from all the lanes
+
         # Read csv files from Werk, Inventar and Lane
         df_W = pd.read_csv(self.werk_path, encoding="cp1252")
         df_I = pd.read_csv(self.inventar_csv, encoding="cp1252")
@@ -279,8 +331,8 @@ class Lane:
         df_DS['Lead Time'] = '-'
 
         condicao = df_DB_lane['Besetzt'] == True
-        linhas_a_atualizar = condicao.index[condicao].tolist()  # Encontre os índices das linhas com Besetzt True
-        # Substitua os valores de 'Name' e 'Age' em df1 nas linhas correspondentes
+        linhas_a_atualizar = condicao.index[condicao].tolist()  
+        # for every besetzt True, substitute the info for the box
         for truelinha in linhas_a_atualizar:
             linha = linhas_a_atualizar.index(truelinha)
             print("\nentrou aqui")
@@ -330,8 +382,10 @@ class Lane:
         # Caminho para o arquivo de saída onde os dois arquivos serão mesclados
         arquivo_saida_lane = self.lane_csv
 
+        # Saving file into the dashboard format
+        # Really dumb way of working as it contrariates the structure format of a Data Frame
         try:
-            print("entrou para salvar")
+            print("Saving Lane.csv with digital shadow")
             # Abrir o primeiro arquivo CSV e ler seu conteúdo
             with open(path_kpi, "r") as file1:
                 conteudo1 = file1.read()
@@ -353,7 +407,7 @@ class Lane:
             with open(arquivo_saida_lane, "w") as output_file:
                 output_file.write(conteudo_combinado)
         except:
-            print('não consegui juntar os arquivos')
+            print('Could not unite the files')
 
         # Updating the csv from the Inventar
         #
@@ -362,7 +416,7 @@ class Lane:
         ld1_index = df_I[df_I['Bestandsmenge'] == f'{self.lane_name}'].index[0]
         df_I.iloc[ld1_index+1:ld1_index+len(df_DS)+1] = df_DS.values
 
-        # Change the first row of each lane to show Bestandsmenge/Kapazität
+        # Change the first row of each lane to show Bestandsmenge/Kapazität (dumb request from the dashboard team)
         df_I.iloc[ld1_index+1]["Lagerumschlagsrate"] = kapazitaet
         df_I.iloc[ld1_index+1]["Durchschnittliche Wartezeit"] = bestandsmenge
 

@@ -1,3 +1,5 @@
+# Here is located all functions for calculating inventory metrics
+
 import os
 import pandas as pd
 import numpy as np
@@ -223,12 +225,3 @@ def calculate_Wiederbeschaffungszeit(df_db_werk, lane_path, lane):
 
     media_diff_tempo = media_diff_tempo / (60 * 60 * 24)
     return media_diff_tempo
-#################################################################
-# MAIN FUNCTION                                                 #
-#################################################################
-
-
-def calculate_inventory_kpis():
-    # This will be the main function at the end that only calls each individual calculation
-    # and then adds the result to the _DS.csv files.
-    return 0
