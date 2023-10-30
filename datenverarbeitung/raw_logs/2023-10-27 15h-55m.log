@@ -1,0 +1,1018 @@
+[27/Oct/2023 03:55:37] "INFO" "main" "Starting application..."
+[27/Oct/2023 03:55:37] "INFO" "main" "ils-api access: True"
+[27/Oct/2023 03:55:37] "DEBUG" "main" "Starting process: 'OrganisationEventProcessor-1'"
+[27/Oct/2023 03:55:37] "INFO" "ils_event_consumer" "Starting consumer..."
+[27/Oct/2023 03:55:38] "INFO" "events_processor" "OrganisationEventProcessor Running!"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"07961470-84c9-498a-be07-4d0d70e3bee3","id":"901b5c37-5ea5-495e-aa03-4753265ebe3d","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-26T11:14:29.470731020Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M001.01.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":1}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"211ca5c6-b392-46b6-98f4-b1a8335a6646","id":"a1ad9aa4-363c-4cc2-909a-fcb5ab34e60f","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-26T11:38:03.949601576Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M006.02.05","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"1e6b5379-cd1a-432e-8407-6aee35490679","id":"f74a8744-7cf7-4ec2-9047-0c8d2c26684e","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-26T11:38:25.824480241Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M006.02.05","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":5}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"2a888af8-5ca8-45ce-b5ae-ca5faa61dbc1","id":"6d1d304e-77fd-425d-b59a-cf99cc6b4a0a","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-26T11:38:27.487026195Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M006.01.05","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"6077d33d-5860-4d2b-baa5-30a9924317fa","id":"88c22e7a-6044-4b4c-92af-144711996f90","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-26T11:39:13.567107398Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.03","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"a1f7e7b4-94b4-4dba-8509-72f5dd8d7a06","id":"aa4217be-9e73-4621-9cd0-4d23f036908a","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-26T11:39:14.325584283Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.03","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":5}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"369ac517-2845-44de-9f20-980a13474063","id":"0d338451-3bf7-4c82-af59-1d0488ab0d11","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-26T11:39:16.570634196Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"93dcbd94-dbb8-48ae-a178-9f36b1089e10","id":"edfe2958-54f7-4f07-86ba-dee185ee4004","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-26T11:39:16.976775470Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:38] "INFO" "organisation_event_processor" "signal linked lane S001.M001.01.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"df51b500-64c0-48ca-9ff2-11f056fe36ad","id":"ade7a4c7-f364-427e-af44-f145a0b2832e","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-26T11:39:19.877295257Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"1cfe638d-c08c-42dd-b2cf-c67453059b92","id":"6681e617-9cfd-4d6c-a91a-a28ae11d7050","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-26T11:39:20.614144841Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"768fa2b8-a857-4c1a-abc6-a3e20dfd1507","id":"aac4c042-e15d-43a8-bd77-620d82c6cf4e","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T09:34:24.923875270Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M006.01.05","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"562be114-26ab-4041-a2f2-d4f4e441c2ec","id":"9b229128-0528-4316-a152-e1d397484837","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T09:34:40.507937415Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M006.02.05","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":6}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"ba534b28-509d-45f9-9adc-8b64450f4272","id":"3781a384-bf30-47f0-850a-b8903c4cebc0","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T09:34:41.358935164Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M006.02.05","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":7}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"96b098a8-958a-41f9-af76-8f17aa0d20d4","id":"86d984bf-e46d-4559-9b79-6b93decdce4e","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T11:26:13.621510160Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"07073968-b79d-4744-8ac8-b9d6fb6630eb","id":"38ad5129-85f9-41b5-9069-fffa6e8934e7","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T11:26:18.232134725Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"707526ee-5d35-4b0d-a609-4c4237ad4e0e","id":"9d2bd14b-ea60-49fd-9188-645b5f501963","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T11:26:27.974662952Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.03","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"f32055ff-db41-4720-ae71-5613f78ec928","id":"cd445443-958e-4154-b697-3eb1e9a885d4","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T11:49:03.452734570Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M006.02.05","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":6}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"a877ddf8-447b-4885-80c7-e12500f029c1","id":"7739eba0-6274-46cc-a7a7-9d0f1333a1c3","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T11:54:03.978957905Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.03.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"f92daa59-49de-4c38-b3dc-34a1de463d55","id":"d0a53604-d1f5-4381-a79f-5c0189255eb8","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T11:55:07.749000595Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.03.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"fcee55e0-5ff7-4159-b986-c417762d0d1c","currentCount":1}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"5e631afa-edff-43c6-bffa-b1d92275a72b","id":"503c0fa9-ef90-4a14-9a01-2166176c5b28","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T11:59:10.829007411Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.02.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"55aedaf7-21f3-4180-8df9-5c4c9d1c8166","id":"41c6c857-f120-4398-9c4d-40b58c972d6a","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T11:59:14.737293696Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.01","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"50c94730-a6bb-b542-612c-4ecde7caa449","currentCount":1}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"45a840ce-0a89-45f7-a108-36ce61139c11","id":"c9aefeca-290d-49b4-aac3-18aa75b32f7e","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T11:59:15.821163296Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"96dc6c7e-ede3-467b-9bbd-e788e097e56c","id":"c24047ca-3300-43f2-a33a-867a88053506","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T11:59:45.034001203Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"67fa643f-953f-46dd-9f1a-17577b9d3ffb","id":"0d0a58ac-9b3a-46b6-b731-54c1a9f7c50a","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T11:59:51.223642403Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"5d25e632-0fc2-4b0f-ba01-2fa53ba02985","id":"9e599054-e400-498e-acc0-5dd5ee756e23","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:00:06.569231371Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.03","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"1542a5c8-0d75-4401-92ec-a2a800e27ef7","id":"ab595233-5171-42a6-b9d0-f42829506fd9","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:00:30.036386259Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.04","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"d2bb4247-1e9d-4100-91c2-c7fc2dd82e03","id":"bb9b79f8-2d31-4b0f-bb8b-a48514ede76a","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:00:38.752570812Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.04","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"8fb1ec73-49db-0b76-8f91-05db8ea048e4","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"8efa5baa-79cc-4af2-bcea-bce8dd672a1a","id":"ad765bdb-f335-4932-aaaa-0893ea7b87a5","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:00:43.145666991Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.04","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"0250656e-289f-81ec-fdb7-fdb934fcc5f3","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"f991ba49-6a0e-420c-947e-4111ef7371c8","id":"549d6092-1096-4ccc-b12f-22f41337a2be","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:00:44.425413167Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.04","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"fb379dc7-90bc-4ccd-8e87-436d03498cbe","id":"8a682a6f-80d3-46a1-8fd4-e36fce0f1fbe","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:00:58.364000558Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.04","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"ff0a6f1c-4495-41ff-8bee-386843450aa6","id":"b1aee118-2d03-45f3-8f26-c0e0734eb783","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:01:00.937569284Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.04","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":5}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"23a22edc-2a87-4365-b268-12ce1f4ec326","id":"18137125-b532-480a-86a9-0fae0586b06d","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:01:42.588625626Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.02.01","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"27eba280-5952-46dc-99b2-cb2eb865eb27","id":"d4f5aac8-37aa-4acd-a4ea-e00d1c131808","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:01:42.999369192Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.02.01","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"596a8cf0-e550-7a0b-35ff-dbf65e37d466","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"f61934c1-5c7d-4936-9bfd-88655f084a92","id":"30be9da8-3b62-4076-9112-486b28d144dc","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:01:44.009335017Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.02.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"52760b86-072a-4850-9e91-9abf402a9138","id":"2f8dd9f0-2263-496f-8c69-f7f26ac2cb1b","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:01:46.046739054Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.02.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"38811aad-5005-4328-8216-faf30facecbb","id":"5ed8ebd5-b230-4926-9992-7dc86ea4ba54","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:01:49.958536430Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"ff15b159-99cb-4341-ad86-d12783810dff","id":"de53f7b2-aa73-47c5-9e48-beba78afb0f4","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:01:53.457106164Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.03","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"dbb22154-a3e4-461c-ae8a-8a8f834984fa","id":"86f00914-daf4-41de-89c1-01ba484b7aff","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:02:16.439728392Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.02.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"cf7f0432-4ab2-4229-b03b-eb4d0281a314","id":"61e41ef2-086b-47eb-be60-3626424339a0","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:02:17.940012979Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.02.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"8c56ace3-ae9f-4a2f-8143-8966f302284e","id":"65117a09-135f-4428-a5d5-e0512ba9dbf5","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:02:32.222203717Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.03","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"b627cc9e-f41b-430d-8868-294454b79818","id":"74beafe8-8d02-456e-a22d-6ccb66c8f730","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:02:45.904302160Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.03.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"7e6e4872-b61d-42b2-9c13-5f2021fa0015","id":"5296c197-2136-4f33-924c-ec2eec2ee2fe","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:03:17.749158395Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"8273f8c0-2c9a-491e-9bf5-175caebb0342","id":"294226ac-f141-4d95-a9fa-cf4b2f0f3c57","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:03:30.725046663Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.03","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"83f64119-e6b0-4d9f-93e8-e88b42ef7eac","id":"890990ba-cf55-4a19-94a1-e18392776093","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:05:00.509337020Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"f4b1eeab-6394-4aaf-a649-5606f66d76e7","id":"644d8651-b2a4-47a6-8174-78e25a6501af","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:05:06.806736963Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"b5f36d92-c084-d478-50cf-b767fdbefaa5","currentCount":1}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"d336586d-760f-42cd-8a8f-3826748490d9","id":"19473039-3902-40bb-8bc2-293cc5587eb1","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:05:59.158059069Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.02.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"8640c04a-be57-4ef6-ab81-4a9da238959e","id":"6840bd90-e483-4d8b-aa61-ff9a5bb9a31b","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:06:37.277251858Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.04","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":6}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"99330b01-1440-47a5-9050-1a9371766683","id":"6fcf9e54-c6e9-4bb6-9afb-d22f989667a2","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:06:37.801392529Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.04","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":7}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"e478ee19-59b7-4050-b0a7-01c3f227b4bc","id":"ddc3d9d0-8d0e-4850-9536-85dea6d296ae","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:07:44.061455236Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.02.01","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"758df425-ae3e-68ee-9dbd-75dae06e82ed","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"7351e288-8cf8-4482-8d2e-3aad668b2dc2","id":"91b16bfa-48cf-4c9e-a877-46a785c9313f","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:07:53.561198309Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.02.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"26956d7c-37fe-4b61-a95f-f9f186d67509","id":"66f3bcff-c9cd-4893-a20f-7af4a318ddca","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:14:52.993777008Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.01.03","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"ff83adbe-31cc-3046-0488-07b9fd7765e6","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"1e5a06d2-5c54-457c-be44-4645bcefedb8","id":"03814f93-a4de-407f-9618-a4506374bb9b","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:16:31.491419755Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.01.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"897900fc-daae-8a8d-a73b-de00c8b751f6","currentCount":0}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"7bc9dfcd-437c-4080-bc58-fddee6be8fd7","id":"1d88d732-23c0-424a-8a61-6503a3dbfe0c","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:21:16.360499538Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"7a246bf0-7e06-4421-84cd-ccc7503e2b17","id":"d1678fd8-2512-4118-b06b-919cedee5dc2","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:21:19.952823715Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.03","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"31fd222e-d9fb-4ffc-be1f-6f5725d2a8e6","id":"5811afd6-3c75-443b-830a-cf6f8cd4e41e","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:21:26.407066507Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"6f823872-64cb-4e15-8b71-42947f020296","id":"00ca7e73-3059-4a6d-9fc9-dd62fdc4ea87","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:21:32.465906216Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.01","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"f5db729d-b730-4cf8-abfd-eba148550ee0","id":"c433b631-c9dd-4c93-8abe-fc8508a036eb","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:21:48.108618843Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.03.03","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"881809d9-45d3-a973-b88d-09b633ff3090","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"867bc2cf-9e21-4607-ace1-a45eb14d8521","id":"24cb51c5-8cb8-40fe-96de-c132251dd256","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:21:56.281486382Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":5}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"84f2002d-a365-4c8b-9dd9-8803357ea7f3","id":"005454c2-3525-4455-90e2-79d3f7ebbcc2","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:22:02.733160851Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":6}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"c7506bee-4bb5-4ec6-a7f2-34caed4bb228","id":"e3706414-0efd-437d-8143-e3f3eda87dbb","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:22:10.232642613Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.01.03","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"c7a08ef0-8fa6-429f-a437-55a046525465","id":"270bff82-b394-4da6-9cc6-be1ba8023d48","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:22:11.394975278Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.01.03","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"ce3f63c3-64a4-47b3-a763-a21f3d3fad50","id":"ddf92abe-77f4-4a30-917b-c9e8af7d68d9","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:22:15.706880290Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.01.03","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"0f70fe03-a2d3-4419-bce0-db568bcf7662","id":"7fc26b41-798b-4bea-a4f9-c9f072d39c75","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:22:37.767380528Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.04.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"411999ec-f4de-443f-87b5-947d47efa4af","id":"6dd70f83-288b-4aa1-9cd6-0679f3610562","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:23:23.429858648Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.01.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"ff476d0f-bcc6-f81d-4626-00f9f751ab46","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"54f813d7-338e-40cb-87b9-c9cf899b53b3","id":"a418685f-391d-4987-8d63-2a8c4bcbcd54","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:23:37.349995789Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.04.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"8013bff2-c7cc-c373-9b0f-07a09a2291e2","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"ac3065b9-2d5d-4f49-9b3a-3f8a854aa18e","id":"0b270d4e-0ae2-4cf9-b085-106869539fd3","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:23:52.622588233Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M006.02.05","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":5}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"9fd574b0-cfb8-4576-9777-5843fb25970d","id":"2f8436f2-eeae-4d20-ae6a-8f4b0280bf1b","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:23:56.473645817Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.02.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"c66b6ee1-3ca4-d22e-ffd8-f8e5edf60d40","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"480ee821-6728-4d4c-9e66-03412331284c","id":"adefdeba-0fda-4fef-9694-f95b90fe0d3d","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:24:26.754982846Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.04.01","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"0c2f5f46-4d27-58e4-1dcf-b025c6428e3c","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"2b21732b-4c19-4f4f-857a-87b2431b3208","id":"816fca0f-70d3-45c3-8fa3-a77a98d275da","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:26:35.199792511Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M006.02.05","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":6}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"821bf0a1-8f1a-4cb5-a1fb-0bfae599b49b","id":"dc2c5700-3404-47ea-bc7f-f2f2eb00eb7d","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:31:12.369820889Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"cc7d8db5-6eaa-ac38-2c00-12a8de2bc3ba","currentCount":0}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"a6016618-2150-432e-90d5-2d17b52667ce","id":"1faf500f-9493-495b-8825-0cb6a7df8b26","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:32:17.008732897Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.02.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"1d276077-dd25-4e9d-a037-41a19d8cc688","id":"b22dfe1d-eeec-45e2-b251-e29d29f18939","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:34:25.829520140Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.01.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":1}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"dc42b3c4-a309-440a-83bc-9d61d4eb8d0f","id":"ae072a5f-3a67-4370-a419-7436014bf565","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:34:48.055563267Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.01.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"d36afc85-fbbe-886e-3264-1c08784eb837","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"c324c4c6-8a69-4f8f-9ac1-b263307e66df","id":"0a7f0ac5-3bb4-4aba-994a-a81771062090","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:35:07.532535883Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.03.01","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"19dc77f8-ad51-9031-f55c-47f1364a7027","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"c3725cc4-551e-482b-a662-4b3f1d3c7f22","id":"afc3e159-8b06-4e60-bd19-d90463ae8c2e","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:35:21.956104722Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.03.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"f5b41344-a96b-8ea0-a31b-f47937409dfe","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"c2ee8f3a-5307-49b2-8b68-3d37e439c350","id":"e267925c-9595-4b4f-8a51-66ceea114ad5","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:35:49.778211923Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.02.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"3600b92d-a5cc-cc91-6c2f-e5ad4c3a4e4a","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"03eaa2ba-f9b5-4761-84d1-3814c890d71b","id":"6f508f5e-c2de-4c3b-a76f-9b9a796cf581","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:37:16.816227067Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M006.01.05","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"b049ebeb-3eab-4ca3-b1cb-4d4f7c7c918c","id":"b7f7a0f2-1247-457b-95e8-06d559393d00","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:38:45.333929477Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M006.02.05","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":7}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"b54919ae-0b26-4798-8df0-00d3e17623fe","id":"6023a2a0-c185-4a7a-bb24-77a1c47d00b1","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:40:26.953210120Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":5}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"f105fbaa-b367-4c38-b2a3-a01de16b717a","id":"226e009d-9acc-4b5a-bd88-fd931037c976","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:40:56.778412613Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.03.03","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"9cf7d8ce-02eb-47e7-a942-84d8aedac1f8","id":"d1386f57-d4b3-4e77-b339-c944bfe9cd1b","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:41:39.035745312Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.01.01","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"28ff4ded-7d82-0774-6595-ffe0ef811f27","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"ca0ae43a-aa96-45e5-aebd-c59afc59c8c3","id":"72fb2778-c3bc-4d75-a4df-5b28ac0c95b2","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:41:53.973650741Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.04.01","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"4fdc790c-8331-2d47-e221-32c1c3b6c1de","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"22daff2b-1396-43ad-9dd5-de01fe7f1bb9","id":"0cf45ebb-beb1-4c2f-9b74-fad09f072cfb","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:42:05.430896755Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.02.01","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"bf5f3d4d-b784-4206-90d4-7c338693f7f0","id":"d3f904f2-1e8d-4b78-a839-d2f4e980afb9","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:42:21.333037216Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.03.03","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"7f9c8690-8ca4-225e-c20f-741a24a8f227","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"bece0e3c-557d-4ab1-b192-17bb1412d657","id":"84152aff-f279-4de0-97a3-17bd5e74bbb2","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:42:38.773257978Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.01.03","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"2cc31fe4-5321-4ee9-2d41-0a165c090cec","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"bc59b5d1-5724-4517-97a9-92defa951f91","id":"fece82f6-282b-42c5-89d7-35228f0d6ec1","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:42:53.328847271Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.02.01","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"7c9169aa-4449-f369-9b15-31557d967f7e","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"2a4b4fae-d261-4a14-91ce-9b4323d7a641","id":"ac4da423-0c2c-4e84-8a11-b3837a3bbb03","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:44:19.684755648Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M006.01.05","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"251eec84-6936-4358-af56-12cb70cd05d0","id":"8409f26a-4439-41f5-bfbf-aee83582959d","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:45:02.034560927Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M006.02.05","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":6}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"9707d1f6-fa08-492c-9f55-56511cf1f361","id":"99ddd923-e811-45e9-8ba5-75c413ecfa33","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:48:45.791888878Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.02.04","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"b332fde7-610d-e236-2b7e-40cf40fc4e6c","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"3244d8d3-7340-4758-bf75-cea1f9b31370","id":"3f17fa98-ee2e-4da7-a555-dc0efd5ab43f","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:48:56.855352422Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.02.04","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"cd283513-15a0-f8de-45b3-1bc97fdab74d","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"0a6e13cf-f2fe-4f45-bf62-f4cdbfcada08","id":"c1bf6023-893d-4417-9b27-4a6b1c478691","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:49:07.308205305Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.01","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":1}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"0b512128-f96b-45ce-a62b-785ba232e99d","id":"748f24cf-22ba-4d17-bc92-879683c917c1","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:49:18.785934731Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.01","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":0}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"76217eae-5c44-4d1b-b333-97aa1c72b6d1","id":"b49175c0-3ab4-449e-b836-ef281b579223","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:49:57.228411882Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.04","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":6}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"9306cd1f-f8c6-4fd4-8f55-7ca10ca2e719","id":"af01ce70-dce8-4976-82d2-7dda3cdf7fd0","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:49:57.547905608Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.04","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":5}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"38ac8aa7-752c-4c98-9680-07779a7792ef","id":"5ed92509-0dad-4654-b6c1-67217ae89693","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:50:06.363532856Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.04","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"cb579937-6633-42a7-baab-fa3f1cb2befb","id":"399d903d-1ce3-4d69-88c8-8c0439987364","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:50:17.799813059Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.02.01","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"dd6cdcde-4377-447e-8ce9-c4355ecd91e7","id":"5d576148-9fd7-4ba8-803e-89ffc2e61cae","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:50:27.898647449Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.02.01","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"66143812-84a1-4691-9d15-10205e544564","id":"eea80ba8-b532-4552-8a17-50a5e9db344e","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:51:33.362869782Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.03.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"3d737fb8-945e-475c-b502-52a1aa40dd75","id":"3db6d270-f3af-495d-b7f1-2e74ed5023bb","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:51:42.937548046Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.03.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"3a600820-a400-d766-d514-2f3c961cf632","currentCount":5}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"88be89de-a040-40c8-8234-2a8586f542fb","id":"dd57d6ac-a5d2-4d41-a93f-9afc9ed4067a","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:52:24.871835989Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.02.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"f88c6bf0-55ff-475e-b6f6-f5857265bc26","id":"48d21f20-e876-4905-8d52-c8f4ce65555a","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:52:32.689153691Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.02.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"0f44314f-0eaa-4038-80cb-acdd7e2fa000","id":"c9becae9-8ee2-4048-9ff7-cdb88f9a2574","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:52:41.312769523Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.01.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"50c94730-a6bb-b542-612c-4ecde7caa449","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"c044b197-ff49-4e4e-b033-7883e15d8b96","id":"bc4771e9-b9c5-4744-ba4a-451c12ca50a9","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:52:48.456615216Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.01.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"cb8c3948-1223-cb8d-e6f3-4c745801be77","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"2f84cee8-2598-4f77-a2b1-87e70d95f107","id":"a069ef3d-0a8e-4d87-a711-8d1be4a2b81c","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:52:59.164421458Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.04.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"451ef976-f532-4a54-9474-be46fe77aa7c","id":"4137152c-564a-416c-b696-874f1544ee26","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:53:05.004705422Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M004.04.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"e664412c-63d1-45d1-b57f-919119469b74","id":"6bcfdd34-c1bc-402c-b6a4-7dfc31a3a1aa","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:56:22.129805994Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.03.03","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"00100952-9d3b-f6f5-2566-10319b39466e","currentCount":1}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"2ee42416-23c9-4b91-958c-7932d621cd29","id":"daf17eb7-c3e8-43e3-96ec-7c70aaa10bda","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:57:49.049868622Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.02.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"a7dff792-c07d-263e-f12a-bc32f6b0d419","currentCount":1}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"ca4d576d-dd57-4fa5-950a-570be80d883d","id":"2503e121-3ca1-4a63-b351-44e3e85923de","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:58:38.944461536Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.02.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"d21794f7-e2e6-4925-8339-023bdb519313","id":"7575f2f7-8b0b-4bb5-b562-a339d8fd5817","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:59:35.530732622Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.02.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":1}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"4b1475c5-0480-46ce-9ba5-3bcf1eb88ccc","id":"5ed8679c-988a-4295-a4d2-4e9af3d19f98","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:59:38.102133594Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.02.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"d8b1206c-9dfb-4d80-9c89-018a432676bc","id":"8cc9ad2a-dafc-450e-95be-a8e2d4305ab5","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:59:39.428642287Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.02.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":1}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"880dd96c-e492-4169-89ba-c60bb46edc45","id":"1776253a-88d1-4d1d-95d0-78123ba29d31","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T12:59:47.014824247Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.02.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"fe79e45f-79b2-172d-789b-c457ffcb4d00","currentCount":0}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"8d262164-1f37-489d-bcc8-9f03d4cf847b","id":"e6019e02-6709-41a3-997b-efb141df9aba","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:00:52.177439458Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.04.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"15b5ae53-0402-4e45-9b0f-2655814836d7","id":"5255e4cf-6e35-431b-907b-5ee3b664291d","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:02:11.274802831Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"b62dde6b-fb02-4278-83f8-557d2daa7159","id":"1bde25f8-8c8b-477f-bf03-55ebd3eacbb8","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:02:14.670617290Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.03","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"d0af14f0-025f-728e-41c4-c3c6bff19f90","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"19e8846f-9c2b-4fa6-b1f3-b62b1c6ad665","id":"c1b3d897-e64e-4de1-9ec8-c695b76ea93c","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:02:17.671453776Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"822dee32-87f1-4836-805d-46cb34a0ecdd","id":"351d48d2-24be-4011-b5ad-0bb2895b6c27","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:02:20.654002681Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.01","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"d10d9b39-0823-47ac-8fb1-594e3b938a69","id":"8f1cdc6b-ba66-49c8-a636-415554d5e5de","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:02:20.978113469Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"318d1684-e975-ca3f-9646-915de5bd9a23","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"bc8ce7d0-dff4-4415-8a3c-ae03d110ca98","id":"103d2a20-b945-4bda-ae73-ef66a4c45e83","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:03:33.124522549Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.03.03","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"a5940834-26be-41de-b4c7-fbcbf117005d","id":"67063d79-37b4-4ae2-8cd5-9c82bb17c52f","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:03:45.741448626Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.01.03","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"adcf622c-5a33-4a78-ab11-bf266e586b91","id":"96ae251f-2a9e-46b6-9ee6-e939329caf88","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:03:46.485796953Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.01.03","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"80283437-02bf-4a47-bf0f-e2ab1c383c75","id":"7a2632e9-2c99-41c5-9427-aeeba63046b3","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:03:48.142443036Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.01.03","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"a98b3672-0944-4666-8a68-3744f839baeb","id":"ce45adba-e37c-4d99-a6f8-953c7157a427","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:03:54.279770558Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.03.03","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"ac01672c-5c0f-44ee-a649-fb6b9fed5c23","id":"4e46c5ca-c5a3-4dea-a83e-db5dc8fe04bb","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:03:58.342229566Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.04.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"001c17ef-1a90-4778-af13-b4374bfa04f9","id":"52b1a9ef-7344-4151-9029-0628b237863d","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:15:23.619417086Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.03.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"b8f73127-5458-4c7b-871e-c0e13a03503f","id":"c74132ff-8ab9-46ee-92ae-9daa657f11fb","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:15:26.515582960Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"90a9d369-dc81-4114-965b-8ea05787770f","id":"e8d60537-92b8-4478-a1e3-240641d63f8d","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:15:33.007336935Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"60f327bd-c262-421b-b50e-48c4ea5acd0e","id":"ad1210ed-4bb3-4697-8812-18a9fc9d10c8","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:16:14.204583881Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.02.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":1}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"57a3aa1c-f5e7-4a2d-ba8b-611d730a481e","id":"1cff29b0-65d1-4b8f-beba-4c937a37f953","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:16:25.143308969Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.02.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"85516748-0e85-4bbf-b5bb-136e5324b68a","id":"ddc18c3a-5956-467c-9b42-ca79cc1b22e5","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:16:43.142431541Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":1}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"13d5dd58-ce16-4864-b26b-e0eb08b8d552","id":"ca4f475e-9fcd-4faf-ac20-9590b83cf63d","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:16:53.072750536Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"4d30c432-9382-4fe7-a45c-d5eb1033e280","id":"e00cff4e-b72a-4e84-9a24-fbc28261b6c8","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:17:12.727895152Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":1}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"77d65db0-1d4c-4bda-b096-3fb30eff3ea8","id":"ffeb0ffc-bdbd-4dd3-9dc6-60e499095adc","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:17:17.743544836Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"ba1ce227-33ff-4203-9e7d-58e90f5faa15","id":"12ed2944-d0ba-4159-9b0f-975ec800aef3","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:17:23.133075308Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.02.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"7e81c6cd-72b5-4a31-921f-19aef1314399","id":"efd35f7f-7de4-4595-bec2-54e9ad04c747","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:17:34.647009393Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.02.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":5}}}}]"
+[27/Oct/2023 03:55:38] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:39 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:39.333789963Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"604f11a2-38f2-433b-bfff-b3f3c7960844","id":"4a4fdd70-6dc3-4bc4-aa48-de84b89e25e6","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:20:14.771815772Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.01.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":0}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"85a55727-fa91-4d5b-9935-a63c09780037","id":"0c78ec16-e6d0-43ad-9659-a8e1247f3426","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:20:19.219304987Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.01.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":1}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"2bb5b725-6712-4028-86fe-b1138e94dfcf","id":"f458ab25-4799-458b-b907-c022c9b2c3ee","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:20:23.219079172Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.01.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":2}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"54b1da2c-8673-43ed-943f-889bbde6475b","id":"e2b90366-6e88-49c0-a305-60e13e1aaeb2","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:20:52.405151381Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.02.04","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"094e39f9-a01e-4d4b-9715-7f6305b924b8","id":"4ccc79dc-530a-4898-8fb4-bb9369ed2893","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:21:12.998274750Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.03","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"fa34f94a-5e3e-4748-a01b-b83d547b6d52","id":"9c7182d0-1fb5-4e53-ae49-b6d1c1b419d8","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:22:28.639588627Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.01.03","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":5}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"21a6bfe1-5ba4-4044-bb63-cd994ad72208","id":"15fceb6f-d564-44af-9d96-9037337774ee","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:22:59.719107170Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"ec14cf1d-9c3c-4959-a33d-b0de2b743d32","id":"8be26698-29d8-453f-afed-8717ce5ac1d9","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:24:21.921703216Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.02.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"5364c316-a578-4e32-90bc-da42dcb675c4","id":"59e0c3db-c546-45a9-8908-77a3ffb0f3a4","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:24:22.968791197Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.04","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":5}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"acb14072-6f87-42f0-8058-0920891c4df2","id":"8f17f344-6dd5-40e7-92c3-20faff2dc026","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:24:30.173925734Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.04","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"37f04d52-1c43-4e47-90ee-ddd868cb18c0","id":"923c6457-251e-42d9-8c6e-9612d9258349","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:24:31.023020399Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.04","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":5}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"b9a2f582-13ca-4c08-97db-0447417b5627","id":"c5e39eec-18c9-4f43-a8ea-8b4e677c7a16","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:25:16.353013342Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.02.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"db34cc18-76b1-4712-960d-d2afe626ca5a","id":"9b38ed7f-af83-4e04-b5ae-7496ecb62f16","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:25:27.958081027Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M003.02.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"a2f119da-303a-4f9c-b13e-09c05a103cc9","id":"cf527508-ce8f-440d-b2e2-2d037bca0456","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:25:29.819447268Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.02.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"64b8cf08-1abc-49b8-8d90-e08038bf6ce8","id":"5bbb00ec-d9db-4809-b653-97f578e321b2","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:25:36.338475432Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.04.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"dd0efd6f-41bb-4a6e-a9a2-df2f48d30225","id":"31d05516-63f4-4cb6-bce3-9e9aabbc10d2","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:25:43.962981491Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M005.03.01","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":4}}}}]"
+[27/Oct/2023 03:55:38] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"59c08499-e0ed-4f25-be6f-b6815a568271","id":"5ddf37fc-9109-4284-a4ed-32dbe827a676","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-27T13:27:52.602365972Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M007.01.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":3}}}}]"
+[27/Oct/2023 03:55:38] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:39 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:39.443+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/41ffe350-3606-46e6-bc64-0655e6ae959a/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:38] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:38] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:38] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:38] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:38] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:38] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:38] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:38] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:38] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:38] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:38] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:38] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:38] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:38] "INFO" "organisation_event_processor" "signal linked lane S001.M007.01.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:38] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:39] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:39 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:39.640230322Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:39] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:39 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:39.733+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/e1dc3046-93f5-48ed-b2cf-bd605e3eaff7/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:39] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:39] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:39] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:39] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:39] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:39] "INFO" "organisation_event_processor" "signal linked lane S001.M006.02.05 -> 8d20ae37-d762-4d4a-935a-2d07fec2af7e"
+[27/Oct/2023 03:55:39] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:39] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:39 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:40.070595856Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:39] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:39 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:40.159+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/41ffe350-3606-46e6-bc64-0655e6ae959a/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:39] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:39] "INFO" "organisation_event_processor" "signal linked lane S001.M004.03.02 -> 72638c2d-39fe-426f-aa6c-ba155236f1d0"
+[27/Oct/2023 03:55:39] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:39] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:40 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:40.332857769Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:39] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:40 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:40.424+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/352f5c2e-2a62-43b6-b8a4-5344c9d30c32/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:39] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:39] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:39] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:39] "INFO" "organisation_event_processor" "signal linked lane S001.M005.03.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:40] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:40] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:40] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': '2773481d-c80e-44fb-8ac6-e2f66e8debfa'}"
+[27/Oct/2023 03:55:40] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:40] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:40] "INFO" "organisation_event_processor" "signal linked lane S001.M007.01.01 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:40] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:40] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:40] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': '5ed7d412-78a4-4e57-b72f-a56444022aec'}"
+[27/Oct/2023 03:55:40] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:40] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:40] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:40] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:40] "INFO" "organisation_event_processor" "signal linked lane S001.M007.01.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:40] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:41] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:41 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:41.678743915Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:41] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:41 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:41.764+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/e1dc3046-93f5-48ed-b2cf-bd605e3eaff7/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:41] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:41] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:41] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:41] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:41] "INFO" "organisation_event_processor" "signal linked lane S001.M007.01.03 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:41] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:41] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:41 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:42.111480961Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:41] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:41 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:42.195+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/50cb3ac3-e7b4-4db1-9690-9c89ff62ef97/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:41] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:41] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:41] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:41] "INFO" "organisation_event_processor" "signal linked lane S001.M007.01.04 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:41] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:41] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:42 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:42.552160248Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:42] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:42 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:42.638+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/5624ba3f-327e-4bd7-b021-81a9ac08f6cc/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:42] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:42] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:42] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:42] "INFO" "organisation_event_processor" "signal linked lane S001.M007.01.04 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:42] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:42] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:42] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': 'a2595fe4-d768-4ab2-8e3d-eb14febc92e6'}"
+[27/Oct/2023 03:55:42] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:42] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:42] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:42] "INFO" "organisation_event_processor" "signal linked lane S001.M007.01.04 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:42] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:42] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:43] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': '82d6744c-49f7-461f-af4a-aa4cb2e0b196'}"
+[27/Oct/2023 03:55:43] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:43] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:43] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:43] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:43] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:43] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:43] "INFO" "organisation_event_processor" "signal linked lane S001.M007.02.01 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:43] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:43] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:43 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:43.951886133Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:43] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:43 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:44.038+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/f1749739-f4ac-4206-af28-5bc7b3322484/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:43] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:43] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:43] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:43] "INFO" "organisation_event_processor" "signal linked lane S001.M007.02.01 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:43] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:43] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:43] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': '802f166d-4497-4cc4-b9d5-f3f4641d5577'}"
+[27/Oct/2023 03:55:43] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:44] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:44] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:44] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:44] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:44] "INFO" "organisation_event_processor" "signal linked lane S001.M003.02.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:44] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:44] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:44 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:44.815721841Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:44] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:44 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:44.895+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/15c5e6f6-a406-4f02-bac3-0521d51f86fc/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:44] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:44] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:44] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:44] "INFO" "organisation_event_processor" "signal linked lane S001.M003.02.03 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:44] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:44] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:44 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:45.259536986Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:44] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:44 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:45.399+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/41ffe350-3606-46e6-bc64-0655e6ae959a/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:44] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:44] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:44] "INFO" "organisation_event_processor" "signal linked lane S001.M005.02.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:44] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:44] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:45 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:45.578641767Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:45] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:45 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:45.643+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/41ffe350-3606-46e6-bc64-0655e6ae959a/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:45] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:45] "INFO" "organisation_event_processor" "signal linked lane S001.M003.02.03 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:45] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:45] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:45 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:45.782690606Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:45] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:45 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:45.846+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/41ffe350-3606-46e6-bc64-0655e6ae959a/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:45] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:45] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:45] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:45] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:45] "INFO" "organisation_event_processor" "signal linked lane S001.M007.01.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:45] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:45] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:45 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:46.012821672Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:45] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:45 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:46.092+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/e1dc3046-93f5-48ed-b2cf-bd605e3eaff7/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:45] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:45] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:45] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:45] "INFO" "organisation_event_processor" "signal linked lane S001.M007.01.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:45] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:45] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:45] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': 'd91b3095-4693-4558-9b42-db5139a1abd2'}"
+[27/Oct/2023 03:55:46] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:46] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:46] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:46] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:46] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:46] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:46] "INFO" "organisation_event_processor" "signal linked lane S001.M004.02.01 -> 417aec52-81db-459b-9259-21699851a9d1"
+[27/Oct/2023 03:55:46] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:46] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:46] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': 'ba3e4794-c8e2-40ff-a915-5d251762bea8'}"
+[27/Oct/2023 03:55:46] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:46] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:46] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:46] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:46] "INFO" "organisation_event_processor" "signal linked lane S001.M005.01.03 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:46] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:46] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:46] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': '5bbaad1b-b9a8-4c32-ba51-3c46e17d0e20'}"
+[27/Oct/2023 03:55:46] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:47] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:47] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:47] "INFO" "organisation_event_processor" "signal linked lane S001.M005.01.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:47] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:47] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:47] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (409)
+Reason: Conflict
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:47 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:47.967689264Z","status":409,"message":"Conflict, \'Should select CreateCardIfNoneFree!\'"}'
+"
+[27/Oct/2023 03:55:47] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:47] "INFO" "organisation_event_processor" "signal linked lane S001.M003.02.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:47] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:47] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:47 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:48.134093168Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:47] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:47 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:48.206+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/15c5e6f6-a406-4f02-bac3-0521d51f86fc/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:47] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:47] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:47] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:47] "INFO" "organisation_event_processor" "signal linked lane S001.M003.02.03 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:47] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:47] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:47 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:48.516498101Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:48] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:48 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:48.610+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/41ffe350-3606-46e6-bc64-0655e6ae959a/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:48] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:48] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:48] "INFO" "organisation_event_processor" "signal linked lane S001.M003.02.01 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:48] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:48] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:48 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:48.783923252Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:48] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:48 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:48.860+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/51c97b7a-e490-4430-87e7-4d9a78046b44/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:48] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:48] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:48] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:48] "INFO" "organisation_event_processor" "signal linked lane S001.M005.03.03 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:48] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:48] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:48] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (409)
+Reason: Conflict
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:48 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:49.332780108Z","status":409,"message":"Conflict, \'Should select CreateCardIfNoneFree!\'"}'
+"
+[27/Oct/2023 03:55:48] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:48] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:48] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:48] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:48] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:48] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:48] "INFO" "organisation_event_processor" "signal linked lane S001.M005.01.03 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:49] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:49] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:49 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:49.693534653Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:49] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:49 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:49.780+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/54c4b38d-174a-409f-9d86-5a98bcb464ee/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:49] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:49] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:49] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:49] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:49] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:49] "INFO" "organisation_event_processor" "signal linked lane S001.M004.01.02 -> c63c5b2c-b368-4f15-92ff-812733582ba8"
+[27/Oct/2023 03:55:49] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:49] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:49] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': 'f3e885c0-5784-4249-9236-7258c12e3450'}"
+[27/Oct/2023 03:55:49] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:49] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:49] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:49] "INFO" "organisation_event_processor" "signal linked lane S001.M004.04.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:49] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:49] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:50] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': '3fd75474-348d-4efd-ba8f-cbe9ba043475'}"
+[27/Oct/2023 03:55:50] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:50] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:50] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:50] "INFO" "organisation_event_processor" "signal linked lane S001.M006.02.05 -> 8d20ae37-d762-4d4a-935a-2d07fec2af7e"
+[27/Oct/2023 03:55:50] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:50] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:50 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:51.043081627Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:50] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:50 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:51.130+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/41ffe350-3606-46e6-bc64-0655e6ae959a/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:50] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:50] "INFO" "organisation_event_processor" "signal linked lane S001.M004.02.02 -> e16d6f63-ffd6-4a1c-83b6-e1ce18dc17a8"
+[27/Oct/2023 03:55:50] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:50] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:50] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': '6dbbfa29-07fc-4fcf-8558-650eef86a625'}"
+[27/Oct/2023 03:55:50] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:50] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:50] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:50] "INFO" "organisation_event_processor" "signal linked lane S001.M005.04.01 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:51] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:51] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:51] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (409)
+Reason: Conflict
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:51 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:51.811282264Z","status":409,"message":"Conflict, \'Should select CreateCardIfNoneFree!\'"}'
+"
+[27/Oct/2023 03:55:51] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:51] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:51] "INFO" "organisation_event_processor" "signal linked lane S001.M007.01.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:51] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:51] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:51] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': '5bab5705-ff7e-4484-ac2e-e1488c00a0d2'}"
+[27/Oct/2023 03:55:51] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:51] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:51] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:51] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:51] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:51] "INFO" "organisation_event_processor" "signal linked lane S001.M004.01.02 -> c63c5b2c-b368-4f15-92ff-812733582ba8"
+[27/Oct/2023 03:55:51] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:51] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:51] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': 'ed251405-2dfe-4a78-b379-293ef8078342'}"
+[27/Oct/2023 03:55:52] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:52] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:52] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:52] "INFO" "organisation_event_processor" "signal linked lane S001.M004.03.01 -> 04e45f88-44aa-41b1-b5d9-8183bf3fa935"
+[27/Oct/2023 03:55:52] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:52] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:52] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': '5ea518f3-0c57-4e24-b349-40c84697187c'}"
+[27/Oct/2023 03:55:52] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:52] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:52] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:52] "INFO" "organisation_event_processor" "signal linked lane S001.M004.03.02 -> 72638c2d-39fe-426f-aa6c-ba155236f1d0"
+[27/Oct/2023 03:55:52] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:52] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:52] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': '9d651de9-8618-43db-9a0f-8cfbb210680b'}"
+[27/Oct/2023 03:55:52] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:53] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:53] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:53] "INFO" "organisation_event_processor" "signal linked lane S001.M004.02.02 -> e16d6f63-ffd6-4a1c-83b6-e1ce18dc17a8"
+[27/Oct/2023 03:55:53] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:53] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:53] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': 'd4b81585-59d2-4e41-b392-353fd7c27980'}"
+[27/Oct/2023 03:55:53] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:53] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:53] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:53] "INFO" "organisation_event_processor" "signal linked lane S001.M006.01.05 -> 7a5dc1a2-d105-40ec-bcda-5f7c7cb2261b"
+[27/Oct/2023 03:55:53] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:53] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:53 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:54.359986004Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:53] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:53 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:54.450+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/41ffe350-3606-46e6-bc64-0655e6ae959a/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:53] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:53] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:53] "INFO" "organisation_event_processor" "signal linked lane S001.M003.02.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:53] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:54] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:53 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:54.618440386Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:54] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:53 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:54.698+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/15c5e6f6-a406-4f02-bac3-0521d51f86fc/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:54] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:54] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:54] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:54] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:54] "INFO" "organisation_event_processor" "signal linked lane S001.M004.01.01 -> ffc280cd-13a8-49e9-a06a-1281e826645d"
+[27/Oct/2023 03:55:54] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:54] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:54] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': '7a640ec3-e632-4b83-9ac2-228dd87842b4'}"
+[27/Oct/2023 03:55:54] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:54] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:54] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:54] "INFO" "organisation_event_processor" "signal linked lane S001.M004.04.01 -> bd4e17b4-44a3-40f5-945a-ccf568820eae"
+[27/Oct/2023 03:55:54] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:54] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:54] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': '4943a4da-d623-4975-b324-3ad4574f9dbe'}"
+[27/Oct/2023 03:55:54] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:55] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:55] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:55] "INFO" "organisation_event_processor" "signal linked lane S001.M004.02.01 -> 417aec52-81db-459b-9259-21699851a9d1"
+[27/Oct/2023 03:55:55] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:55] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:54 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:55.829143033Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:55] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:55 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:55.909+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/01ec2ee7-38db-4a9f-8e1c-5db90301b09e/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:55] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:55] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:55] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:55] "INFO" "organisation_event_processor" "signal linked lane S001.M005.03.03 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:55] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:55] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:55] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (409)
+Reason: Conflict
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:55 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:56.353876376Z","status":409,"message":"Conflict, \'Should select CreateCardIfNoneFree!\'"}'
+"
+[27/Oct/2023 03:55:55] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:55] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:55] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:55] "INFO" "organisation_event_processor" "signal linked lane S001.M005.01.03 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:56] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:56] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:56] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': '34c2cdf8-cda0-412f-b720-bbb2bc233d7d'}"
+[27/Oct/2023 03:55:56] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:56] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:56] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:56] "INFO" "organisation_event_processor" "signal linked lane S001.M004.02.01 -> 417aec52-81db-459b-9259-21699851a9d1"
+[27/Oct/2023 03:55:56] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:56] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:56] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': 'cf2811f5-b887-44e8-9fec-0a97f1bdd63b'}"
+[27/Oct/2023 03:55:56] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:56] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:56] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:56] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:56] "INFO" "organisation_event_processor" "signal linked lane S001.M006.02.05 -> 8d20ae37-d762-4d4a-935a-2d07fec2af7e"
+[27/Oct/2023 03:55:56] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:57] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:56 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:57.61598355Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:57] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:56 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:57.692+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/41ffe350-3606-46e6-bc64-0655e6ae959a/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:57] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:57] "INFO" "organisation_event_processor" "signal linked lane S001.M007.02.04 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:57] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:57] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:57] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': '7c3f4774-9acd-472e-b407-13b607cba93d'}"
+[27/Oct/2023 03:55:57] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:57] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:57] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:57] "INFO" "organisation_event_processor" "signal linked lane S001.M007.02.04 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:57] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:57] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:57] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': '128a408c-8cdd-4a99-8ced-ec879f5a8bf1'}"
+[27/Oct/2023 03:55:57] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:57] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:57] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:57] "INFO" "organisation_event_processor" "signal linked lane S001.M007.01.01 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:58] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:58] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:57 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:58.728138789Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:58] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:57 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:58.808+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/538a71e2-99b9-4e5d-8fab-bdcde4868f0d/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:58] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:58] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:58] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:58] "INFO" "organisation_event_processor" "signal linked lane S001.M007.01.01 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:58] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:58] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:58 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:59.168239235Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:58] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:58 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:59.244+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/538a71e2-99b9-4e5d-8fab-bdcde4868f0d/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:58] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:58] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:58] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:58] "INFO" "organisation_event_processor" "signal linked lane S001.M007.01.04 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:58] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:58] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:58 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:59.567219214Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:59] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:55:58 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:55:59.641+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/5624ba3f-327e-4bd7-b021-81a9ac08f6cc/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:59] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:59] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:59] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:59] "INFO" "organisation_event_processor" "signal linked lane S001.M007.01.04 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:59] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:59] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:00 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:00.018142446Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:55:59] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:00 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:00.115+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/5624ba3f-327e-4bd7-b021-81a9ac08f6cc/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:55:59] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:59] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:59] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:55:59] "INFO" "organisation_event_processor" "signal linked lane S001.M007.01.04 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:55:59] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:55:59] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:00 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:00.515466345Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:56:00] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:00 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:00.614+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/5624ba3f-327e-4bd7-b021-81a9ac08f6cc/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:56:00] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:00] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:00] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:00] "INFO" "organisation_event_processor" "signal linked lane S001.M007.02.01 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:56:00] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:00] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:00 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:01.016670103Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:56:00] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:01 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:01.115+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/f1749739-f4ac-4206-af28-5bc7b3322484/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:56:00] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:00] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:00] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:00] "INFO" "organisation_event_processor" "signal linked lane S001.M007.02.01 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:56:00] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:00] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:01 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:01.536204273Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:56:01] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:01 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:01.630+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/f1749739-f4ac-4206-af28-5bc7b3322484/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:56:01] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:01] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:01] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:01] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:01] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:01] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:01] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:01] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:01] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:01] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:01] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:01] "INFO" "organisation_event_processor" "signal linked lane S001.M005.03.03 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:56:01] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:01] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:01] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (409)
+Reason: Conflict
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:02 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:02.185515546Z","status":409,"message":"Conflict, \'Should select CreateCardIfNoneFree!\'"}'
+"
+[27/Oct/2023 03:56:01] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:01] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:01] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:01] "INFO" "organisation_event_processor" "signal linked lane S001.M005.02.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:56:01] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:02] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:02] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (409)
+Reason: Conflict
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:02 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:02.755237587Z","status":409,"message":"Conflict, \'Should select CreateCardIfNoneFree!\'"}'
+"
+[27/Oct/2023 03:56:02] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:02] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:02] "INFO" "organisation_event_processor" "signal linked lane S001.M005.02.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:56:02] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:02] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:02 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:02.955282332Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:56:02] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:02 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:03.053+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/41ffe350-3606-46e6-bc64-0655e6ae959a/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:56:02] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:02] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:02] "INFO" "organisation_event_processor" "signal linked lane S001.M005.02.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:56:02] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:02] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:03 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:03.247454588Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:56:02] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:03 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:03.346+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/41ffe350-3606-46e6-bc64-0655e6ae959a/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:56:02] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:02] "INFO" "organisation_event_processor" "signal linked lane S001.M005.02.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:56:02] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:02] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:03] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (409)
+Reason: Conflict
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:03 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:03.670118429Z","status":409,"message":"Conflict, \'Should select CreateCardIfNoneFree!\'"}'
+"
+[27/Oct/2023 03:56:03] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:03] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:03] "INFO" "organisation_event_processor" "signal linked lane S001.M003.02.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:56:03] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:03] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:03 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:03.914382286Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:56:03] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:03 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:04.006+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/15c5e6f6-a406-4f02-bac3-0521d51f86fc/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:56:03] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:03] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:03] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:03] "INFO" "organisation_event_processor" "signal linked lane S001.M003.02.03 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:56:03] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:03] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:03] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (409)
+Reason: Conflict
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:04 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:04.538333281Z","status":409,"message":"Conflict, \'Should select CreateCardIfNoneFree!\'"}'
+"
+[27/Oct/2023 03:56:03] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:03] "INFO" "organisation_event_processor" "signal linked lane S001.M003.02.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:56:04] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:04] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:04 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:04.730424938Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:56:04] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:04 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:04.823+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/15c5e6f6-a406-4f02-bac3-0521d51f86fc/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:56:04] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:04] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:04] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:04] "INFO" "organisation_event_processor" "signal linked lane S001.M003.02.01 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:56:04] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:04] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:04 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:05.211040856Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:56:04] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:05 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:05.311+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/51c97b7a-e490-4430-87e7-4d9a78046b44/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:56:04] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:04] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:04] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:04] "INFO" "organisation_event_processor" "signal linked lane S001.M003.02.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:05] "INFO" "organisation_event_processor" "{'carrier_id': None, 'id': 'b9db51c0-edc0-4fd9-b149-4e6ca95d6d68'}"
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:05] "INFO" "organisation_event_processor" "signal linked lane S001.M005.01.03 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:05] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:05 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:06.237168102Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:56:05] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:06 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:06.331+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/54c4b38d-174a-409f-9d86-5a98bcb464ee/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:05] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:05] "INFO" "organisation_event_processor" "signal linked lane S001.M005.01.02 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:56:06] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:06] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:06 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:06.752446263Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:56:06] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:06 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:06.849+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/41ffe350-3606-46e6-bc64-0655e6ae959a/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:56:06] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:06] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:06] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:06] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:06] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:06] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:06] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:06] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:06] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:06] "INFO" "organisation_event_processor" "signal linked lane S001.M007.01.04 -> 266b32ef-d2e6-4b6a-979d-ab161cd5b83a"
+[27/Oct/2023 03:56:06] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:06] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (500)
+Reason: Internal Server Error
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:06 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:07.051998443Z","status":500,"message":"Unknown error!"}'
+"
+[27/Oct/2023 03:56:06] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Fri, 27 Oct 2023 13:56:06 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-27T13:56:07.145+00:00","status":404,"error":"Not Found","path":"/v1beta1/kanban/control-cycles/5624ba3f-327e-4bd7-b021-81a9ac08f6cc/cards:associate-carrier/"}'
+"
+[27/Oct/2023 03:56:06] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:06] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[27/Oct/2023 03:56:06] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:06] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:06] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:06] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:06] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:06] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:56:06] "DEBUG" "organisation_event_processor" "handling a action event..."
+[27/Oct/2023 03:58:29] "INFO" "ils_event_consumer" "Shutting down signal 'SIGINT' received, starting to stop consumer!"
+[27/Oct/2023 03:58:29] "INFO" "ils_event_consumer" "Ordering consumer to stop!"
+[27/Oct/2023 03:58:29] "DEBUG" "ils_event_consumer" "Warning Event Processors to stop!"
+[27/Oct/2023 03:58:29] "DEBUG" "ils_event_consumer" "Closing consumer!"
+[27/Oct/2023 03:58:29] "INFO" "events_processor" "OrganisationEventProcessor received order to stop!"
+[27/Oct/2023 03:58:29] "INFO" "events_processor" "All messages in OrganisationEventProcessor processing queue have been processed. Shutting down..."
+[27/Oct/2023 03:58:29] "DEBUG" "ils_event_consumer" "Consumer has been shutdown!"
+[27/Oct/2023 03:58:29] "DEBUG" "main" "Ending process: 'OrganisationEventProcessor-1'"
+[27/Oct/2023 03:58:29] "INFO" "main" "Process OrganisationEventProcessor-1 as fully stopped!"

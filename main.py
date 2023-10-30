@@ -83,9 +83,9 @@ def start_application():
 
     logger.info(f'ils-api access: {token_refresher.get_token().is_valid()}')
 
+    """
     # Find the absolute path of the main script
     this_script_path = os.path.abspath(__file__)
-
 
     script1_path = os.path.join(os.path.dirname(this_script_path), "datenverarbeitung/datenverarbeitung_main.py")
     script2_path = os.path.join(os.path.dirname(this_script_path), "datenverarbeitung/extra_process_logs.py")
@@ -98,6 +98,7 @@ def start_application():
     # Open the other Python scripts in separate Python shells
     os.startfile(script1_path)
     os.startfile(script2_path)
+    """
     
     processes.append(
         OrganisationEventProcessor(message_queue, kafka_config=kafka_config, token_refresher=token_refresher))

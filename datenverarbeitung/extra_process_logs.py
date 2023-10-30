@@ -28,7 +28,7 @@ workbook.close()
 print(sheet_states)
 
 
-def reformat_data(new_instance_df):
+def reformat_data(process, new_instance_df):
     # Obtain date
     raw_date = new_instance_df["Datum"].values[0]
     # Reformat date into DD.MM.YYYY
@@ -62,8 +62,13 @@ def reformat_data(new_instance_df):
     except:
         variant = "FB1"
 
-    # Obtain quantity (depends on variant, how would we do this?)
-    menge = 4  # Placeholder
+    # Obtain quantity
+    if process == "Montage":
+        menge = 1
+    elif ("FK" in variant) or (variant == "FB1"):
+        menge = 8
+    else:
+        menge = 4
 
     process_to_append = [date, pick_time, put_time, origin_lane, lane, duration, variant, menge, 0]
     return process_to_append
@@ -169,7 +174,7 @@ try:
                     new_row = process_df.tail(1)
 
                     # Use the new row to generate process logs
-                    process_to_append = reformat_data(new_row)
+                    process_to_append = reformat_data(process_name, new_row)
                     generate_process_log(process_name, process_to_append)
 
                     # Update the sheet state
