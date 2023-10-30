@@ -53,6 +53,9 @@ Um mehrere Skripte direkt auf pycharm laufen zu lassen, gehen Sie zu:
 # Anweisung zur Ausführung des Codes
 Es gibt drei Skripte, die ausgeführt werden müssen
 
+
+
+
 # Neoception section
 ## Introduction
 
