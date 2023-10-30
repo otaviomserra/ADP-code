@@ -1,4 +1,60 @@
-# Introduction
+# Einführung 
+
+Dieser Code ist eine Fortsetzung von Benjamins Arbeit (die in das Neoception®-System integriert ist) und implementiert den digitalen Schatten des CiP.
+
+Um zu vermeiden, dass die Codes zusammengeführt werden und mögliche Fehler entstehen, befindet sich der Code für den digitalen Schatten im Ordner [datenverarbeitung](datenverarbeitung).
+
+Es wurden jedoch einige Änderungen am ursprünglichen Code vorgenommen, denn um die Daten aus der Fabrik zu erhalten, wurde der Ansatz verfolgt, die vom Neoception-System generierten "Logs" zu speichern und die Sensordaten durch Filtern dieser Nachricht zu extrahieren.
+
+Der digitale Schatten wurde in zwei Teile aufgeteilt, der erste bezieht sich auf das Inventar und der zweite auf die Prozesse, wobei Klassen verwendet wurden, um die Funktionsweise beider und die Berechnung der jeweiligen Kennzahlen zu trennen. Beide Teile sind wieder in den Hauptcode der [Datenverarbeitung](datenverarbeitung/datenverarbeitung_main.py) integriert.
+
+Für das Inventar findet die Hauptoperation in [InventoryDataDistribution](datenverarbeitung/InventarDataDistribution.py) statt und die Berechnung der Kennzahlen erfolgt in [calculate_inventory_kpis](datenverarbeitung/calculate_inventory_kpis.py). Was den Prozess betrifft, so befindet sich seine Hauptfunktion in [process_requests](datenverarbeitung/process_requests.py) und seine Kennzahlen in [calculate_process_kpis](datenverarbeitung/calculate_process_kpis.py). Ein äußerst wichtiger zusätzlicher Code ist [extra_process_logs](datenverarbeitung/extra_process_logs.py), der mit den manuellen Schaltflächen in den Exceldateien integriert ist.
+
+Um den Code auszuführen, vergewissern Sie sich, dass alle [Anforderungen](#anforderungen) erfüllt sind, und befolgen Sie die Anweisungen im Abschnitt über die [Ausführung des Codes](#Anweisung-zur-Ausführung-des-Codes).
+
+# Anforderungen
+
+## Python-Anforderungen
+
+Folgende Python-Module sollten mithilfe von ```pip install package-name``` installiert werden, indem ```package-name``` ist:
+- django-environ
+- numpy
+- pandas
+- openpyxl
+- watchdog
+- subprocess
+- multiprocessing
+- xlwings
+- pythoncom
+- win32com
+- datetime
+- sys
+- logging
+- json
+- csv
+
+## Pycharm-Anforderungen
+Wer PyCharm nicht hat, bitte die neueste Version von “PyCharm Community Edition” (kostenlos) herunterladen und installieren	 
+
+### Umgebungsvariablen und Datei
+Damit der Code mit Neopcetion ausgeführt werden kann, muss die Umgebungskonfiguration aktiviert werden, gehen Sie zu:
+1. Klicken Sie auf "File"
+2. Klicken Sie auf "Settings"
+3. Klicken Sie auf "Plugins"
+4. Installieren "EnvFile"
+
+### Parallele Ausführung
+Um mehrere Skripte direkt auf pycharm laufen zu lassen, gehen Sie zu:
+1. Klicken Sie auf "Run"
+2. Klicken Sie auf "Edit configurations"
+3. Wählen Sie die Skripte (main.py, datenverarbeitung_main.py und extra_process_logs.py)
+4. Aktivieren Sie das Kontrollkästchen "Allow parallel run"
+
+# Anweisung zur Ausführung des Codes
+Es gibt drei Skripte, die ausgeführt werden müssen
+
+# Neoception section
+## Introduction
 
 The sample code, provided by Neoception®, intends to show off how can one implement a simple integration service
 utilising the ILS API and ILS Event API.
@@ -6,34 +62,34 @@ utilising the ILS API and ILS Event API.
 Feel free to modify and adjust it to your own needs, however please bear in mind that it comes without any guarantee as
 something production ready or having a perfect fit to your specific Use Cases.
 
-# Requirements
+## Requirements
 
-## Development environment
+### Development environment
 
 - Docker
 - Python 3.10
 - [pipenv](https://pipenv.pypa.io/)
 
-## ILS Access
+### ILS Access
 
 - Preconfigured Supermarket
 - Credentials for the ILS REST API
 - Credentials for the ILS Event API
 
-## Concepts
+### Concepts
 
 - Basic understanding of Python
 - Basic understanding of Docker
 - Basic understanding of what is a Broker and Message Queues
 - Basic development skills to adapt code, in order to consume a REST API and a Kafka topic (sample code provided)
 
-# Sample Use Case
+## Sample Use Case
 
 This application shows an academic approach to "linked Kanban Control Cycles".
 > The term *academic* is to be read as *something simplified, but easy to understand, with the foundation logic to
 further implement the required behaviour*
 
-## How does it work?
+### How does it work?
 
 The ILS Event API allows developers to subscribe **Business Events** occurring on an organisation.
 Our application will particularly be listening to a "Carrier Pick event" occurring on a specific Lane.
@@ -44,7 +100,7 @@ A "Real World" implementation should be dynamic and prepared for change, however
 
 ![](docs/assets/architecture.png)
 
-## Where to go from here?
+### Where to go from here?
 
 After becoming familiar to the ILS API, ILS Event API and this sample code you should be able to easily extrapolate
 further logic to implement your own Use Cases.
@@ -54,7 +110,7 @@ The most common implementation pattern comes from subscribing a specific Busines
 This action is not necessarily a request to the ILS API (as shown), you can communicate to an external system (e.g.
 order a Material from a Logistics Platform), store data on a Database for later analysing / reports, etc.
 
-## How to "deploy this application on a real server"?
+### How to "deploy this application on a real server"?
 
 The main purpose of providing a sample application, running from Docker is to guarantee that it is ready for either
 being deployed on a real cluster (e.g. a Kubernetes cluster) or simply ensure it will run "seamlessly" on any platform.
@@ -86,7 +142,7 @@ This method is actually a good way to go between colleagues during development, 
 
 Ultimately this is your decision.
 
-# Getting started
+## Getting started
 
 > ⚠️ First be sure you fulfill all the [requirements](#requirements).
 
@@ -112,13 +168,13 @@ To stop:
 docker compose down
 ```
 
-# Usage
+## Usage
 
 With the [application running](#getting-started), you can proceed to your predefined Lane and **pick a Carrier**.
 The ILS Event API will trigger an event and this application, upon notification received, will **make the other
 predefined Lane to blink**.
 
-# 101 Development
+## 101 Development
 
 > You are strongly advised to start with a good IDE like PyCharm in case you have no personal preference or are not
 > familiar with a bit more serious Python development.
@@ -135,7 +191,7 @@ Be sure your IDE can load `.env` files, so you can debug properly the applicatio
 
 > If using PyCharm, be sure to install the `EnvFile` plugin in order to load the `.env` files when launching the application.
 
-## Learning material
+### Learning material
 
 Here are some hints to improve development skills. Feel free to use your own resources.
 
@@ -145,7 +201,7 @@ Here are some hints to improve development skills. Feel free to use your own res
 - [Git](https://youtu.be/mJ-qvsxPHpY)
 > ⚠️ This is a very simple/gentle introduction to the topic, you are strongly advised to source control your work!
 
-### Nice to know
+#### Nice to know
 
 If you want to level up your knowledge a bit:
 
