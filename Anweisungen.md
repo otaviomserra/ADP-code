@@ -13,6 +13,8 @@ Für das Inventar findet die Hauptoperation in [InventoryDataDistribution](daten
 Um den Code auszuführen, vergewissern Sie sich, dass alle [Anforderungen](#anforderungen) erfüllt sind, und befolgen Sie die Anweisungen im Abschnitt über die [Ausführung des Codes](#Anweisung-zur-Ausführung-des-Codes).
 
 # Anforderungen
+## System-Anforderungen
+Dieser Code muss auf Windows laufen. Das Datenformat im System sollte English(UK) sein. Das geht darum, dass der digitale Knopf ein spezifisches Datenformat braucht.
 
 ## Python-Anforderungen
 
@@ -33,22 +35,34 @@ Folgende Python-Module sollten mithilfe von ```pip install package-name``` insta
 - json
 - csv
 
-## Pycharm-Anforderungen
-Wer PyCharm nicht hat, bitte die neueste Version von “PyCharm Community Edition” (kostenlos) herunterladen und installieren	 
+## PyCharm-Anforderungen
+Wer PyCharm nicht hat, bitte die neueste Version von "PyCharm Community Edition" (kostenlos) herunterladen und installieren	 
 
 ### Umgebungsvariablen und Datei
-Damit der Code mit Neopcetion ausgeführt werden kann, muss die Umgebungskonfiguration aktiviert werden, gehen Sie zu:
+Damit der Code mit Neoception ausgeführt werden kann, muss die Umgebungskonfiguration aktiviert werden, gehen Sie zu:
 1. Klicken Sie auf "File"
 2. Klicken Sie auf "Settings"
 3. Klicken Sie auf "Plugins"
 4. Installieren "EnvFile"
 
 ### Parallele Ausführung
-Um mehrere Skripte direkt auf pycharm laufen zu lassen, gehen Sie zu:
+Um mehrere Skripte direkt auf PyCharm laufen zu lassen, gehen Sie zu:
 1. Klicken Sie auf "Run"
 2. Klicken Sie auf "Edit configurations"
 3. Wählen Sie die Skripte (main.py, datenverarbeitung_main.py und extra_process_logs.py)
 4. Aktivieren Sie das Kontrollkästchen "Allow parallel run"
 
 # Anweisung zur Ausführung des Codes
-Es gibt drei Skripte, die ausgeführt werden müssen
+Es gibt drei Skripte, die gleichzeitig ausgeführt werden müssen:
+- Zuerst muss main.py laufen. (Erkennt die Events aus der Fabrik)
+- Dann muss datenverarbeitung_main.py laufen. (Verarbeitet die erkannten Events und berechnet Kennzahlen)
+- Dann muss extra_process_logs.py laufen. (Nimmt Prozessdaten aus dem Digitalen Knopf)
+
+# Initialisierung des Digitalen Schattens
+Dieser Prozess nutzt zwei Skripte: initialize_inventory.py und run_reinitialization.py
+- Ersetzen Sie den gesamten Inhalt vom "Werk"-Ordner durch den Inhalt vom "Werk clean".
+- Gehen Sie zu dem Code in initialize_inventory.py und ändern Sie die Anzahl von Kisten, die sich auf jede Linie in der Fabrik befinden.
+- Lassen Sie initialize_inventory.py laufen; das ist sehr schnell.
+- Lassen Sie run_reinitialization.py für ein paar Sekunden laufen und dann unterbrechen Sie das Programm.
+- Lassen Sie datenverarbeitung_main.py und run_reinitialization.py gleichzeitig laufen.
+- Die Initialisierung dauert ~10 Minuten. Sie erhalten eine Nachricht "Done." im Terminal von run_reinitialization.py, wenn die Initialisierung fertig ist.

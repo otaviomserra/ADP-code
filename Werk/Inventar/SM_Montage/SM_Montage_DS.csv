@@ -1,44 +1,44 @@
 Bestandsmenge,Kapazitaet,Lagernutzungsgrad,Bestandsgenauigkeit,Durchschnittliche Wartezeit,Lagerumschlagsrate,Reichweite,Wiederbeschaffungszeit
-140.0,180.0,45,100,0.0522485853909465,2.8214236111111113,2.8214236111111113,0.9999999999999998
+140.0,180.0,45,100,0.0,0.0,0.0,0.9999999999999998
 LD2,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
-Box 1,1,15:00:00,29.10.2023,8.0,12.0,4.0,-
-Box 2,1,15:00:01,29.10.2023,4.0,4.0,4.0,-
+Box 1,1,15:00:00,30.10.2023,8.0,12.0,4.0,-
+Box 2,1,15:00:01,30.10.2023,4.0,4.0,4.0,-
 Box 3,0,-,-,-,-,-,-
 FB2,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
-Box 1,1,15:00:00,29.10.2023,12.0,12.0,4.0,-
-Box 2,1,15:00:01,29.10.2023,4.0,4.0,4.0,-
-Box 3,1,15:00:02,29.10.2023,4.0,4.0,4.0,-
+Box 1,1,15:00:00,30.10.2023,12.0,12.0,4.0,-
+Box 2,1,15:00:01,30.10.2023,4.0,4.0,4.0,-
+Box 3,1,15:00:02,30.10.2023,4.0,4.0,4.0,-
 LG3,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
-Box 1,1,15:00:00,29.10.2023,12.0,12.0,4.0,-
-Box 2,1,15:00:01,29.10.2023,4.0,4.0,4.0,-
-Box 3,1,15:00:02,29.10.2023,4.0,4.0,4.0,-
+Box 1,1,15:00:00,30.10.2023,12.0,12.0,4.0,-
+Box 2,1,15:00:01,30.10.2023,4.0,4.0,4.0,-
+Box 3,1,15:00:02,30.10.2023,4.0,4.0,4.0,-
 LG4,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
-Box 1,1,15:00:00,29.10.2023,8.0,12.0,4.0,-
-Box 2,1,15:00:01,29.10.2023,4.0,4.0,4.0,-
+Box 1,1,15:00:00,30.10.2023,8.0,12.0,4.0,-
+Box 2,1,15:00:01,30.10.2023,4.0,4.0,4.0,-
 Box 3,0,-,-,-,-,-,-
 LK2,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
-Box 1,1,15:00:00,29.10.2023,12.0,12.0,4.0,-
-Box 2,1,15:00:01,29.10.2023,4.0,4.0,4.0,-
-Box 3,1,15:00:02,29.10.2023,4.0,4.0,4.0,-
+Box 1,1,15:00:00,30.10.2023,12.0,12.0,4.0,-
+Box 2,1,15:00:01,30.10.2023,4.0,4.0,4.0,-
+Box 3,1,15:00:02,30.10.2023,4.0,4.0,4.0,-
 LD1,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
-Box 1,1,15:00:00,29.10.2023,16.0,24.0,8.0,-
-Box 2,1,15:00:01,29.10.2023,8.0,8.0,8.0,-
+Box 1,1,15:00:00,30.10.2023,16.0,24.0,8.0,-
+Box 2,1,15:00:01,30.10.2023,8.0,8.0,8.0,-
 Box 3,0,-,-,-,-,-,-
 FB1,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
-Box 1,1,15:00:00,29.10.2023,16.0,24.0,8.0,-
-Box 2,1,15:00:01,29.10.2023,8.0,8.0,8.0,-
+Box 1,1,15:00:00,30.10.2023,16.0,24.0,8.0,-
+Box 2,1,15:00:01,30.10.2023,8.0,8.0,8.0,-
 Box 3,0,-,-,-,-,-,-
 LG1,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
-Box 1,1,15:00:00,29.10.2023,16.0,24.0,8.0,-
-Box 2,1,15:00:01,29.10.2023,8.0,8.0,8.0,-
+Box 1,1,15:00:00,30.10.2023,16.0,24.0,8.0,-
+Box 2,1,15:00:01,30.10.2023,8.0,8.0,8.0,-
 Box 3,0,-,-,-,-,-,-
 LG2,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
-Box 1,1,15:00:01,29.10.2023,24.0,24.0,8.0,-
-Box 2,1,15:00:02,29.10.2023,8.0,8.0,8.0,-
-Box 3,1,13:35:25,30.10.2023,8.0,8.0,8.0,-
+Box 1,1,15:00:00,30.10.2023,24.0,24.0,8.0,-
+Box 2,1,15:00:01,30.10.2023,8.0,8.0,8.0,-
+Box 3,1,15:00:02,30.10.2023,8.0,8.0,8.0,-
 LK1,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
-Box 1,1,15:00:00,29.10.2023,16.0,24.0,8.0,-
-Box 2,1,15:00:01,29.10.2023,8.0,8.0,8.0,-
+Box 1,1,15:00:00,30.10.2023,16.0,24.0,8.0,-
+Box 2,1,15:00:01,30.10.2023,8.0,8.0,8.0,-
 Box 3,0,-,-,-,-,-,-
 FK1,Besetzt,Time In,Waiting Time,Bestandsmenge,Kapazitaet,Losgroesse,Lead Time
 Box 1,0,-,-,-,-,-,-

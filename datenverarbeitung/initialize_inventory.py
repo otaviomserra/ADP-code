@@ -46,7 +46,7 @@ def generate_kafka_messages(lane, number_of_boxes, file):
     for prior_lane in box_paths[lane]:
         for i in range(number_of_boxes):
             # Write all put events into the lane
-            file.write('[29/Oct/2023 0' + str(1 + box_paths[lane].index(prior_lane)) + f':00:0{i}] "DEBUG" ' +
+            file.write('[30/Oct/2023 0' + str(1 + box_paths[lane].index(prior_lane)) + f':00:0{i}] "DEBUG" ' +
                        '"ils_event_consumer" "KAFKA | RECEIVED | ' +
                        '[topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | ' +
                        '[content={"header":{"traceId":"54b850b1-b646-4ef8-b8d6-817a3dc319bc",' +
@@ -59,7 +59,7 @@ def generate_kafka_messages(lane, number_of_boxes, file):
 
         for i in range(number_of_boxes):
             # Write all pick events from the lane
-            file.write('[29/Oct/2023 0' + str(1 + box_paths[lane].index(prior_lane)) + f':30:0{i}] "DEBUG" ' +
+            file.write('[30/Oct/2023 0' + str(1 + box_paths[lane].index(prior_lane)) + f':30:0{i}] "DEBUG" ' +
                        '"ils_event_consumer" "KAFKA | RECEIVED | ' +
                        '[topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | ' +
                        '[content={"header":{"traceId":"54b850b1-b646-4ef8-b8d6-817a3dc319bc",' +
@@ -72,7 +72,7 @@ def generate_kafka_messages(lane, number_of_boxes, file):
 
     # Conclude with all put events at the destination lane
     for i in range(number_of_boxes):
-        file.write('[29/Oct/2023 0' + str(1 + path_size) + f':00:0{i}] "DEBUG" ' +
+        file.write('[30/Oct/2023 0' + str(1 + path_size) + f':00:0{i}] "DEBUG" ' +
                    '"ils_event_consumer" "KAFKA | RECEIVED | ' +
                    '[topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | ' +
                    '[content={"header":{"traceId":"54b850b1-b646-4ef8-b8d6-817a3dc319bc",' +
