@@ -4,7 +4,6 @@ import os
 current_dir = os.path.dirname(__file__)
 reinit_file = "initialize_inventory.txt"
 target_file = os.path.join("raw_logs", "reinit.log")
-# target_file = "test_reinit.txt"
 
 reinit = open(reinit_file, "r")
 target = open(target_file, "a")
