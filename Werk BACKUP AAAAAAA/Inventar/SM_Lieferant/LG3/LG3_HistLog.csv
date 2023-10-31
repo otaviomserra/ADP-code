@@ -1,8 +1,0 @@
-Besetzt,ID,Date_in,Timestamp_in,Date_out,Timestamp_out
-False,6,13/Oct/2023,04:00:00,13/Oct/2023,04:30:00
-False,7,13/Oct/2023,04:00:01,13/Oct/2023,04:30:01
-False,8,13/Oct/2023,04:00:02,13/Oct/2023,04:30:02
-True,41,13/Oct/2023,04:00:00,,
-True,42,13/Oct/2023,04:00:01,,
-True,43,13/Oct/2023,04:00:02,,
-True,44,13/Oct/2023,04:00:03,,
