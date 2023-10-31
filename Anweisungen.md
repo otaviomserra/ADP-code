@@ -54,15 +54,15 @@ Um mehrere Skripte direkt auf PyCharm laufen zu lassen, gehen Sie zu:
 
 # Anweisung zur Ausführung des Codes
 Es gibt drei Skripte, die gleichzeitig ausgeführt werden müssen:
-- Zuerst muss main.py laufen. (Erkennt die Events aus der Fabrik)
-- Dann muss datenverarbeitung_main.py laufen. (Verarbeitet die erkannten Events und berechnet Kennzahlen)
-- Dann muss extra_process_logs.py laufen. (Nimmt Prozessdaten aus dem Digitalen Knopf)
+- Zuerst muss [main.py](main.py) laufen. (Erkennt die Events aus der Fabrik)
+- Dann muss [datenverarbeitung_main.py](datenverarbeitung/datenverarbeitung_main.py) laufen. (Verarbeitet die erkannten Events und berechnet Kennzahlen)
+- Dann muss [extra_process_logs.py](datenverarbeitung/extra_process_logs.py) laufen. (Nimmt Prozessdaten aus dem Digitalen Knopf)
 
 # Initialisierung des Digitalen Schattens
-Dieser Prozess nutzt zwei Skripte: initialize_inventory.py und run_reinitialization.py
-- Ersetzen Sie den gesamten Inhalt vom "Werk"-Ordner durch den Inhalt vom "Werk clean".
-- Gehen Sie zu dem Code in initialize_inventory.py und ändern Sie die Anzahl von Kisten, die sich auf jede Linie in der Fabrik befinden.
-- Lassen Sie initialize_inventory.py laufen; das ist sehr schnell.
-- Lassen Sie run_reinitialization.py für ein paar Sekunden laufen und dann unterbrechen Sie das Programm.
-- Lassen Sie datenverarbeitung_main.py und run_reinitialization.py gleichzeitig laufen.
+Dieser Prozess nutzt zwei Skripte: [initialize_inventory.py](datenverarbeitung/initialize_inventory.py) und [run_reinitialization.py](datenverarbeitung/run_reinitialization.py)
+- Ersetzen Sie den gesamten Inhalt vom ["Werk"](Werk)-Ordner durch den Inhalt vom ["Werk clean"](Werk-clean).
+- Gehen Sie zu dem Code in [initialize_inventory.py](datenverarbeitung/initialize_inventory.py) und ändern Sie die Anzahl von Kisten, die sich auf jede Linie in der Fabrik befinden.
+- Lassen Sie [initialize_inventory.py](datenverarbeitung/initialize_inventory.py) laufen; das ist sehr schnell.
+- Lassen Sie r[run_reinitialization.py](datenverarbeitung/run_reinitialization.py) für ein paar Sekunden laufen und dann unterbrechen Sie das Programm.
+- Lassen Sie [datenverarbeitung_main.py](datenverarbeitung/datenverarbeitung_main.py) und [run_reinitialization.py](datenverarbeitung/run_reinitialization.py) gleichzeitig laufen.
 - Die Initialisierung dauert ~10 Minuten. Sie erhalten eine Nachricht "Done." im Terminal von run_reinitialization.py, wenn die Initialisierung fertig ist.
