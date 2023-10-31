@@ -212,25 +212,9 @@ try:
         workbook.close()
         time2 = datetime.now()
         print(f"Time 2 is {time2}")
-        time.sleep(30)
+        time.sleep(10)
 
 except KeyboardInterrupt:
     pass
 finally:
     app.quit()
-
-"""
-# Create an observer to monitor file changes
-observer = Observer()
-error_handler = ErrorFileHandler()
-observer.schedule(error_handler, path=os.path.dirname(process_excel_path), recursive=True)
-observer.start()
-print("bibo")
-
-try:
-    while True:
-        time.sleep(1)
-except KeyboardInterrupt:
-    observer.stop()
-observer.join()
-"""

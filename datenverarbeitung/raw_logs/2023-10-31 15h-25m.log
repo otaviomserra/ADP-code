@@ -1,0 +1,44 @@
+[31/Oct/2023 03:25:54] "INFO" "main" "Starting application..."
+[31/Oct/2023 03:25:54] "INFO" "main" "ils-api access: True"
+[31/Oct/2023 03:25:54] "DEBUG" "main" "Starting process: 'OrganisationEventProcessor-1'"
+[31/Oct/2023 03:25:55] "INFO" "ils_event_consumer" "Starting consumer..."
+[31/Oct/2023 03:25:55] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"ebfbf364-51b1-4760-90c7-7e92c4704761","id":"e5da9649-1220-4d58-941b-3e199bb2a08a","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-31T14:25:09.329786991Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M006.02.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"3ad6ac09-04b0-781a-bdb0-ee1ba6b6876b","currentCount":2}}}}]"
+[31/Oct/2023 03:25:55] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"ae666f9b-3a89-4bda-b19c-c34425e18f46","id":"e95f330a-835d-4f91-928c-d318fc270761","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-31T14:25:09.617780567Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M006.02.02","carrierActionType":"CARRIER_ACTION_PICK","locationType":"LOCATION_SECONDARY","carrierId":"8013bff2-c7cc-c373-9b0f-07a09a2291e2","currentCount":1}}}}]"
+[31/Oct/2023 03:25:55] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"7fc7ae77-e7cf-4bca-a255-bd329439cecd","id":"bb62bce9-62c7-4658-8dc2-84dd4988f7bd","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-31T14:25:11.061567950Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M006.02.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_PRIMARY","carrierId":"","currentCount":2}}}}]"
+[31/Oct/2023 03:25:55] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"d9d120dd-71a4-41f4-9c68-4ab669f7032d","id":"80bc05c1-6a90-4739-b23d-3b400060c7b7","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-31T14:25:13.363206246Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M006.02.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":3}}}}]"
+[31/Oct/2023 03:25:55] "DEBUG" "ils_event_consumer" "KAFKA | RECEIVED | [topic=organisation_events_1091c573-df2b-44e3-8755-64c8a09cebcc] | [content={"header":{"traceId":"0cf7620f-5705-4ae2-b97e-5eac5c955f53","id":"39f2e0aa-448c-4823-9e50-abb763122681","organisationId":"b6c197fa-c1d2-43ec-930f-57daf8c7aa9b","timestamp":"2023-10-31T14:25:14.459896246Z"},"body":{"action":{"carrier":{"laneAddress":"S001.M006.02.02","carrierActionType":"CARRIER_ACTION_PUT","locationType":"LOCATION_SECONDARY","carrierId":"","currentCount":4}}}}]"
+[31/Oct/2023 03:25:56] "INFO" "events_processor" "OrganisationEventProcessor Running!"
+[31/Oct/2023 03:25:56] "DEBUG" "organisation_event_processor" "handling a action event..."
+[31/Oct/2023 03:25:56] "INFO" "organisation_event_processor" "signal linked lane S001.M006.02.02 -> 1a6acfef-0beb-4115-80c2-9c9cf02c6208"
+[31/Oct/2023 03:25:56] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[31/Oct/2023 03:25:56] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Tue, 31 Oct 2023 14:25:56 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-31T14:25:56.16533039Z","status":404,"message":"Not found a card assigned to this carrier!"}'
+"
+[31/Oct/2023 03:25:56] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (409)
+Reason: Conflict
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Tue, 31 Oct 2023 14:25:56 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-31T14:25:56.258879905Z","status":409,"message":"Conflict, \'Should select CreateCardIfNoneFree!\'"}'
+"
+[31/Oct/2023 03:25:56] "DEBUG" "organisation_event_processor" "handling a action event..."
+[31/Oct/2023 03:25:56] "INFO" "organisation_event_processor" "signal linked lane S001.M006.02.02 -> 1a6acfef-0beb-4115-80c2-9c9cf02c6208"
+[31/Oct/2023 03:25:56] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[31/Oct/2023 03:25:56] "DEBUG" "organisation_event_processor" "Exception when calling ILS API: a bytes-like object is required, not 'str'"
+[31/Oct/2023 03:25:56] "ERROR" "organisation_event_processor" "Exception when calling ILS API: (409)
+Reason: Conflict
+HTTP response headers: HTTPHeaderDict({'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate', 'Content-Type': 'application/json', 'Date': 'Tue, 31 Oct 2023 14:25:56 GMT', 'Expires': '0', 'Pragma': 'no-cache', 'Strict-Transport-Security': 'max-age=31536000 ; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'X-Xss-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"timestamp":"2023-10-31T14:25:56.577087387Z","status":409,"message":"Conflict, \'Should select CreateCardIfNoneFree!\'"}'
+"
+[31/Oct/2023 03:25:56] "DEBUG" "organisation_event_processor" "handling a action event..."
+[31/Oct/2023 03:25:56] "DEBUG" "organisation_event_processor" "handling a action event..."
+[31/Oct/2023 03:25:56] "DEBUG" "organisation_event_processor" "handling a action event..."
+[31/Oct/2023 03:26:03] "INFO" "ils_event_consumer" "Shutting down signal 'SIGINT' received, starting to stop consumer!"
+[31/Oct/2023 03:26:03] "INFO" "ils_event_consumer" "Ordering consumer to stop!"
+[31/Oct/2023 03:26:03] "DEBUG" "ils_event_consumer" "Warning Event Processors to stop!"
+[31/Oct/2023 03:26:03] "DEBUG" "ils_event_consumer" "Closing consumer!"
+[31/Oct/2023 03:26:03] "INFO" "events_processor" "OrganisationEventProcessor received order to stop!"
+[31/Oct/2023 03:26:03] "INFO" "events_processor" "All messages in OrganisationEventProcessor processing queue have been processed. Shutting down..."
+[31/Oct/2023 03:26:03] "DEBUG" "ils_event_consumer" "Consumer has been shutdown!"
+[31/Oct/2023 03:26:03] "DEBUG" "main" "Ending process: 'OrganisationEventProcessor-1'"
+[31/Oct/2023 03:26:03] "INFO" "main" "Process OrganisationEventProcessor-1 as fully stopped!"
