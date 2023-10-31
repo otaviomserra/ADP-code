@@ -55,8 +55,10 @@ Um mehrere Skripte direkt auf PyCharm laufen zu lassen, gehen Sie zu:
 # Anweisung zur Ausführung des Codes
 Es gibt drei Skripte, die gleichzeitig ausgeführt werden müssen:
 - Zuerst muss [main.py](main.py) laufen. (Erkennt die Events aus der Fabrik)
+  - Warten Sie, bis keine Nachrichten mehr im Terminal kommen.
 - Dann muss [datenverarbeitung_main.py](datenverarbeitung/datenverarbeitung_main.py) laufen. (Verarbeitet die erkannten Events und berechnet Kennzahlen)
 - Dann muss [extra_process_logs.py](datenverarbeitung/extra_process_logs.py) laufen. (Nimmt Prozessdaten aus dem Digitalen Knopf)
+  - Nach jeder Aktivität mit dem digitalen Knopf (Prozess beendet, Ausschussteil markiert) sollte er manuell gespeichert werden. (Ctrl+S)
 
 # Initialisierung des Digitalen Schattens
 Dieser Prozess nutzt zwei Skripte: [initialize_inventory.py](datenverarbeitung/initialize_inventory.py) und [run_reinitialization.py](datenverarbeitung/run_reinitialization.py)
